@@ -1,6 +1,7 @@
 #ifndef _CELL_H
 #define _CELL_H
 #include <string>
+
 class Cell {
   int x;
   int y;
@@ -13,4 +14,7 @@ class Cell {
   int getX();
   int getY();
 };
+
+std::ostream& ::operator<<(std::ostream &out, const Cell &c);
+
 #endif
