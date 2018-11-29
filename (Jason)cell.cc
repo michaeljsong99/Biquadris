@@ -25,8 +25,8 @@ void Cell::setY(int m) {
    y = m;
 }
 
-std::ostream& ::operator<<(std::ostream &out, const Cell &c){
-    cout << letter;
+std::ostream& operator<<(std::ostream &out, const Cell &c){
+    out << letter;
     return out;
 }
 
