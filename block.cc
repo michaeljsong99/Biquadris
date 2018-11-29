@@ -1,7 +1,7 @@
 
 #include "block.h"
 
-std::ostream& ::operator<<(std::ostream &out, const Block &b){
+std::ostream& operator<<(std::ostream &out, const Block &b){
     for (int i = 0; i < b.container_height; ++i) {
         for (int j = 0; j < b.container_width; ++j) {
             cout << b.container[i][j];
