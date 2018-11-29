@@ -28,7 +28,8 @@ public:
     void generateBlock();           //Generates a block. Changes based on level and custom file
 
     void replaceBlock(char blockType, int board, int block);
-                                    //Forcibly changes the current block
+                                    //Forcibly changes the current block.
+                                    //Make sure to get the x and y of the current block and put it in the new one.
 
     void resetBoard(int board);     //Resets the Board given the board #
 
