@@ -25,12 +25,26 @@ void Cell::setY(int m) {
    y = m;
 }
 
-std::ostream& ::operator<<(std::ostream &out, const Block &b){
-    for (int i = 0; i < b.container_height; ++i) {
-        for (int j = 0; j < b.container_width; ++j) {
-            cout << b.container[i][j];
-        }
-        cout << endl;
-    }
+std::ostream& ::operator<<(std::ostream &out, const Cell &c){
+    cout << letter;
     return out;
 }
+
+/*
+#ifndef _CELL_H
+#define _CELL_H
+#include <string>
+class Cell {
+  int x;
+  int y;
+  std::string letter;
+ public:
+  std::string getLetter();
+  void setLetter(std::string alphabet);
+  void setX(int n);
+  void setY(int m);
+  int getX();
+  int getY();
+};
+#endif
+*/
