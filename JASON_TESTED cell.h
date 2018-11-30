@@ -6,9 +6,10 @@ class Cell {
   int x;
   int y;
   std::string letter;
-  bool status;
+  bool status = true;
  public:
   friend std::ostream& operator<<(std::ostream &out, Cell &c);
+  Cell(int x, int y, string letter);
   std::string getLetter();
   void setLetter(std::string alphabet);
   void setX(int n);
