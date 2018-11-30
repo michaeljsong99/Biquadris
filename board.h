@@ -20,7 +20,7 @@ private:
 
     void calculateScore() override;          //Checks for empty blocks and other score sources
 
-    void clearRow() override;
+    void clearRow() override;   // have a separate grid which checks for rows to be cleared
 
     void update() override;                  //Called after the end of a turn, calls clearRow and calculateScore
 
