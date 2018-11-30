@@ -17,6 +17,8 @@ private:
     int score;                              //Score of the current board
 
     std::vector<Block> Blocks;                    //Stores the blocks
+    
+    std::vector<vector<Cell>> Grid;               //Stores the grid
 
     void calculateScore() override;          //Checks for empty blocks and other score sources
 
