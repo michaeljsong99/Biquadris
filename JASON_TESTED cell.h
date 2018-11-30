@@ -6,7 +6,7 @@ class Cell {
   int x;
   int y;
   std::string letter;
-  bool status = true;
+  bool status;
  public:
   friend std::ostream& operator<<(std::ostream &out, Cell &c);
   Cell(int x, int y, string letter);
