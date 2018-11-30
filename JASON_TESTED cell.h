@@ -16,6 +16,6 @@ class Cell {
   int getX();
   int getY();
   bool getStatus();
-  void setStatus();
+  void setStatus(bool s);
 };
 #endif
