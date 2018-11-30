@@ -6,6 +6,7 @@ class Cell {
   int x;
   int y;
   std::string letter;
+  bool status;
  public:
   friend std::ostream& operator<<(std::ostream &out, Cell &c);
   std::string getLetter();
@@ -14,5 +15,7 @@ class Cell {
   void setY(int m);
   int getX();
   int getY();
+  bool getStatus();
+  void setStatus();
 };
 #endif
