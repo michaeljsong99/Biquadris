@@ -1,6 +1,8 @@
 #include "cell.h"
 using namespace std;
 
+Cell::Cell(int x, int y, string l): x{x}, y{y}, letter{l}, status{true} {}
+
 string Cell::getLetter() {
   return letter;
 }
