@@ -33,3 +33,9 @@ ostream &operator<<(ostream &out, Cell &c) {
    out << c.letter;
    return out;
 }
+bool Cell::getStatus() {
+  return status;
+}
+void Cell::setStatus(bool s) {
+  status = s;
+}
