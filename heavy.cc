@@ -12,8 +12,21 @@ public:
     // If it is not possible for the block to drop two rows, it is considered to be dropped, and the turn ends.
     // If the player is in a level where the blocks are heavy, the effect is cumulative (the player suffers from both effects).
   
+    // Note: My functions move the blocks in addition to returning a boolean value.
+	
     bool moveLeft(std::shared_ptr<Block> b) override;           //Returns true if the block doesn't collide
-         if
+         if (Heavy->moveLeft(b)) {	// if it is possible to move the block left
+	 	 b->moveLeft();		// move the block left
+		 for (int i = 0; i < heavy; ++i) {
+		 	if (Heavy->moveDown(b)) {
+				b->moveDown();
+			}
+			else {
+				Heavy->drop();	//ends the turn
+				return true;	//returns true as the left move is allowed.
+			}
+		 }
+	 }
     bool moveRight(std::shared_ptr<Block> b) override;
 
     bool moveDown(std::shared_ptr<Block> b) override;
@@ -58,4 +71,24 @@ public:
 
 
     void updateGrid();
+
+public:
+
+    Block(char type, int position, int levelCreated);
+
+    bool isEmpty();     //Checks if the cells are all cleared
+
+    void moveLeft();    //Moves the cell
+
+    void moveRight();
+
+    void moveDown();
+
+    void rotateCW();    //Rotates the block
+
+    void rotateCCW();
+
+    void printBlock();
+
+    void getPos();
 
