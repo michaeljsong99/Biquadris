@@ -16,9 +16,9 @@ private:
 
     int score;                              //Score of the current board
 
-    std::vector<Block> Blocks;                    //Stores the blocks
-    
-    std::vector<vector<Cell>> Grid;               //Stores the grid
+    std::vector<std::shared_ptr<Block>> Blocks;                    //Stores the blocks
+
+    std::vector<std::vector<Cell>> Grid;
 
     void calculateScore() override;          //Checks for empty blocks and other score sources
 
@@ -48,9 +48,9 @@ public:
 
     int getLevel() override;                //Returns current Level
 
-    int getScore() override;;                 //Returns current Level
+    int getScore() override;                //Returns current Level
 
-
+    void updateGrid();
 
 };
 
