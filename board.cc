@@ -27,7 +27,7 @@ void Board::updateGrid() {
     //Add Blocks
     for (auto & i : Blocks) {
         for (auto & j : i->Cells) {
-            Grid[i->getY() + j.getY()][i->getY() + j.getX()] = j;
+            Grid[i->getY() + j.getY()][i->getX() + j.getX()] = j;
         }
     }
 
