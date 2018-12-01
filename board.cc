@@ -1,5 +1,6 @@
 #include <cstdlib>
 #include "board.h"
+// NOTE: Blocks was changed to a vector of pointers to Blocks, not just a vector of Blocks anymore.
 
 /*Block Board::setBlock(int level) {
     if (level == 0) {
@@ -80,7 +81,7 @@ bool Board::CanClearOneRow() {
             }
 	    int num_blocks = this->Blocks.size();
 	    for (int i = 0; i < num_blocks; ++i) {
-	        Blocks[i].MoveDown(row);
+	        Blocks[i]->MoveDown(row);
 	    }
         }
         return true;
@@ -101,7 +102,7 @@ int Board::CalculateScore() { // override {
     int num_blocks = this->Blocks.size();     // number of blocks on the Board
     int block_score = 0;
     for (int i = 0; i < num_blocks; ++i) {
-        int block_level = (Blocks[i].isBlockAlive());  // -1 if Block is dead, else level block was created
+        int block_level = (Blocks[i]->isBlockAlive());  // -1 if Block is dead, else level block was created
         block_score += ((block_level + 1) * (block_level + 1)); // will return 0 if block is alive
     }
     int add_score = (row_score * row_score) + block_score;   
@@ -113,9 +114,9 @@ void Board::update() {
     if (score > hi_score) {
 	hi_score = score;
     }
-    /*int num_blocks = Blocks.size();
+    int num_blocks = Blocks.size();
     for (int i = 0; i < num_blocks; ++i) {
-        if ((Blocks[i].isBlockAlive()) == -1)
+        if ((Blocks[i]->isBlockAlive()) == -1)
              Blocks.erase(i);   // erases a Block that is completely cleared
-    }*/
+    }
 }
