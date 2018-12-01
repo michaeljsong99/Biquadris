@@ -66,65 +66,77 @@ public:
     }
 
     bool moveDown(std::shared_ptr<Block> b) override {
+	 if (Heavy->moveDown(b)) {	// if it is possible to move the block down
+	 	 b->moveDown();		// move the block down
+		 for (int i = 0; i < heavy; ++i) {	// does the heaviness feature first
+		 	if (Heavy->moveDown(b)) {
+				b->moveDown();
+			}
+			else {
+				Heavy->drop();	//ends the turn as it cannot move down further
+				return true;	//returns true as the down move is allowed.
+			}
+		 }
+	 	 if (Heavy->moveDown(b) && Heavy->moveDown2(b)) {	// checks if can move down 1 and 2 rows.
+			 b->moveDown();
+			 b->moveDown();
+			 return true;
+		 }
+		 else {
+		 	Heavy->drop(); // ends the turn as it is not possible to drop 2 rows
+			return true;   // returns true as the down move is allowed.
+		 }
+	 }
+	return false;	// returns false if the down move is not legal.
+    }
 
-    bool rotateCW(std::shared_ptr<Block> b) override;      //Returns true if the block doesn't collide
-
-    bool rotateCCW(std::shared_ptr<Block> b) override;    //Returns true if the block doesn't collide
-
-};
-
-
-
-public:
-
-    void drop() override;
-
-    bool moveLeft(std::shared_ptr<Block> b) override;          //Returns true if the block doesn't collide                  //Stores the blocks as pointers
-    
-    bool CanClearOneRow();
-    
-    int CalculateScore();          //Checks for empty blocks and other score sources
-
-
-    int ClearRows();
-
-    void update();                  //Called after the end of a turn, calls clearRow and calculateScore
+    bool rotateCW(std::shared_ptr<Block> b) override {      //Returns true if the block doesn't collide
+	if (Heavy->rotateCW(b)) {	// if it is possible to rotate CW
+	 	 b->rotateCW();		// rotate CW
+		 for (int i = 0; i < heavy; ++i) {	// does the heaviness feature first
+		 	if (Heavy->moveDown(b)) {
+				b->moveDown();
+			}
+			else {
+				Heavy->drop();	//ends the turn as it cannot move down further
+				return true;	//returns true as the rotate CW move is allowed.
+			}
+		 }
+	 	 if (Heavy->moveDown(b) && Heavy->moveDown2(b)) {	// checks if can move down 1 and 2 rows.
+			 b->moveDown();
+			 b->moveDown();
+			 return true;
+		 }
+		 else {
+		 	Heavy->drop(); // ends the turn as it is not possible to drop 2 rows
+			return true;   // returns true as the rotate CW move is allowed.
+		 }
+	 }
+	return false;	// returns false if the rotate CW move is not legal.
+    }
 	
-
-
-
-    bool rotateCCW(std::shared_ptr<Block> b) override;
-
-    void reset() override;                  //Resets the board
-
-    std::string outputBoard() override;                  //Prints board as a string
-
-    void changeLevel(int change) override;             //Modify the level by change levels e.g change = -2 level 4->2
-
-    int getLevel() override;                //Returns current Level
-
-    int getScore() override;                //Returns current Level
-
-
-    void updateGrid();
-
-public:
-
-    Block(char type, int position, int levelCreated);
-
-    bool isEmpty();     //Checks if the cells are all cleared
-
-    void moveLeft();    //Moves the cell
-
-    void moveRight();
-
-    void moveDown();
-
-    void rotateCW();    //Rotates the block
-
-    void rotateCCW();
-
-    void printBlock();
-
-    void getPos();
-
+    bool rotateCCW(std::shared_ptr<Block> b) override {		//Returns true if the block doesn't collide
+	if (Heavy->rotateCCW(b)) {	// if it is possible to rotate CCW
+	 	 b->rotateCCW();		// rotates CCW
+		 for (int i = 0; i < heavy; ++i) {	// does the heaviness feature first
+		 	if (Heavy->moveDown(b)) {
+				b->moveDown();
+			}
+			else {
+				Heavy->drop();	//ends the turn as it cannot move down further
+				return true;	//returns true as the rotate CCW move is allowed.
+			}
+		 }
+	 	 if (Heavy->moveDown(b) && Heavy->moveDown2(b)) {	// checks if can move down 1 and 2 rows.
+			 b->moveDown();
+			 b->moveDown();
+			 return true;
+		 }
+		 else {
+		 	Heavy->drop(); // ends the turn as it is not possible to drop 2 rows
+			return true;   // returns true as the rotate CCW move is allowed.
+		 }
+	 }
+	return false;	// returns false if the down move is not legal.
+    }
+};
