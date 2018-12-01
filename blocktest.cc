@@ -6,23 +6,26 @@ using namespace std;
 
 int main() {
     string s;
-    Block b = Block('I', 1);
     Cell c = Cell(0,0,'x');
+    char l;
+    cin >> l;
+    Block b = Block(l, 1);
     b.printBlock();
+
 
     //Command Interpreter
     while(cin >> s) {
 
-        if (s == "print") {
-
+        if (s == "p") {
+            b.printBlock();
             cout<< b;
             b.getPos();
         }
-        else if (s == "rotateCW") {
+        else if (s == "r") {
             b.rotateCW();
             b.getPos();
         }
-        else if (s == "rotateCCW") {
+        else if (s == "rc") {
             b.rotateCCW();
             b.getPos();
         }

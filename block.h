@@ -44,6 +44,14 @@ public:
 
     void getPos();
 
+    int getX();
+
+    int getY();
+
+    void setX(int x);
+
+    void setY(int y);
+
     friend std::ostream& ::operator<<(std::ostream &out, const Block &b);
 
 };

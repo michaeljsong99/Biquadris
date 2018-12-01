@@ -8,23 +8,136 @@ Block::Block(char type, int position) :type{type}, position{position} {
 
 void Block::setBlock() {
     if (type == 'I') {
-        if (position == 1 || position == 3) {
+        if (position == 2 || position == 4) {
             Cells.clear();
-            Cells.push_back(Cell(0, 0, 'I'));
-            Cells.push_back(Cell(0, 1, 'I'));
-            Cells.push_back(Cell(0, 2, 'I'));
-            Cells.push_back(Cell(0, 3, 'I'));
+            Cells.emplace_back(Cell(0, 0, 'I'));
+            Cells.emplace_back(Cell(0, 1, 'I'));
+            Cells.emplace_back(Cell(0, 2, 'I'));
+            Cells.emplace_back(Cell(0, 3, 'I'));
         } else {
             Cells.clear();
-            Cells.push_back(Cell(0, 0, 'I'));
-            Cells.push_back(Cell(1, 0, 'I'));
-            Cells.push_back(Cell(2, 0, 'I'));
-            Cells.push_back(Cell(3, 0, 'I'));
+            Cells.emplace_back(Cell(0, 3, 'I'));
+            Cells.emplace_back(Cell(1, 3, 'I'));
+            Cells.emplace_back(Cell(2, 3, 'I'));
+            Cells.emplace_back(Cell(3, 3, 'I'));
         }
+    } else if (type == 'J') {
+        if (position == 1) {
+            Cells.clear();
+            Cells.emplace_back(Cell(0, 2, 'J'));
+            Cells.emplace_back(Cell(0, 3, 'J'));
+            Cells.emplace_back(Cell(1, 3, 'J'));
+            Cells.emplace_back(Cell(2, 3, 'J'));
+        } else if (position == 2) {
+            Cells.clear();
+            Cells.emplace_back(Cell(0, 2, 'J'));
+            Cells.emplace_back(Cell(0, 3, 'J'));
+            Cells.emplace_back(Cell(0, 1, 'J'));
+            Cells.emplace_back(Cell(1, 1, 'J'));
+        } else if (position == 3) {
+            Cells.clear();
+            Cells.emplace_back(Cell(0, 2, 'J'));
+            Cells.emplace_back(Cell(1, 2, 'J'));
+            Cells.emplace_back(Cell(2, 2, 'J'));
+            Cells.emplace_back(Cell(2, 3, 'J'));
+        } else {
+            Cells.clear();
+            Cells.emplace_back(Cell(1, 1, 'J'));
+            Cells.emplace_back(Cell(1, 2, 'J'));
+            Cells.emplace_back(Cell(1, 3, 'J'));
+            Cells.emplace_back(Cell(0, 3, 'J'));
+        }
+    } else if (type == 'L') {
+        if (position == 1) {
+            Cells.clear();
+            Cells.emplace_back(Cell(2, 2, 'L'));
+            Cells.emplace_back(Cell(0, 3, 'L'));
+            Cells.emplace_back(Cell(1, 3, 'L'));
+            Cells.emplace_back(Cell(2, 3, 'L'));
+        } else if (position == 2) {
+            Cells.clear();
+            Cells.emplace_back(Cell(0, 2, 'L'));
+            Cells.emplace_back(Cell(0, 3, 'L'));
+            Cells.emplace_back(Cell(0, 1, 'L'));
+            Cells.emplace_back(Cell(1, 3, 'L'));
+        } else if (position == 3) {
+            Cells.clear();
+            Cells.emplace_back(Cell(0, 2, 'L'));
+            Cells.emplace_back(Cell(1, 2, 'L'));
+            Cells.emplace_back(Cell(2, 2, 'L'));
+            Cells.emplace_back(Cell(0, 3, 'L'));
+        } else {
+            Cells.clear();
+            Cells.emplace_back(Cell(1, 1, 'L'));
+            Cells.emplace_back(Cell(1, 2, 'L'));
+            Cells.emplace_back(Cell(1, 3, 'L'));
+            Cells.emplace_back(Cell(0, 1, 'L'));
+        }
+    } else if (type == 'O') {
+        Cells.clear();
+        Cells.emplace_back(Cell(0, 2, 'O'));
+        Cells.emplace_back(Cell(0, 3, 'O'));
+        Cells.emplace_back(Cell(1, 2, 'O'));
+        Cells.emplace_back(Cell(1, 3, 'O'));
+    } else if (type == 'S') {
+        if (position == 1 || position == 3) {
+            Cells.clear();
+            Cells.emplace_back(Cell(0, 3, 'S'));
+            Cells.emplace_back(Cell(1, 3, 'S'));
+            Cells.emplace_back(Cell(1, 2, 'S'));
+            Cells.emplace_back(Cell(2, 2, 'S'));
+        } else {
+            Cells.clear();
+            Cells.emplace_back(Cell(0, 1, 'S'));
+            Cells.emplace_back(Cell(0, 2, 'S'));
+            Cells.emplace_back(Cell(1, 2, 'S'));
+            Cells.emplace_back(Cell(1, 3, 'S'));
+        }
+    } else if (type == 'Z') {
+        if (position == 1 || position == 3) {
+            Cells.clear();
+            Cells.emplace_back(Cell(0, 2, 'Z'));
+            Cells.emplace_back(Cell(1, 2, 'Z'));
+            Cells.emplace_back(Cell(1, 3, 'Z'));
+            Cells.emplace_back(Cell(2, 3, 'Z'));
+        } else {
+            Cells.clear();
+            Cells.emplace_back(Cell(0, 2, 'Z'));
+            Cells.emplace_back(Cell(0, 3, 'Z'));
+            Cells.emplace_back(Cell(1, 1, 'Z'));
+            Cells.emplace_back(Cell(1, 2, 'Z'));
+        }
+    } else if (type == 'T') {
+        if (position == 1) {
+            Cells.clear();
+            Cells.emplace_back(Cell(0, 2, 'T'));
+            Cells.emplace_back(Cell(1, 2, 'T'));
+            Cells.emplace_back(Cell(2, 2, 'T'));
+            Cells.emplace_back(Cell(1, 3, 'T'));
+        } else if (position == 2) {
+            Cells.clear();
+            Cells.emplace_back(Cell(1, 2, 'T'));
+            Cells.emplace_back(Cell(1, 3, 'T'));
+            Cells.emplace_back(Cell(1, 1, 'T'));
+            Cells.emplace_back(Cell(0, 2, 'T'));
+        } else if (position == 3) {
+            Cells.clear();
+            Cells.emplace_back(Cell(0, 3, 'T'));
+            Cells.emplace_back(Cell(1, 3, 'T'));
+            Cells.emplace_back(Cell(2, 3, 'T'));
+            Cells.emplace_back(Cell(1, 2, 'T'));
+        } else {
+            Cells.clear();
+            Cells.emplace_back(Cell(0, 1, 'T'));
+            Cells.emplace_back(Cell(0, 2, 'T'));
+            Cells.emplace_back(Cell(0, 3, 'T'));
+            Cells.emplace_back(Cell(1, 2, 'T'));
+        }
+    } else if (type == '*') {
+            Cells.clear();
+            Cells.emplace_back(Cell(0, 3, '*'));
     }
-    if (type == 'J') {
 
-    }
 }
 
 bool Block::isEmpty() {
@@ -86,18 +199,24 @@ void Block::getPos() {
     cout << position;
 }
 
+int Block::getX() {
+    return x;
+}
+
+int Block::getY() {
+    return y;
+}
+
+void Block::setX(int x) {
+    this->x = x;
+}
+
+void Block::setY(int y) {
+    this->y = y;
+}
+
 
 ostream& operator<<(ostream &out, const Block &b) {
-    //for (int i = 0; i<4; i++) {
-    //    for(int j = 0; j<4; j++) {
-    //        for(auto & k : b.Cells) {
-    //            if (i == k.getX()) {
-    //                out << k;
-    //            }
-    //        }
-    //    }
-    //}
-
 
     for (auto & i : b.Grid) {
         for (auto & j : i) {
