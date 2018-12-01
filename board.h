@@ -19,7 +19,7 @@ private:
     
     int hi_score;
 
-    std::vector<Block> Blocks;                    //Stores the blocks
+    std::vector<Block*> Blocks;                    //Stores the blocks as pointers
     
     bool CanClearOneRow();
     
