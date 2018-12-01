@@ -26,7 +26,7 @@ public:
 				return true;	//returns true as the left move is allowed.
 			}
 		 }
-	 	 if (Heavy->moveDown(b) && Heavy->moveDown2(b)) {
+	 	 if (Heavy->moveDown(b) && Heavy->moveDown2(b)) {	// checks if can move down 1 and 2 rows.
 			 b->moveDown();
 			 b->moveDown();
 			 return true;
