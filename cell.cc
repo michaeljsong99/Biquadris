@@ -32,3 +32,4 @@ void Cell::setY(int y) {
 ostream& operator<<(ostream &out, const Cell &c) {
     return out << c.getLetter();
 }
+

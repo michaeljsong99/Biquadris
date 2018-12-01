@@ -43,7 +43,16 @@ public:
     void printBlock();
 
     void getPos();
-	
+
+
+    int getX();
+
+    int getY();
+
+    void setX(int x);
+
+    void setY(int y);
+
     int isBlockAlive();
 
     void MoveDown(int row_number);
