@@ -10,7 +10,7 @@
 class Block {
 private:
     //!Or Enum whatever you guys wanna do
-    int type;       //Stores the type of block
+    char type;       //Stores the type of block
 
     int position;   //Stores it's current rotated position (1,2,3,4)
 
@@ -20,7 +20,13 @@ private:
     //!Technically we don't even really need the cell class
     std::vector<Cell> Cells;  //Vector of Cells
 
+    void setBlock();     //Resets Cells
+
+    std::vector<std::vector<Cell>> Grid;        //Temp for out
+
 public:
+
+    Block(char type, int position);
 
     bool isEmpty();     //Checks if the cells are all cleared
 
@@ -34,8 +40,17 @@ public:
 
     void rotateCCW();
 
+    void printBlock();
+
+    void getPos();
+	
+    int isBlockAlive();
+
+    void MoveDown(int row_number);
+
+    friend std::ostream& ::operator<<(std::ostream &out, const Block &b);
+
 };
 
-std::ostream& ::operator<<(std::ostream &out, const Block &b);
 
 #endif //BLOCK_H
