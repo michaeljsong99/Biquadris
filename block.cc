@@ -2,8 +2,10 @@
 #include "block.h"
 using namespace std;
 
-Block::Block(char type, int position) :type{type}, position{position} {
+Block::Block(char type) :type{type}, position{position}  {
     setBlock();
+    x = 0;
+    y = 0;
 }
 
 void Block::setBlock() {
