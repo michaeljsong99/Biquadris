@@ -18,29 +18,29 @@ private:
 
 public:
 
-    virtual ~AbstractBoard();
+    virtual ~AbstractBoard() = 0;
 
-    virtual void drop();
+    virtual void drop() = 0;
 
-    virtual bool moveLeft(std::shared_ptr<Block> b);           //Returns true if the block doesn't collide
+    virtual bool moveLeft(std::shared_ptr<Block> b) = 0;           //Returns true if the block doesn't collide
 
-    virtual bool moveRight(std::shared_ptr<Block> b);
+    virtual bool moveRight(std::shared_ptr<Block> b) = 0;
 
-    virtual bool moveDown(std::shared_ptr<Block> b);
+    virtual bool moveDown(std::shared_ptr<Block> b) = 0;
 
-    virtual bool rotateCW(std::shared_ptr<Block> b);      //Returns true if the block doesn't collide
+    virtual bool rotateCW(std::shared_ptr<Block> b) = 0;      //Returns true if the block doesn't collide
 
-    virtual bool rotateCCW(std::shared_ptr<Block> b);
+    virtual bool rotateCCW(std::shared_ptr<Block> b) = 0;
 
-    virtual void reset();                  //Resets the board
+    virtual void reset() = 0;                  //Resets the board
 
-    virtual std::string outputBoard();                  //Prints board as a string
+    virtual std::string outputBoard() = 0;                  //Prints board as a string
 
-    virtual void changeLevel(int change);              //Modify the level by change levels e.g change = -2 level 4->2
+    virtual void changeLevel(int change) = 0;              //Modify the level by change levels e.g change = -2 level 4->2
 
-    virtual int getLevel();                 //Returns current Level
+    virtual int getLevel() = 0;                 //Returns current Level
 
-    virtual int getScore();                 //Returns current Level
+    virtual int getScore() = 0;                 //Returns current Level
 
 
 
