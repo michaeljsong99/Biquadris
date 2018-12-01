@@ -47,6 +47,7 @@ public:
 
     void getPos();
 
+
     int getX();
 
     int getY();
@@ -54,6 +55,10 @@ public:
     void setX(int x);
 
     void setY(int y);
+
+    int isBlockAlive();
+
+    void MoveDown(int row_number);
 
     friend std::ostream& ::operator<<(std::ostream &out, const Block &b);
 

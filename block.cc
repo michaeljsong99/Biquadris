@@ -10,6 +10,7 @@ Block::Block(char type) :type{type}, position{position}  {
 
 void Block::setBlock() {
     if (type == 'I') {
+
         if (position == 2 || position == 4) {
             Cells.clear();
             Cells.emplace_back(Cell(0, 0, 'I'));
@@ -140,6 +141,7 @@ void Block::setBlock() {
             Cells.emplace_back(Cell(0, 3, '*'));
     }
 
+
 }
 
 bool Block::isEmpty() {
@@ -217,7 +219,6 @@ void Block::setY(int y) {
     this->y = y;
 }
 
-
 ostream& operator<<(ostream &out, const Block &b) {
 
     for (auto & i : b.Grid) {
@@ -227,4 +228,26 @@ ostream& operator<<(ostream &out, const Block &b) {
         out << endl;
     }
     return out;
+}
+
+
+int Block::isBlockAlive() { // should be in Block.h/cc
+    	int length = this->Cells.size();
+	for (int i = 0; i < length; ++i) {
+	if (this->Cells[i].getLetter())
+            return -1;    // returns -1 if one of the cells has a letter (as -1 + 1 = 0)
+    }
+    return this->levelCreated;
+}
+
+void Block::MoveDown(int row_number){
+   int num_cells = this->Cells.size();
+   for (int i = 0; i < num_cells; ++i) {
+   	if (Cells[i].getY() == row_number) {
+	   Cells[i].setLetter('\0');
+	}
+   	if (Cells[i].getY() < row_number) {
+	   Cells[i].setY(Cells[i].getY() + 1);
+	}
+   }    
 }
