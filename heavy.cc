@@ -14,10 +14,10 @@ public:
   
     // Note: My functions move the blocks in addition to returning a boolean value.
 	
-    bool moveLeft(std::shared_ptr<Block> b) override;           //Returns true if the block doesn't collide
+    bool moveLeft(std::shared_ptr<Block> b) override {           //Returns true if the block doesn't collide
          if (Heavy->moveLeft(b)) {	// if it is possible to move the block left
 	 	 b->moveLeft();		// move the block left
-		 for (int i = 0; i < heavy; ++i) {
+		 for (int i = 0; i < heavy; ++i) {	// does the heaviness feature first
 		 	if (Heavy->moveDown(b)) {
 				b->moveDown();
 			}
@@ -26,11 +26,19 @@ public:
 				return true;	//returns true as the left move is allowed.
 			}
 		 }
-	 	 if (Heavy->moveDown(b)) {
+	 	 if (Heavy->moveDown(b) && Heavy->moveDown2(b)) {
 			 b->moveDown();
-		 	if (Heavy->moveDown(b);
+			 b->moveDown();
+			 return true;
+		 }
+		 else {
+		 	Heavy->drop(); // ends the turn as it is not possible to drop 2 rows
+			return true;   // returns true as the left move is allowed.
 		 }
 	 }
+	return false;	// returns false if the left move is not legal.
+    }
+	
 	
     bool moveRight(std::shared_ptr<Block> b) override;
 
