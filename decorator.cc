@@ -2,6 +2,12 @@
 #include "decorator.h"
 #include <memory>
 using namespace std;
+// implementation of the constructor
+Decorator::Decorator(AbstractBoard *ab): component{ab} {};
+
+Decorator::~Decorator() {
+   delete component;
+}
 
 bool Decorator::moveLeft(shared_ptr<Block> b) {
    return component.moveLeft(b);
