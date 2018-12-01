@@ -5,6 +5,7 @@
 #include <iostream>
 #include <vector>
 #include "cell.h"
+#include "board.h"
 
 
 class Block {
@@ -23,6 +24,8 @@ private:
     void setBlock();     //Resets Cells
 
     std::vector<std::vector<Cell>> Grid;        //Temp for out
+
+    friend Board;
 
 public:
 

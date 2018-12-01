@@ -23,5 +23,25 @@ void Board::updateGrid() {
 
         }
     }
+
+    //Add Blocks
+    for (auto & i : Blocks) {
+        for (auto & j : i->Cells) {
+            Grid[i->getY() + j.getY()][i->getY() + j.getX()] = j;
+        }
+    }
+
+    Grid[1][2] = Cell(1,2,'H');
+    cout << "Done Updating" << endl;
 }
 
+ostream& operator<<(ostream &out, const Board &b) {
+
+    for (auto & i : b.Grid) {
+        for (auto & j : i) {
+            out << j;
+        }
+        out << endl;
+    }
+    return out;
+}
