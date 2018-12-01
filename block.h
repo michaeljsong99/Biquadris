@@ -10,15 +10,15 @@
 
 class Block {
 private:
-    //!Or Enum whatever you guys wanna do
+
     char type;       //Stores the type of block
 
     int position;   //Stores it's current rotated position (1,2,3,4)
 
-    int x, y;       //Coordinates for the Bottom Left Corner
+    int x = 0, y = 0;       //Coordinates for the Bottom Left Corner
 
     int levelCreated;   //Stores the level the block was generated in
-    //!Technically we don't even really need the cell class
+
     std::vector<Cell> Cells;  //Vector of Cells
 
     void setBlock();     //Resets Cells
@@ -29,7 +29,7 @@ private:
 
 public:
 
-    Block(char type, int position);
+    Block(char type, int position, int levelCreated);
 
     bool isEmpty();     //Checks if the cells are all cleared
 
