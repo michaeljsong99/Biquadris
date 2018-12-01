@@ -31,8 +31,6 @@ void Board::updateGrid() {
         }
     }
 
-    Grid[1][2] = Cell(1,2,'H');
-    cout << "Done Updating" << endl;
 }
 
 ostream& operator<<(ostream &out, const Board &b) {
