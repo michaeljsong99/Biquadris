@@ -22,11 +22,16 @@ public:
 				b->moveDown();
 			}
 			else {
-				Heavy->drop();	//ends the turn
+				Heavy->drop();	//ends the turn as it cannot move down further
 				return true;	//returns true as the left move is allowed.
 			}
 		 }
+	 	 if (Heavy->moveDown(b)) {
+			 b->moveDown();
+		 	if (Heavy->moveDown(b);
+		 }
 	 }
+	
     bool moveRight(std::shared_ptr<Block> b) override;
 
     bool moveDown(std::shared_ptr<Block> b) override;
