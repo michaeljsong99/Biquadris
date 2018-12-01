@@ -40,9 +40,32 @@ public:
     }
 	
 	
-    bool moveRight(std::shared_ptr<Block> b) override;
+    bool moveRight(std::shared_ptr<Block> b) override {
+    	if (Heavy->moveRight(b)) {	// if it is possible to move the block right
+	 	 b->moveRight();		// move the block right
+		 for (int i = 0; i < heavy; ++i) {	// does the heaviness feature first
+		 	if (Heavy->moveDown(b)) {
+				b->moveDown();
+			}
+			else {
+				Heavy->drop();	//ends the turn as it cannot move down further
+				return true;	//returns true as the right move is allowed.
+			}
+		 }
+	 	 if (Heavy->moveDown(b) && Heavy->moveDown2(b)) {	// checks if can move down 1 and 2 rows.
+			 b->moveDown();
+			 b->moveDown();
+			 return true;
+		 }
+		 else {
+		 	Heavy->drop(); // ends the turn as it is not possible to drop 2 rows
+			return true;   // returns true as the right move is allowed.
+		 }
+	 }
+	return false;	// returns false if the right move is not legal.
+    }
 
-    bool moveDown(std::shared_ptr<Block> b) override;
+    bool moveDown(std::shared_ptr<Block> b) override {
 
     bool rotateCW(std::shared_ptr<Block> b) override;      //Returns true if the block doesn't collide
 
