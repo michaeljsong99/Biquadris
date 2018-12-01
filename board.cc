@@ -117,6 +117,6 @@ void Board::update() {
     int num_blocks = Blocks.size();
     for (int i = 0; i < num_blocks; ++i) {
         if ((Blocks[i]->isBlockAlive()) == -1)
-             Blocks.erase(i);   // erases a Block that is completely cleared
+             Blocks.erase(Blocks.begin() + i);   // erases a Block that is completely cleared
     }
 }
