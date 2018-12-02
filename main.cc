@@ -5,39 +5,15 @@
 
 using namespace std;
 
-int main () {
-  string s;
-  Grid g;
-
-  // Command interpreter
-  while (cin >> s) {
-    if (s == "new") {
-        int i;
-        cin >> i;
-        g.init(i);
-    }
-    else if (s == "init") {
-        int x, y;
-        cin >> x;
-        cin >> y;
-        while (x != -1 && y != -1) {
-            g.turnOn(y, x);
-            cin >> x;
-            cin >> y;
-        }
-    }
-    else if (s == "step") {
-        g.tick();
-    }
-    else if (s == "steps") {
-        int steps;
-        cin >> steps;
-        for (int i = 0; i < steps; ++i) {
-            g.tick();
-        }
-    }
-    else if (s == "print") {
-        cout << g;
-    }
-  }
+int main (int argc, char *argv[]) {
+  int seed;
+  for (int i = 1; i < argc; i = i + 1) {
+     if (argv[0] = "-text") {
+        // suggestion: probably add a field in the game class to control whether the graphic are shown
+     } else if (argv[0] = "-seed") {
+        seed = argv[i];
+        i += 1;
+        // suggestion: probably need to modify a random number 
+     }
+  } 
 }
