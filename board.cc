@@ -172,6 +172,7 @@ bool Board::canMoveLeft(int n) {
         }
     }
     cBlock->moveLeft(n);
+    updateGrid();
     return true;
 }
 
@@ -194,6 +195,7 @@ bool Board::canMoveRight(int n) {
         }
     }
     cBlock->moveRight(n);
+    updateGrid();
     return true;
 }
 
@@ -216,6 +218,7 @@ bool Board::canMoveDown(int n) {
         }
     }
     cBlock->moveDown(n);
+    updateGrid();
     return true;
 }
 
@@ -244,6 +247,7 @@ bool Board::canRotateCW(int n) {
         cBlock->rotateCCW(n);
     }
     cBlock->rotateCW(n);
+    updateGrid();
     return true;
 };
 
@@ -272,6 +276,7 @@ bool Board::canRotateCCW(int n) {
         cBlock->rotateCW(n);
     }
     cBlock->rotateCCW(n);
+    updateGrid();
     return true;
 };
 
