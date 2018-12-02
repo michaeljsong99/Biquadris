@@ -203,3 +203,8 @@ void Game::setFilename1(string fn) {
 void Game::setFilename2(string fn) {
    fileName2 = fn;
 } 
+
+void Game::setLevel(int level) {
+   board1.setLevel(level);
+   board2.setLevel(level);
+}
