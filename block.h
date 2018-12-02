@@ -35,15 +35,15 @@ public:
 
     bool isEmpty();     //Checks if the cells are all cleared
 
-    void moveLeft();    //Moves the cell
+    void moveLeft(int n);    //Moves the cell
 
-    void moveRight();
+    void moveRight(int n);
 
-    void moveDown();
+    void moveDown(int n);
 
-    void rotateCW();    //Rotates the block
+    void rotateCW(int n);    //Rotates the block
 
-    void rotateCCW();
+    void rotateCCW(int n);
 
     std::string printBlock() const;
 

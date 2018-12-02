@@ -147,31 +147,35 @@ bool Block::isEmpty() {
     return Cells.empty();
 }
 
-void Block::moveLeft() {
-    x--;
+void Block::moveLeft(int n) {
+    x += n;
 }
 
-void Block::moveRight() {
-    x++;
+void Block::moveRight(int n) {
+    x += n;
 }
 
-void Block::moveDown() {
-    y++;
+void Block::moveDown(int n) {
+    y += n;
 }
 
-void Block::rotateCCW() {
-    if(position == 1) {
-        position = 4;
+void Block::rotateCCW(int n) {
+    while (n>0) {
+        n--;
+        if (position == 1) {
+            position = 4;
+        } else position--;
     }
-    else position--;
     setBlock();
 }
 
-void Block::rotateCW() {
-    if(position == 4) {
-        position = 1;
+void Block::rotateCW(int n) {
+    while (n>0) {
+        n--;
+        if (position == 4) {
+            position = 1;
+        } else position++;
     }
-    else position++;
     setBlock();
 }
 
