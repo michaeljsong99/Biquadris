@@ -44,6 +44,8 @@ public:
 
     std::string printBoard() const override;                  //Prints board as a string
 
+    std::shared_ptr<AbstractBoard> removeDecorator();
+
 };
 
 

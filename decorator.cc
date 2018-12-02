@@ -68,3 +68,7 @@ void Decorator::changeLevel(int change) {
 std::string Decorator::printBoard() const {
    return component->printBoard();
 }
+
+std::shared_ptr<AbstractBoard> Decorator::removeDecorator() {
+    return component;
+}
