@@ -171,7 +171,6 @@ bool Board::canMoveLeft(int n) {
             }
         }
     }
-    cBlock->moveLeft(n);
     updateGrid();
     return true;
 }
@@ -194,7 +193,6 @@ bool Board::canMoveRight(int n) {
             }
         }
     }
-    cBlock->moveRight(n);
     updateGrid();
     return true;
 }
@@ -217,7 +215,6 @@ bool Board::canMoveDown(int n) {
             }
         }
     }
-    cBlock->moveDown(n);
     updateGrid();
     return true;
 }
@@ -246,7 +243,6 @@ bool Board::canRotateCW(int n) {
         }
         cBlock->rotateCCW(n);
     }
-    cBlock->rotateCW(n);
     updateGrid();
     return true;
 };
@@ -275,10 +271,48 @@ bool Board::canRotateCCW(int n) {
         }
         cBlock->rotateCW(n);
     }
-    cBlock->rotateCCW(n);
     updateGrid();
     return true;
 };
+
+bool Board::moveRight(int n) {
+    if(canMoveRight(n)) {
+        cBlock->moveRight(n);
+    }
+    return canMoveRight(n);
+}
+
+bool Board::moveLeft(int n){
+    if(canMoveLeft(n)) {
+        cBlock->moveLeft(n);
+    }
+    return canMoveLeft(n);
+}
+
+bool Board::moveDown(int n){
+    if(canMoveDown(n)) {
+        cBlock->moveDown(n);
+    }
+    return canMoveDown();
+}
+
+bool Board::rotateCW(int n){
+    if(canRotateCW(n)) {
+        cBlock->rotateCW(n);
+    }
+    return canRotateCW(n);
+}
+
+bool Board::rotateCCW(int n){
+    if(canRotateCCW(n)) {
+        cBlock->rotateCCW(n);
+    }
+    return canRotateCCW(n);
+}
+
+bool Board::shiftDown() {
+    return moveDown(1);
+}
 
 void Board::drop() {
     while(canMoveDown(1)) {

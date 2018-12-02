@@ -41,6 +41,30 @@ bool Decorator::canRotateCCW(int n) {
    return component->canRotateCCW(n);
 }
 
+bool Decorator::moveRight(int n) {
+   return component->moveRight(n);
+}
+
+bool Decorator::moveLeft(int n) {
+   return component->moveLeft(n);
+}
+
+bool Decorator::moveDown(int n) {
+   return component->moveDown(n);
+}
+
+bool Decorator::rotateCW(int n) {
+   return component->rotateCW(n);
+}
+
+bool Decorator::rotateCCW(int n) {
+   return component->rotateCCW(n);
+}
+
+bool Decorator::shiftDown() {
+   return component->shiftDown();
+}
+
 void Decorator::drop() {
    component->drop();
 }
@@ -72,3 +96,4 @@ std::string Decorator::printBoard() const {
 std::shared_ptr<AbstractBoard> Decorator::removeDecorator() {
     return component;
 }
+

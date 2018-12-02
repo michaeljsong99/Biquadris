@@ -30,6 +30,18 @@ public:
 
     bool canRotateCCW(int n) override;
 
+    bool moveRight(int n) override;
+
+    bool moveLeft(int n) override;
+
+    bool moveDown(int n) override;
+
+    bool rotateCW(int n) override;
+
+    bool rotateCCW(int n) override;
+
+    bool shiftDown() override;
+
     void drop() override;
 
     void reset() override;                  //Resets the board

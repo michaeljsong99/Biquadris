@@ -28,6 +28,18 @@ public:
 
     virtual bool canRotateCCW(int n) = 0;
 
+    virtual bool moveRight(int n) = 0;
+
+    virtual bool moveLeft(int n) = 0;
+
+    virtual bool moveDown(int n) = 0;
+
+    virtual bool rotateCW(int n) = 0;
+
+    virtual bool rotateCCW(int n) = 0;
+
+    virtual bool shiftDown();
+
     virtual void drop() = 0;
 
     virtual void reset() = 0;                  //Resets the board
