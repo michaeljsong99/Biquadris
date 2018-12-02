@@ -134,102 +134,121 @@ bool Board::isGameOver() {
 }
 
 
-bool Board::canMoveLeft() {
+bool Board::canMoveLeft(int n) {
     for (auto & c : cBlock->Cells) {
         int x = cBlock->getX() + c.getX();
         int y = cBlock->getY() - c.getY();
 
-        if(x == 0) {
-            return false;
-        }
-
-        if (Grid[y][x-1].getLetter() == filler) {
-            continue;
-        } else {
-            return false;
+        while(n > 0) {
+            n--;
+            if (x == 0) {
+                return false;
+            }
+            x--;
+            if (Grid[y][x].getLetter() == filler) {
+                continue;
+            } else {
+                return false;
+            }
         }
     }
     return true;
 }
 
 
-bool Board::canMoveRight() {
+bool Board::canMoveRight(int n) {
     for (auto & c : cBlock->Cells) {
         int x = cBlock->getX() + c.getX();
         int y = cBlock->getY() - c.getY();
 
-        if(x == 10) {
-            return false;
-        }
-
-        if (Grid[y][x+1].getLetter() == filler) {
-            continue;
-        } else {
-            return false;
+        while(n > 0) {
+            n--;
+            if (x == width) {
+                return false;
+            }
+            x++;
+            if (Grid[y][x].getLetter() == filler) {
+                continue;
+            } else {
+                return false;
+            }
         }
     }
     return true;
 }
 
-bool Board::canMoveDown() {
+bool Board::canMoveDown(int n) {
     for (auto & c : cBlock->Cells) {
         int x = cBlock->getX() + c.getX();
         int y = cBlock->getY() - c.getY();
 
-        if(y == 17) {
-            return false;
-        }
-
-        if (Grid[y+1][x].getLetter() == filler) {
-            continue;
-        } else {
-            return false;
+        while(n < 0) {
+            n--;
+            if (y == height) {
+                return false;
+            }
+            y++;
+            if (Grid[y][x].getLetter() == filler) {
+                continue;
+            } else {
+                return false;
+            }
         }
     }
     return true;
 }
 
-bool Board::canRotateCW() {
-    cBlock->rotateCW();
-    for (auto & c : cBlock->Cells) {
-        int x = cBlock->getX() + c.getX();
-        int y = cBlock->getY() - c.getY();
-
-        if(y>17||y<0||x>10||x<0) {
-            cBlock->rotateCCW();
-            return false;
-        }
-
-        if (Grid[y][x].getLetter() == filler) {
-            continue;
-        } else {
-            cBlock->rotateCCW();
-            return false;
-        }
+bool Board::canRotateCW(int n) {
+    if(n > 4) {
+        n = 4;
     }
-    cBlock->rotateCCW();
+    for (int i = 0; i < n; i++) {
+        cBlock->rotateCW(n);
+        for (auto &c : cBlock->Cells) {
+            int x = cBlock->getX() + c.getX();
+            int y = cBlock->getY() - c.getY();
+
+            if (y > height || y < 0 || x > width || x < 0) {
+                cBlock->rotateCCW(n);
+                return false;
+            }
+
+            if (Grid[y][x].getLetter() == filler) {
+                continue;
+            } else {
+                cBlock->rotateCCW(n);
+                return false;
+            }
+        }
+        cBlock->rotateCCW(n);
+    }
     return true;
 };
 
-bool Board::canRotateCCW() {
-    cBlock->rotateCCW();
-    for (auto & c : cBlock->Cells) {
-        int x = cBlock->getX() + c.getX();
-        int y = cBlock->getY() - c.getY();
-
-        if(y>17||y<0||x>10||x<0) {
-            cBlock->rotateCW();
-            return false;
-        }
-
-        if (Grid[y][x].getLetter() == filler) {
-            continue;
-        } else {
-            cBlock->rotateCW();
-            return false;
-        }
+bool Board::canRotateCCW(int n) {
+    if(n > 4) {
+        n = 4;
     }
-    cBlock->rotateCW();
+    for (int i = 0; i < n; i++) {
+        cBlock->rotateCCW(n);
+        for (auto &c : cBlock->Cells) {
+            int x = cBlock->getX() + c.getX();
+            int y = cBlock->getY() - c.getY();
+
+            if (y > height || y < 0 || x > width || x < 0) {
+                cBlock->rotateCW(n);
+                return false;
+            }
+
+            if (Grid[y][x].getLetter() == filler) {
+                continue;
+            } else {
+                cBlock->rotateCW(n);
+                return false;
+            }
+        }
+        cBlock->rotateCW(n);
+    }
     return true;
 };
 
@@ -252,8 +271,8 @@ void Board::drawCurrentBlock() {
 }
 
 void Board::drop() {
-    while(canMoveDown()) {
-        cBlock->moveDown();
+    while(canMoveDown(1)) {
+        cBlock->moveDown(1);
     }
     addBlock(cBlock);
     cBlock = nBlock;

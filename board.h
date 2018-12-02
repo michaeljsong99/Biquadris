@@ -10,7 +10,7 @@
 
 class Block;
 
-class Board{//; : public AbstractBoard {
+class Board: public AbstractBoard {
 
 private:
 
@@ -21,6 +21,10 @@ private:
     int score = 0;                              //Score of the current board
 
     int hiscore = 0;
+
+    int width = 10;
+
+    int height = 17;
 
     std::shared_ptr<Block> cBlock;          //Current Block
 
@@ -50,15 +54,15 @@ public:
 
     void drawCurrentBlock();
 
-    bool canMoveLeft(); //override;
+    bool canMoveLeft(int n); //override;
 
-    bool canMoveRight(); //override;
+    bool canMoveRight(int n); //override;
 
-    bool canMoveDown(); //override;
+    bool canMoveDown(int n); //override;
 
-    bool canRotateCW();      //Returns true if the block doesn't collide
+    bool canRotateCW(int n);      //Returns true if the block doesn't collide
 
-    bool canRotateCCW();
+    bool canRotateCCW(int n);
 
     void drop();
 
