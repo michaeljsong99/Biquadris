@@ -27,6 +27,47 @@ int main (int argc, char *argv[]) {
         istringstream readStr{arg[i+1]};
         readStr >> level;
         game.setLevel(level);
+        i += 1;
      }
-  } 
+  }
+  string c; // to store the command
+  ifstream readFile;
+  bool sequenceOrNot = false;
+  while (true) {
+    if (!sequenceOrNot) {
+      cin >> c;
+    } else {
+      if (!(readFile >> c))  {
+        sequenceOrNot = false;
+        cin >> c;
+      }
+    }
+    if (c == "left") {
+    
+    } else if (c == "right") {
+    
+    } else if (c == "down") {
+    
+    } else if (c == "clockwise") {
+    
+    } else if (c == "counterclockwise") {
+    
+    } else if (c == "drop") {
+    
+    } else if (c == "levelup") {
+    
+    } else if (c == "leveldown") {
+    
+    } else if (c == "norandom") {
+      string f;
+      cin >> f; norandom file name
+    } else if (c == "random") {
+    
+    } else if (c == "sequence") {
+      string f;
+      cin >> f; sequence file name
+      readFile{f};
+      sequenceOrNot = true;
+    }
+  }
 }
