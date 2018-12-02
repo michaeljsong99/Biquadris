@@ -53,7 +53,7 @@ public:
     
     void setFilename2(string fn); // set the filename for the player2
     
-    void setLevel(int level);
+    void setLevel(int level); // set the level for two boards
 };
 
 
