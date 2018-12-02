@@ -23,11 +23,6 @@ void Game::generateBlock(int board) {
           }
        } else if (index >= blockNames.size()) {
          index = 0;
-         if (board == 1) {
-           s = blockNames1[index];
-         } else if (board == 2) {
-           s = blockNames2[index];
-         }
        } else {
          s = blockNames[index];
          index += 1;
