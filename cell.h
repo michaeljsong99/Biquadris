@@ -16,9 +16,9 @@ public:
 
     char getLetter() const;       //Returns the Symbol
 
-    int getX();             //Returns Coords
+    int getX() const;             //Returns Coords
 
-    int getY();
+    int getY() const;
 
     void setLetter(char letter);
 

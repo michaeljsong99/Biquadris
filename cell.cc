@@ -9,11 +9,11 @@ char Cell::getLetter() const {
     return letter;
 }
 
-int Cell::getX() {
+int Cell::getX() const{
     return x;
 }
 
-int Cell::getY() {
+int Cell::getY() const{
     return y;
 }
 

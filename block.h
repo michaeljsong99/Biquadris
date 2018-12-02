@@ -2,6 +2,7 @@
 #ifndef BLOCK_H
 #define BLOCK_H
 
+#include <string>
 #include <iostream>
 #include <vector>
 #include "cell.h"
@@ -44,19 +45,17 @@ public:
 
     void rotateCCW();
 
-    void printBlock();
+    std::string printBlock() const;
 
-    void getPos();
+    void getPos() const;
 
-    int getX();
+    int getX() const;
 
-    int getY();
+    int getY() const;
 
     void setX(int x);
 
     void setY(int y);
-
-    void MoveDown(int row_number);
 
     friend std::ostream& operator<<(std::ostream &out, const Block &b);
 

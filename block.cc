@@ -1,5 +1,6 @@
 
 #include "block.h"
+#include <sstream>
 using namespace std;
 
 Block::Block(char type, int position, int level) :type{type}, position{position},
@@ -174,38 +175,48 @@ void Block::rotateCW() {
     setBlock();
 }
 
-void Block::printBlock(){
-    vector<vector<Cell>> newGrid;
-    Grid = newGrid;
+string Block::printBlock() const{
+    ostringstream oss;
 
-    //Initializes Rows
-    for(int i = 0; i < 4 ;++i) {
-        Grid.push_back(vector<Cell>());
-    }
+    int maxX = -1;
+    int maxY = -1;
 
-    //Initializes Cells
-    for(auto & i : Grid) {
-        for (int j = 0; j < 4;++j) {
-            i.push_back(Cell(0, 0, ' '));
+    for(auto & k : Cells) {
+        if (maxX < k.getX()) {
+            maxX = k.getX();
+        } if (maxY < k.getY()) {
+            maxY = k.getY();
         }
     }
 
+    for (int y = maxY; y >= 0; y--) {
+        for (int x = 0; x <= maxX; x++) {
+            int flag = 0;
+            for(auto & c : Cells) {
+                if (c.getX() == x && c.getY() == y) {
+                    oss << c.getLetter();
+                    flag = 1;
+                }
 
-    for(auto & k : Cells) {
-        Grid[k.getY()][k.getX()] = k;
-        //cout <<k.getY() <<k.getX();
+            }
+            if(flag == 0) {
+                oss << ' ';
+            }
+        }
+        oss << endl;
     }
+    return oss.str();
 }
 
-void Block::getPos() {
+void Block::getPos() const{
     cout << position;
 }
 
-int Block::getX() {
+int Block::getX() const{
     return x;
 }
 
-int Block::getY() {
+int Block::getY() const{
     return y;
 }
 
@@ -218,24 +229,6 @@ void Block::setY(int y) {
 }
 
 ostream& operator<<(ostream &out, const Block &b) {
-
-    for (auto & i : b.Grid) {
-        for (auto & j : i) {
-            out << j;
-        }
-        out << endl;
-    }
-    return out;
+    return out << b.printBlock();
 }
 
-void Block::MoveDown(int row_number){
-    int num_cells = this->Cells.size();
-    for (int i = 0; i < num_cells; ++i) {
-        if (Cells[i].getY() == row_number) {
-            Cells[i].setLetter('\0');
-        }
-        if (Cells[i].getY() < row_number) {
-            Cells[i].setY(Cells[i].getY() + 1);
-        }
-    }
-}
