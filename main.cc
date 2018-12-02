@@ -6,7 +6,7 @@
 using namespace std;
 
 int main (int argc, char *argv[]) {
-  Game game; // call the game constructor
+  Game game; // call the game constructor(implementation still absent from the game class)
   int seed;
   for (int i = 1; i < argc; i = i + 1) {
      if (argv[i] = "-text") {
@@ -26,7 +26,7 @@ int main (int argc, char *argv[]) {
         int level;
         istringstream readStr{arg[i+1]};
         readStr >> level;
-        //game.setLevel(level);
+        game.setLevel(level);
      }
   } 
 }
