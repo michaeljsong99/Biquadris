@@ -48,6 +48,10 @@ public:
     void changeLevel(int change, int board);    //Modify the level by change levels e.g change = -2 level 4->2
 
     void endTurn();                 //Switches turns, generates new blocks, etc
+    
+    void setFilename1(string fn); // set the filename for the player1
+    
+    void setFilename2(string fn); // set the filename for the player2
 };
 
 
