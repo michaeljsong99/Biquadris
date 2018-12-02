@@ -188,7 +188,12 @@ void Game::drop(int board) {
 }
 
 void Game::endTurn() {
-
+  if (turn == 1) {
+     turn = 2;
+  } else if (turn == 2) {
+     turn = 1;
+  }
+  this->generateBlock(turn); 
 }
 
 void Game::setFilename1(string fn) {
