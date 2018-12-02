@@ -1,5 +1,3 @@
-
-
 #ifndef HEAVY_H
 #define HEAVY_H
 
@@ -8,21 +6,24 @@
 
 class Heavy: public Decorator {
 private:
+    
     int heavy;
+
+    bool isSA;
 
 public:
 
-    Heavy(std::shared_ptr<AbstractBoard> ab);
+    Heavy(std::shared_ptr<AbstractBoard> ab, int heavy, bool isSA);
 
-    bool moveLeft(std::shared_ptr<Block> b) override;           //Returns true if the block doesn't collide
+    bool moveLeft(int n) override;           //Returns true if the block doesn't collide
 
-    bool moveRight(std::shared_ptr<Block> b) override;
+    bool moveRight(int n) override;
 
-    bool moveDown(std::shared_ptr<Block> b) override;
+    bool moveDown(int n) override;
 
-    bool rotateCW(std::shared_ptr<Block> b) override;      //Returns true if the block doesn't collide
+    bool rotateCW(int n) override;      //Returns true if the block doesn't collide
 
-    bool rotateCCW(std::shared_ptr<Block> b) override;    //Returns true if the block doesn't collide
+    bool rotateCCW(int n) override;    //Returns true if the block doesn't collide
 
 };
 
