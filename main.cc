@@ -15,7 +15,7 @@ int main (int argc, char *argv[]) {
         istringstream readStr{argv[i+1]}; // since argv[i+1] is a string
         readStr >> seed;
         i += 1;
-        // suggestion: add a field the game class to store the seed
+        srand(seed);
      }  else if (argv[i] = "-scriptfile1") {
         game.setFilename1(argv[i+1]);
         i += 1;
