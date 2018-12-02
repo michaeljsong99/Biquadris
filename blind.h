@@ -11,7 +11,7 @@ public:
 
     Blind(std::shared_ptr<AbstractBoard> ab);
 
-    std::string printBoard();                  //Override with ??
+    std::string printBoard() const override;                  //Override with ??
 
 };
 
