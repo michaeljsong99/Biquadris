@@ -9,7 +9,7 @@ int main() {
     Cell c = Cell(0,0,'x');
     char l;
     cin >> l;
-    Block b = Block(l, 1);
+    Block b = Block(l, 1, 1);
     b.printBlock();
 
 

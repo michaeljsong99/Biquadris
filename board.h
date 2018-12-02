@@ -1,66 +1,74 @@
+
 #ifndef BOARD_H
 #define BOARD_H
 
-
-//#include "abstractBoard.h"
+#include "abstractBoard.h"
+#include <memory>
 #include <vector>
 #include <string>
 #include "block.h"
-#include "cell.h"
 
-class Board {//: public AbstractBoard{
+class Block;
+
+class Board{//; : public AbstractBoard {
 
 private:
-    std::vector<std::vector<Cell>> BoardGrid;
 
-    int level;                              //Level of the current board
+    int level = 0;                              //Level of the current board
 
-    int score;                              //Score of the current board
-    
-    int hi_score;
+    int score = 0;                              //Score of the current board
 
+    int hiscore = 0;
+
+    std::shared_ptr<Block> cBlock;          //Current Block
+
+    std::shared_ptr<Block> nBlock;          //Current Block
 
     std::vector<std::shared_ptr<Block>> Blocks;                    //Stores the blocks
 
     std::vector<std::vector<Cell>> Grid;
 
-    void clearRow() override;
+    void endTurn();
 
-    void update() override;                  //Called after the end of a turn, calls clearRow and calculateScore
+    void calculateScore(int rows);
+
+    int clearRows();
+
+    void clearRow(int row);
+
+    //void insertRows(int rows);
 
 public:
 
-    void drop() override;
+    void setCurrentBlock(std::shared_ptr<Block> b);
 
-    bool moveLeft(std::shared_ptr<Block> b) override;          //Returns true if the block doesn't collide                  //Stores the blocks as pointers
-    
-    bool CanClearOneRow();
-    
-    int CalculateScore();          //Checks for empty blocks and other score sources
+    void setNextBlock(std::shared_ptr<Block> b);
 
+    void drawCurrentBlock();
 
-    int ClearRows();
+    bool canMoveLeft(); //override;
 
-    void update();                  //Called after the end of a turn, calls clearRow and calculateScore
-	
+    bool canMoveRight(); //override;
 
+    bool canMoveDown(); //override;
 
+    bool canRotateCW();      //Returns true if the block doesn't collide
 
-    bool rotateCCW(std::shared_ptr<Block> b) override;
+    bool canRotateCCW();
 
-    void reset() override;                  //Resets the board
+    void drop();
 
-    std::string outputBoard() override;                  //Prints board as a string
-
-    void changeLevel(int change) override;             //Modify the level by change levels e.g change = -2 level 4->2
-
-    int getLevel() override;                //Returns current Level
-
-    int getScore() override;                //Returns current Level
-
+    void addBlock(std::shared_ptr<Block> block);
 
     void updateGrid();
 
+    void changeLevel(int change);
+
+    int getLevel();
+
+    friend std::ostream& operator<<(std::ostream &out, const Board &b);
+
 };
+
 
 #endif //BOARD_H

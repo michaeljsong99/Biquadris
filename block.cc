@@ -2,158 +2,156 @@
 #include "block.h"
 using namespace std;
 
-Block::Block(char type) :type{type}, position{position}  {
+Block::Block(char type, int position, int level) :type{type}, position{position},
+                                                  x{0}, y{3}, levelCreated{level}  {
     setBlock();
-    x = 0;
-    y = 0;
 }
 
 void Block::setBlock() {
     if (type == 'I') {
-
-        if (position == 2 || position == 4) {
+        if (position == 1 || position == 3) {
+            Cells.clear();
+            Cells.emplace_back(Cell(0, 0, 'I'));
+            Cells.emplace_back(Cell(1, 0, 'I'));
+            Cells.emplace_back(Cell(2, 0, 'I'));
+            Cells.emplace_back(Cell(3, 0, 'I'));
+        } else {
             Cells.clear();
             Cells.emplace_back(Cell(0, 0, 'I'));
             Cells.emplace_back(Cell(0, 1, 'I'));
             Cells.emplace_back(Cell(0, 2, 'I'));
             Cells.emplace_back(Cell(0, 3, 'I'));
-        } else {
-            Cells.clear();
-            Cells.emplace_back(Cell(0, 3, 'I'));
-            Cells.emplace_back(Cell(1, 3, 'I'));
-            Cells.emplace_back(Cell(2, 3, 'I'));
-            Cells.emplace_back(Cell(3, 3, 'I'));
         }
     } else if (type == 'J') {
         if (position == 1) {
             Cells.clear();
-            Cells.emplace_back(Cell(0, 2, 'J'));
-            Cells.emplace_back(Cell(0, 3, 'J'));
-            Cells.emplace_back(Cell(1, 3, 'J'));
-            Cells.emplace_back(Cell(2, 3, 'J'));
+            Cells.emplace_back(Cell(0, 0, 'J'));
+            Cells.emplace_back(Cell(0, 1, 'J'));
+            Cells.emplace_back(Cell(1, 0, 'J'));
+            Cells.emplace_back(Cell(2, 0, 'J'));
         } else if (position == 2) {
             Cells.clear();
-            Cells.emplace_back(Cell(0, 2, 'J'));
-            Cells.emplace_back(Cell(0, 3, 'J'));
+            Cells.emplace_back(Cell(0, 0, 'J'));
             Cells.emplace_back(Cell(0, 1, 'J'));
-            Cells.emplace_back(Cell(1, 1, 'J'));
+            Cells.emplace_back(Cell(0, 2, 'J'));
+            Cells.emplace_back(Cell(1, 2, 'J'));
         } else if (position == 3) {
             Cells.clear();
-            Cells.emplace_back(Cell(0, 2, 'J'));
-            Cells.emplace_back(Cell(1, 2, 'J'));
-            Cells.emplace_back(Cell(2, 2, 'J'));
-            Cells.emplace_back(Cell(2, 3, 'J'));
+            Cells.emplace_back(Cell(0, 1, 'J'));
+            Cells.emplace_back(Cell(1, 1, 'J'));
+            Cells.emplace_back(Cell(2, 1, 'J'));
+            Cells.emplace_back(Cell(2, 0, 'J'));
         } else {
             Cells.clear();
+            Cells.emplace_back(Cell(0, 0, 'J'));
+            Cells.emplace_back(Cell(1, 0, 'J'));
             Cells.emplace_back(Cell(1, 1, 'J'));
             Cells.emplace_back(Cell(1, 2, 'J'));
-            Cells.emplace_back(Cell(1, 3, 'J'));
-            Cells.emplace_back(Cell(0, 3, 'J'));
         }
     } else if (type == 'L') {
         if (position == 1) {
             Cells.clear();
-            Cells.emplace_back(Cell(2, 2, 'L'));
-            Cells.emplace_back(Cell(0, 3, 'L'));
-            Cells.emplace_back(Cell(1, 3, 'L'));
-            Cells.emplace_back(Cell(2, 3, 'L'));
+            Cells.emplace_back(Cell(0, 0, 'L'));
+            Cells.emplace_back(Cell(1, 0, 'L'));
+            Cells.emplace_back(Cell(2, 0, 'L'));
+            Cells.emplace_back(Cell(2, 1, 'L'));
         } else if (position == 2) {
             Cells.clear();
-            Cells.emplace_back(Cell(0, 2, 'L'));
-            Cells.emplace_back(Cell(0, 3, 'L'));
+            Cells.emplace_back(Cell(0, 0, 'L'));
             Cells.emplace_back(Cell(0, 1, 'L'));
-            Cells.emplace_back(Cell(1, 3, 'L'));
+            Cells.emplace_back(Cell(0, 2, 'L'));
+            Cells.emplace_back(Cell(1, 0, 'L'));
         } else if (position == 3) {
             Cells.clear();
-            Cells.emplace_back(Cell(0, 2, 'L'));
-            Cells.emplace_back(Cell(1, 2, 'L'));
-            Cells.emplace_back(Cell(2, 2, 'L'));
-            Cells.emplace_back(Cell(0, 3, 'L'));
+            Cells.emplace_back(Cell(0, 0, 'L'));
+            Cells.emplace_back(Cell(0, 1, 'L'));
+            Cells.emplace_back(Cell(1, 1, 'L'));
+            Cells.emplace_back(Cell(2, 1, 'L'));
         } else {
             Cells.clear();
-            Cells.emplace_back(Cell(1, 1, 'L'));
+            Cells.emplace_back(Cell(0, 2, 'L'));
             Cells.emplace_back(Cell(1, 2, 'L'));
-            Cells.emplace_back(Cell(1, 3, 'L'));
-            Cells.emplace_back(Cell(0, 1, 'L'));
+            Cells.emplace_back(Cell(1, 1, 'L'));
+            Cells.emplace_back(Cell(1, 0, 'L'));
         }
     } else if (type == 'O') {
         Cells.clear();
-        Cells.emplace_back(Cell(0, 2, 'O'));
-        Cells.emplace_back(Cell(0, 3, 'O'));
-        Cells.emplace_back(Cell(1, 2, 'O'));
-        Cells.emplace_back(Cell(1, 3, 'O'));
+        Cells.emplace_back(Cell(0, 0, 'O'));
+        Cells.emplace_back(Cell(0, 1, 'O'));
+        Cells.emplace_back(Cell(1, 0, 'O'));
+        Cells.emplace_back(Cell(1, 1, 'O'));
     } else if (type == 'S') {
         if (position == 1 || position == 3) {
             Cells.clear();
-            Cells.emplace_back(Cell(0, 3, 'S'));
-            Cells.emplace_back(Cell(1, 3, 'S'));
-            Cells.emplace_back(Cell(1, 2, 'S'));
-            Cells.emplace_back(Cell(2, 2, 'S'));
+            Cells.emplace_back(Cell(0, 0, 'S'));
+            Cells.emplace_back(Cell(1, 0, 'S'));
+            Cells.emplace_back(Cell(1, 1, 'S'));
+            Cells.emplace_back(Cell(2, 1, 'S'));
         } else {
             Cells.clear();
             Cells.emplace_back(Cell(0, 1, 'S'));
             Cells.emplace_back(Cell(0, 2, 'S'));
-            Cells.emplace_back(Cell(1, 2, 'S'));
-            Cells.emplace_back(Cell(1, 3, 'S'));
+            Cells.emplace_back(Cell(1, 0, 'S'));
+            Cells.emplace_back(Cell(1, 1, 'S'));
         }
     } else if (type == 'Z') {
         if (position == 1 || position == 3) {
             Cells.clear();
-            Cells.emplace_back(Cell(0, 2, 'Z'));
-            Cells.emplace_back(Cell(1, 2, 'Z'));
-            Cells.emplace_back(Cell(1, 3, 'Z'));
-            Cells.emplace_back(Cell(2, 3, 'Z'));
+            Cells.emplace_back(Cell(0, 1, 'Z'));
+            Cells.emplace_back(Cell(1, 1, 'Z'));
+            Cells.emplace_back(Cell(1, 0, 'Z'));
+            Cells.emplace_back(Cell(2, 0, 'Z'));
         } else {
             Cells.clear();
-            Cells.emplace_back(Cell(0, 2, 'Z'));
-            Cells.emplace_back(Cell(0, 3, 'Z'));
+            Cells.emplace_back(Cell(0, 0, 'Z'));
+            Cells.emplace_back(Cell(0, 1, 'Z'));
             Cells.emplace_back(Cell(1, 1, 'Z'));
             Cells.emplace_back(Cell(1, 2, 'Z'));
         }
     } else if (type == 'T') {
         if (position == 1) {
             Cells.clear();
-            Cells.emplace_back(Cell(0, 2, 'T'));
-            Cells.emplace_back(Cell(1, 2, 'T'));
-            Cells.emplace_back(Cell(2, 2, 'T'));
-            Cells.emplace_back(Cell(1, 3, 'T'));
+            Cells.emplace_back(Cell(0, 1, 'T'));
+            Cells.emplace_back(Cell(1, 1, 'T'));
+            Cells.emplace_back(Cell(2, 1, 'T'));
+            Cells.emplace_back(Cell(1, 0, 'T'));
         } else if (position == 2) {
             Cells.clear();
             Cells.emplace_back(Cell(1, 2, 'T'));
-            Cells.emplace_back(Cell(1, 3, 'T'));
             Cells.emplace_back(Cell(1, 1, 'T'));
-            Cells.emplace_back(Cell(0, 2, 'T'));
+            Cells.emplace_back(Cell(1, 0, 'T'));
+            Cells.emplace_back(Cell(0, 1, 'T'));
         } else if (position == 3) {
             Cells.clear();
-            Cells.emplace_back(Cell(0, 3, 'T'));
-            Cells.emplace_back(Cell(1, 3, 'T'));
-            Cells.emplace_back(Cell(2, 3, 'T'));
-            Cells.emplace_back(Cell(1, 2, 'T'));
+            Cells.emplace_back(Cell(0, 0, 'T'));
+            Cells.emplace_back(Cell(1, 0, 'T'));
+            Cells.emplace_back(Cell(2, 0, 'T'));
+            Cells.emplace_back(Cell(1, 1, 'T'));
         } else {
             Cells.clear();
+            Cells.emplace_back(Cell(0, 0, 'T'));
             Cells.emplace_back(Cell(0, 1, 'T'));
             Cells.emplace_back(Cell(0, 2, 'T'));
-            Cells.emplace_back(Cell(0, 3, 'T'));
-            Cells.emplace_back(Cell(1, 2, 'T'));
+            Cells.emplace_back(Cell(1, 1, 'T'));
         }
     } else if (type == '*') {
-            Cells.clear();
-            Cells.emplace_back(Cell(0, 3, '*'));
+        Cells.clear();
+        Cells.emplace_back(Cell(0, 0, '*'));
     }
 
 
 }
 
 bool Block::isEmpty() {
-    return true; //!TEMPORARY
+    return Cells.empty();
 }
 
 void Block::moveLeft() {
-    x++;
+    x--;
 }
 
 void Block::moveRight() {
-    x--;
+    x++;
 }
 
 void Block::moveDown() {
@@ -230,24 +228,14 @@ ostream& operator<<(ostream &out, const Block &b) {
     return out;
 }
 
-
-int Block::isBlockAlive() { // should be in Block.h/cc
-    	int length = this->Cells.size();
-	for (int i = 0; i < length; ++i) {
-	if (this->Cells[i].getLetter())
-            return -1;    // returns -1 if one of the cells has a letter (as -1 + 1 = 0)
-    }
-    return this->levelCreated;
-}
-
 void Block::MoveDown(int row_number){
-   int num_cells = this->Cells.size();
-   for (int i = 0; i < num_cells; ++i) {
-   	if (Cells[i].getY() == row_number) {
-	   Cells[i].setLetter('\0');
-	}
-   	if (Cells[i].getY() < row_number) {
-	   Cells[i].setY(Cells[i].getY() + 1);
-	}
-   }    
+    int num_cells = this->Cells.size();
+    for (int i = 0; i < num_cells; ++i) {
+        if (Cells[i].getY() == row_number) {
+            Cells[i].setLetter('\0');
+        }
+        if (Cells[i].getY() < row_number) {
+            Cells[i].setY(Cells[i].getY() + 1);
+        }
+    }
 }

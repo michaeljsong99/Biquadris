@@ -26,9 +26,8 @@ public:
 
     void setY(int y);
 
-    friend std::ostream& ::operator<<(std::ostream &out, const Cell &c);
+    friend std::ostream& operator<<(std::ostream &out, const Cell &c);
 };
 
 
 #endif //CELL_H
-

@@ -5,7 +5,8 @@
 #include <iostream>
 #include <vector>
 #include "cell.h"
-#include "board.h"
+
+class Board;
 
 
 class Block {
@@ -15,7 +16,7 @@ private:
 
     int position;   //Stores it's current rotated position (1,2,3,4)
 
-    int x = 0, y = 0;       //Coordinates for the Bottom Left Corner
+    int x, y;     //Coordinates for the Bottom Left Corner
 
     int levelCreated;   //Stores the level the block was generated in
 
@@ -29,7 +30,7 @@ private:
 
 public:
 
-    Block(char type, int position, int levelCreated);
+    Block(char type, int position, int level);
 
     bool isEmpty();     //Checks if the cells are all cleared
 
@@ -47,7 +48,6 @@ public:
 
     void getPos();
 
-
     int getX();
 
     int getY();
@@ -56,13 +56,12 @@ public:
 
     void setY(int y);
 
-    int isBlockAlive();
-
     void MoveDown(int row_number);
 
-    friend std::ostream& ::operator<<(std::ostream &out, const Block &b);
+    friend std::ostream& operator<<(std::ostream &out, const Block &b);
 
 };
 
+std::ostream& operator<<(std::ostream &out, const Block &b);
 
 #endif //BLOCK_H
