@@ -193,4 +193,13 @@ void Game::drop(int board) {
 }
 
 void Game::endTurn() {
+
 }
+
+void Game::setFilename1(string fn) {
+  fileName1 = fn;
+}
+
+void Game::setFilename2(string fn) {
+   fileName2 = fn;
+} 
