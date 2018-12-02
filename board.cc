@@ -140,8 +140,8 @@ void Board::setNextBlock(std::shared_ptr<Block> b) {
     this->nBlock = b;
 }
 
-void Board::addBlock(shared_ptr<Block> block) {
-    Blocks.emplace_back(block);
+void Board::addBlock(shared_ptr<Block> b) {
+    Blocks.emplace_back(b);
 }
 
 void Board::drawCurrentBlock() {

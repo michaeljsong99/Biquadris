@@ -50,7 +50,7 @@ public:
 
     void setNextBlock(std::shared_ptr<Block> b) override;
 
-    void addBlock(std::shared_ptr<Block> block) override;
+    void addBlock(std::shared_ptr<Block> b) override;
 
     void drawCurrentBlock() override;
 
