@@ -1,52 +1,48 @@
-
-
 #ifndef DECORATOR_H
 #define DECORATOR_H
-
 
 #include "abstractBoard.h"
 
 class Decorator: public AbstractBoard {
-private:
-
-    virtual void calculateScore();          //Checks for empty blocks and other score sources
-
-    virtual void clearRow();
-
-    virtual void update();                  //Called after the end of a turn, calls clearRow and calculateScore
-
-
 protected:
 
     std::shared_ptr<AbstractBoard> component;           //nested ab
 
 public:
 
-    virtual ~Decorator();               //dtor
+    Decorator(std::shared_ptr<AbstractBoard> ab) override;       //ctor
 
-    Decorator(AbstractBoard *ab);       //ctor
+    void setCurrentBlock(std::shared_ptr<Block> b) override;
 
-    virtual void drop();
+    void setNextBlock(std::shared_ptr<Block> b) override;
 
-    virtual bool moveLeft(std::shared_ptr<Block> b);           //Returns true if the block doesn't collide
+    void addBlock(std::shared_ptr<Block> b) override;
 
-    virtual bool moveRight(std::shared_ptr<Block> b);
+    void drawCurrentBlock() override;
 
-    virtual bool moveDown(std::shared_ptr<Block> b);
+    bool canMoveLeft(int n) override;         //Returns true if the block doesn't collide
 
-    virtual bool rotateCW(std::shared_ptr<Block> b);      //Returns true if the block doesn't collide
+    bool canMoveRight(int n) override;
 
-    virtual bool rotateCCW(std::shared_ptr<Block> b);    //Returns true if the block doesn't collide
+    bool canMoveDown(int n) override;
 
-    virtual void reset();                  //Resets the board
+    bool canRotateCW(int n) override;      //Returns true if the block doesn't collide
 
-    virtual std::string outputBoard();                  //Prints board as a string
+    bool canRotateCCW(int n) override;
 
-    virtual void changeLevel(int change);              //Modify the level by change levels e.g change = -2 level 4->2
+    void drop() override;
 
-    virtual int getLevel();                 //Returns current Level
+    void reset() override;                  //Resets the board
 
-    virtual int getScore();                 //Returns current Level
+    void updateGrid() override;
+
+    int getScore() override;                 //Returns current score
+
+    int getLevel() override;                 //Returns current level
+
+    void changeLevel(int change) override;              //Modify the level by change levels e.g change = -2 level 4->2
+
+    std::string printBoard() const override;                  //Prints board as a string
 
 };
 

@@ -1,15 +1,11 @@
-
 #ifndef ABSTRACTBOARD_H
 #define ABSTRACTBOARD_H
-
 
 #include <string>
 #include <vector>
 #include "block.h"
 
 class AbstractBoard {
-private:
-    
 public:
 
     virtual ~AbstractBoard();
@@ -18,7 +14,7 @@ public:
 
     virtual void setNextBlock(std::shared_ptr<Block> b) = 0;
 
-    virtual void addBlock(std::shared_ptr<Block> block) = 0;
+    virtual void addBlock(std::shared_ptr<Block> b) = 0;
 
     virtual void drawCurrentBlock() = 0;
 
@@ -45,7 +41,6 @@ public:
     virtual void changeLevel(int change) = 0;              //Modify the level by change levels e.g change = -2 level 4->2
 
     virtual std::string printBoard() const = 0;                  //Prints board as a string
-
 
 };
 

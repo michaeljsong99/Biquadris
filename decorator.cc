@@ -1,63 +1,70 @@
 #include "decorator.h"
 #include <memory>
+
 using namespace std;
 // implementation of the constructor
-Decorator::Decorator(AbstractBoard *ab): component{ab} {};
+Decorator::Decorator(std::shared_ptr<AbstractBoard> ab): component{ab} {};
 
-Decorator::~Decorator() {}
-
-bool Decorator::moveLeft(shared_ptr<Block> b) {
-   return component->moveLeft(b);
+void Decorator::setCurrentBlock(std::shared_ptr<Block> b) {
+   component->setCurrentBlock(b);
 }
 
-bool Decorator::moveRight(shared_ptr<Block> b) {
-   return component->moveRight(b);
+void Decorator::setNextBlock(std::shared_ptr<Block> b) {
+   component->setNextBlock(b);
 }
 
-bool Decorator::moveDown(shared_ptr<Block> b) {
-   return component->moveDown(b);
+void Decorator::addBlock(std::shared_ptr<Block> b) {
+   component->addBlock(b);
 }
 
-bool Decorator::rotateCW(shared_ptr<Block> b) {
-   return component->rotateCW(b);
+void Decorator::drawCurrentBlock() {
+   component->drawCurrentBlock();
 }
 
-bool Decorator::rotateCCW(shared_ptr<Block> b) {
-   return component->rotateCCW(b);
+bool Decorator::canMoveLeft(int n) {
+   return component->canMoveLeft(n);
 }
 
-void Decorator::reset() {
-   return component->reset();
+bool Decorator::canMoveRight(int n) {
+   return component->canMoveRight(n);
 }
 
-int Decorator::getLevel() {
-   return component->getLevel();
+bool Decorator::canMoveDown(int n) {
+   return component->canMoveDown(n);
 }
 
-int Decorator::getScore() {
-   return component->getScore();
+bool Decorator::canRotateCW(int n) {
+   return component->canRotateCW(n);
 }
 
-string Decorator::outputBoard() {
-   return component->outputBoard();
+bool Decorator::canRotateCCW(int n) {
+   return component->canRotateCCW(n);
 }
 
 void Decorator::drop() {
    component->drop();
 }
 
+void Decorator::reset() {
+   component->reset();
+}
+
+void Decorator::updateGrid() {
+   component->updateGrid();
+}
+
+int Decorator::getScore() {
+   return component->getScore();
+}
+
+int Decorator::getLevel() {
+   return component->getLevel();
+}
+
 void Decorator::changeLevel(int change) {
    component->changeLevel(change);
 }
 
-void Decorator::calculateScore() {
-   component->calculateScore();
-}
-
-void Decorator::clearRow() {
-   component->clearRow();
-}
-
-void Decorator::update() {
-   component->update();
+std::string Decorator::printBoard() const {
+   return component->printBoard();
 }
