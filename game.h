@@ -23,7 +23,7 @@ private:
     std::string fileName2;          // Name of file for present sequences of blocks for the player2 with level 0
     std::vector<char> blockNames1;      //Store the blockNames inside the file.
     std::vector<char> blockNames2;
-    int index;                      // Store the index of the block name;
+    int index = 0;                      // Store the index of the block name;
     int turn;                       //Stores which turn it is.
     int isRandom;                   //For level 3/4, there is an feature to enable/disable random block generation
     std::shared_ptr<Block> currentBlock1;            //Current block for Board 1
