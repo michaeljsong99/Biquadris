@@ -243,7 +243,7 @@ void Board::drop() {
         cBlock->moveDown();
     }
     addBlock(cBlock);
-    cBlock = nullptr;
+    cBlock = nBlock;
     endTurn();
     //!!!call update
 }
@@ -274,14 +274,14 @@ void Board::updateGrid() {
         }
     }
 
-    cout << "Adding New Blocks: " << endl;
+    //cout << "Adding New Blocks: " << endl;
 
 
     //Add Blocks
     for (auto & b : Blocks) {
         for (auto & c : b->Cells) {
-            cout << "Y: " << b->getY() << "  " << c.getY() << "  " << b->getY() - c.getY() << endl;
-            cout << "X: " << b->getX() << "  " << c.getX() << "  " << b->getX() + c.getX() << endl;
+            //cout << "Y: " << b->getY() << "  " << c.getY() << "  " << b->getY() - c.getY() << endl;
+            //cout << "X: " << b->getX() << "  " << c.getX() << "  " << b->getX() + c.getX() << endl;
             Grid[b->getY() - c.getY()][b->getX() + c.getX()] = c;
         }
     }
@@ -311,6 +311,8 @@ std::string Board::printBoard() const {
     }
 
     oss << "-----------" << endl;
+    oss << "Next:      " << endl;
+    oss << nBlock->printBlock() << endl;
 
     return oss.str();
 }
