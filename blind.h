@@ -1,17 +1,17 @@
-
-
 #ifndef BLIND_H
 #define BLIND_H
 
-
 #include "decorator.h"
 
-class Blind : public Decorator{
+class Blind : public Decorator {
+
+    std::shared_ptr<AbstractBoard> component;           //nested ab
+
 public:
 
     Blind(std::shared_ptr<AbstractBoard> ab);
 
-    std::string outputBoard() override;                  //Override with ??
+    std::string printBoard();                  //Override with ??
 
 };
 
