@@ -14,6 +14,8 @@ class Board{//; : public AbstractBoard {
 
 private:
 
+    char filler = '+';                          //Filler character for empty
+
     int level = 0;                              //Level of the current board
 
     int score = 0;                              //Score of the current board
@@ -35,6 +37,8 @@ private:
     int clearRows();
 
     void clearRow(int row);
+
+    bool isGameOver();
 
     //void insertRows(int rows);
 

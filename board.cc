@@ -12,7 +12,11 @@ using namespace std;
 
 void Board::endTurn() {
     updateGrid();
-    cout << "Trying to EndTurn" << endl;
+
+    if(isGameOver()) {
+        cout << "Game Should Be Over!" << endl;
+    }
+
 
     int rows = clearRows();
     cout << "Row Cleared" << endl;
@@ -31,7 +35,7 @@ int Board::clearRows() {
     for (auto i = Grid.begin()+3; i !=Grid.end(); i++) {
         row++;
         for (auto & j : (*i)) {
-            if(j.getLetter() == '+') {
+            if(j.getLetter() == filler) {
                 flag = true;
                 break;
             }
@@ -118,7 +122,16 @@ void Board::calculateScore(int rows) {
     score += blockScore;
 }
 
-
+bool Board::isGameOver() {
+    for (auto & c : cBlock->Cells) {
+        int x = cBlock->getX() + c.getX();
+        int y = cBlock->getY() - c.getY();
+        if (Grid[y][x].getLetter() != filler) {
+            return true;
+        }
+    }
+    return false;
+}
 
 
 bool Board::canMoveLeft() {
@@ -130,7 +143,7 @@ bool Board::canMoveLeft() {
             return false;
         }
 
-        if (Grid[y][x-1].getLetter() == '+') {
+        if (Grid[y][x-1].getLetter() == filler) {
             continue;
         } else {
             return false;
@@ -149,7 +162,7 @@ bool Board::canMoveRight() {
             return false;
         }
 
-        if (Grid[y][x+1].getLetter() == '+') {
+        if (Grid[y][x+1].getLetter() == filler) {
             continue;
         } else {
             return false;
@@ -167,7 +180,7 @@ bool Board::canMoveDown() {
             return false;
         }
 
-        if (Grid[y+1][x].getLetter() == '+') {
+        if (Grid[y+1][x].getLetter() == filler) {
             continue;
         } else {
             return false;
@@ -187,7 +200,7 @@ bool Board::canRotateCW() {
             return false;
         }
 
-        if (Grid[y][x].getLetter() == '+') {
+        if (Grid[y][x].getLetter() == filler) {
             continue;
         } else {
             cBlock->rotateCCW();
@@ -209,7 +222,7 @@ bool Board::canRotateCCW() {
             return false;
         }
 
-        if (Grid[y][x].getLetter() == '+') {
+        if (Grid[y][x].getLetter() == filler) {
             continue;
         } else {
             cBlock->rotateCW();
@@ -269,7 +282,7 @@ void Board::updateGrid() {
     //Initializes Cells
     for (int by = 0; by < 18; ++by) {
         for (int bx = 0; bx < 11; ++bx) {
-            Grid[by].emplace_back(Cell(by, bx, '+'));
+            Grid[by].emplace_back(Cell(by, bx, filler));
 
         }
     }
@@ -320,6 +333,8 @@ std::string Board::printBoard() const {
 ostream& operator<<(ostream &out, const Board &b) {
     return out << b.printBoard();
 }
+
+
 
 
 
