@@ -27,6 +27,28 @@ void Board::endTurn() {
     }
 }
 
+void Board::calculateScore(int rows) {
+    int clearScore = level + rows;
+    score += clearScore * clearScore;
+
+    int blockScore = 0;
+    for (auto b = Blocks.begin() ; b !=Blocks.end();) {
+        Block & block = **b;
+        if (block.isEmpty()) {
+            int base = 1 + block.levelCreated;
+            cout << "Add to baseScore: " << base * base << endl;
+            blockScore += base * base;
+            b = Blocks.erase(b);
+        } else {
+            b++;
+        }
+    }
+    //cout << "clearScore: " << clearScore << endl;
+    //cout << "blockScore: " << blockScore << endl;
+
+    score += blockScore;
+}
+
 int Board::clearRows() {
     int rowsCleared = 0;
     int row = 2;
@@ -62,7 +84,6 @@ int Board::clearRows() {
 
     return rowsCleared;
 }
-
 
 void Board::clearRow(int row) {
     //Grid.e rase(Grid.begin()+row);
@@ -100,28 +121,6 @@ void Board::clearRow(int row) {
 
 }
 
-void Board::calculateScore(int rows) {
-    int clearScore = level + rows;
-    score += clearScore * clearScore;
-
-    int blockScore = 0;
-    for (auto b = Blocks.begin() ; b !=Blocks.end();) {
-        Block & block = **b;
-        if (block.isEmpty()) {
-            int base = 1 + block.levelCreated;
-            cout << "Add to baseScore: " << base * base << endl;
-            blockScore += base * base;
-            b = Blocks.erase(b);
-        } else {
-            b++;
-        }
-    }
-    //cout << "clearScore: " << clearScore << endl;
-    //cout << "blockScore: " << blockScore << endl;
-
-    score += blockScore;
-}
-
 bool Board::isGameOver() {
     for (auto & c : cBlock->Cells) {
         int x = cBlock->getX() + c.getX();
@@ -133,6 +132,26 @@ bool Board::isGameOver() {
     return false;
 }
 
+void Board::setCurrentBlock(std::shared_ptr<Block> b) {
+    this->cBlock = b;
+}
+
+void Board::setNextBlock(std::shared_ptr<Block> b) {
+    this->nBlock = b;
+}
+
+void Board::addBlock(shared_ptr<Block> block) {
+    Blocks.emplace_back(block);
+}
+
+void Board::drawCurrentBlock() {
+    for (auto & c : cBlock->Cells) {
+        int x = cBlock->getX() + c.getX();
+        int y = cBlock->getY() - c.getY();
+        Grid[y][x] = c;
+    }
+    //!Grid.erase(Grid.begin()+2);
+}
 
 bool Board::canMoveLeft(int n) {
     for (auto & c : cBlock->Cells) {
@@ -154,7 +173,6 @@ bool Board::canMoveLeft(int n) {
     }
     return true;
 }
-
 
 bool Board::canMoveRight(int n) {
     for (auto & c : cBlock->Cells) {
@@ -252,24 +270,6 @@ bool Board::canRotateCCW(int n) {
     return true;
 };
 
-
-void Board::setCurrentBlock(std::shared_ptr<Block> b) {
-    this->cBlock = b;
-}
-
-void Board::setNextBlock(std::shared_ptr<Block> b) {
-    this->nBlock = b;
-}
-
-void Board::drawCurrentBlock() {
-    for (auto & c : cBlock->Cells) {
-        int x = cBlock->getX() + c.getX();
-        int y = cBlock->getY() - c.getY();
-        Grid[y][x] = c;
-    }
-    //!Grid.erase(Grid.begin()+2);
-}
-
 void Board::drop() {
     while(canMoveDown(1)) {
         cBlock->moveDown(1);
@@ -280,10 +280,14 @@ void Board::drop() {
     //!!!call update
 }
 
-void Board::addBlock(shared_ptr<Block> block) {
-    Blocks.emplace_back(block);
+void Board::reset() {
+    level = 0;
+    score = 0;
+    cBlock = nullptr;
+    nBlock = nullptr;
+    Blocks.clear();
+    Grid.clear();
 }
-
 
 void Board::updateGrid() {
     //Clears grid if applicable
@@ -320,12 +324,16 @@ void Board::updateGrid() {
 
 }
 
-void Board::changeLevel(int change) {
-    level += change;
+int Board::getScore() {
+    return score;
 }
 
 int Board::getLevel() {
     return level;
+}
+
+void Board::changeLevel(int change) {
+    level += change;
 }
 
 std::string Board::printBoard() const {
@@ -348,6 +356,7 @@ std::string Board::printBoard() const {
 
     return oss.str();
 }
+
 
 ostream& operator<<(ostream &out, const Board &b) {
     return out << b.printBoard();

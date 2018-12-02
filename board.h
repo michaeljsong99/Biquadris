@@ -44,41 +44,43 @@ private:
 
     bool isGameOver();
 
-    //void insertRows(int rows);
-
 public:
 
-    void setCurrentBlock(std::shared_ptr<Block> b);
+    void setCurrentBlock(std::shared_ptr<Block> b) override;
 
-    void setNextBlock(std::shared_ptr<Block> b);
+    void setNextBlock(std::shared_ptr<Block> b) override;
 
-    void drawCurrentBlock();
+    void addBlock(std::shared_ptr<Block> block) override;
 
-    bool canMoveLeft(int n); //override;
+    void drawCurrentBlock() override;
 
-    bool canMoveRight(int n); //override;
+    bool canMoveLeft(int n) override;
 
-    bool canMoveDown(int n); //override;
+    bool canMoveRight(int n) override;
 
-    bool canRotateCW(int n);      //Returns true if the block doesn't collide
+    bool canMoveDown(int n) override;
 
-    bool canRotateCCW(int n);
+    bool canRotateCW(int n) override;     //Returns true if the block doesn't collide
 
-    void drop();
+    bool canRotateCCW(int n) override;
 
-    void addBlock(std::shared_ptr<Block> block);
+    void drop() override;
 
-    void updateGrid();
+    void reset() override;
 
-    void changeLevel(int change);
+    void updateGrid() override;
 
-    int getLevel();
+    int getScore() override;
 
-    std::string printBoard() const;
+    int getLevel() override;
 
-    friend std::ostream& operator<<(std::ostream &out, const Board &b);
+    void changeLevel(int change) override;
+
+    std::string printBoard() const override;
 
 };
+
+//std::ostream& operator<<(std::ostream &out, const Board &b);
 
 
 #endif //BOARD_H
