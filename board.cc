@@ -6,6 +6,7 @@
 #include "cell.h"
 #include "board.h"
 #include <memory>
+#include <sstream>
 
 using namespace std;
 
@@ -295,24 +296,30 @@ int Board::getLevel() {
     return level;
 }
 
-ostream& operator<<(ostream &out, const Board &b) {
+std::string Board::printBoard() const {
+    ostringstream oss;
+    oss << "Level:" << setw(5) << level << endl;
+    oss << "Score:" << setw(5) << score << endl;
 
-    out << "Level:" << setw(5) << b.level << endl;
-    out << "Score:" << setw(5) << b.score << endl;
+    oss << "-----------" << endl;
 
-    out << "-----------" << endl;
-
-    for (auto & i : b.Grid) {
+    for (auto & i : Grid) {
         for (auto & j : i) {
-            out << j;
+            oss << j;
         }
-        out << endl;
+        oss << endl;
     }
 
-    out << "-----------" << endl;
+    oss << "-----------" << endl;
 
-    return out;
+    return oss.str();
 }
+
+ostream& operator<<(ostream &out, const Board &b) {
+    return out << b.printBoard();
+}
+
+
 
 
 

@@ -66,6 +66,8 @@ public:
 
     int getLevel();
 
+    std::string printBoard() const;
+
     friend std::ostream& operator<<(std::ostream &out, const Board &b);
 
 };
