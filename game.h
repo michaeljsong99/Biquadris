@@ -52,6 +52,8 @@ public:
     void setFilename1(string fn); // set the filename for the player1
     
     void setFilename2(string fn); // set the filename for the player2
+    
+    void setLevel(int level);
 };
 
 
