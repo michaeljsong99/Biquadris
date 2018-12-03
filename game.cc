@@ -477,7 +477,7 @@ std::string Game::printGame() const{
 }
 
 void Game::drawGame() const{
-    xw->fillRectangle(0, 0, 230, 250, Xwindow::White);
+    xw->fillRectangle(0, 0, 500, 500, Xwindow::White);
     //if(turn == 1) {
         b1->updateGrid();
         b1->drawCurrentBlock();

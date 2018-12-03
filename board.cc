@@ -480,6 +480,8 @@ void Board::drawBoard(int baseX, int baseY) const{
                 xw->fillRectangle(baseX + (side*x), baseY + (side*y), side, side, Xwindow::Blue);
             } else if(letter == '*') {
                 xw->fillRectangle(baseX + (side*x), baseY + (side*y), side, side, Xwindow::Black);
+            } else {
+                if
             }
 
         }
