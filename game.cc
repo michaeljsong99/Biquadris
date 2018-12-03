@@ -10,37 +10,37 @@
 using namespace std;
 
 void Game::specialAction(int rows) {
-    if(rows >= 2) {
+    if (rows >= 2) {
         bool flag = true;
-        while(flag) {
+        while (flag) {
             flag = false;
             cout << "Please choose your special action:" << endl << endl <<
                  "   heavy      blind      force   " << endl;
             string s;
             cin >> s;
             if (s == "heavy") {
-                if(turn == 1) {
+                if (turn == 1) {
                     b1 = make_shared<Heavy>(b1, 2, true);
                 } else {
                     b2 = make_shared<Heavy>(b2, 2, true);
                 }
             } else if (s == "blind") {
-                if(turn == 1) {
+                if (turn == 1) {
                     b1 = make_shared<Blind>(b1);
                 } else {
                     b2 = make_shared<Blind>(b2);
                 }
             } else if (s == "force") {
                 bool cflag = true;
-                while(cflag) {
+                while (cflag) {
                     cflag = false;
                     char c;
                     cout << "Choose a block:" << endl << endl <<
                          " I J L S Z O T " << endl;
                     cin >> c;
-                    if (c=='I'||c=='J'||c=='L'||c=='Z'||c=='c'||c ==
-                    'O'||c =='T') {
-                        if(turn == 1) {
+                    if (c == 'I' || c == 'J' || c == 'L' || c == 'Z' || c == 'c' || c ==
+                                                                                    'O' || c == 'T') {
+                        if (turn == 1) {
                             b1 = make_shared<Force>(b1, c);
                         } else {
                             b2 = make_shared<Force>(b2, c);
@@ -67,22 +67,22 @@ void Game::specialAction(int rows) {
 
 void Game::ecf(int rows) {
     if (rows >= 1) {
-        if(turn == 2) {
+        if (turn == 2) {
             ecf1 = 0;
         } else {
             ecf2 = 0;
         }
     } else {
-        if(turn == 2) {
+        if (turn == 2) {
             ecf1++;
         } else {
             ecf2++;
         }
     }
-    if(ecf1 == 5) {
+    if (ecf1 == 5) {
         b1->dropMiddle();
         ecf1 = 0;
-    } else if(ecf2 == 5) {
+    } else if (ecf2 == 5) {
         b2->dropMiddle();
         ecf2 = 0;
     }
@@ -112,13 +112,13 @@ void Game::updateHiscore() {
 }
 
 int Game::checkTurn() {
-    if(b1->getDropped()) {
+    if (b1->getDropped()) {
         b1->setDropped(false);
         turn = 2;
         endTurn(1);
         int rows = b1->getRowsCleared();
 
-        if(isSA1) {
+        if (isSA1) {
             b1 = b1->removeDecorator();
             isSA1 = false;
         }
@@ -128,13 +128,13 @@ int Game::checkTurn() {
             ecf(rows);
         }
     }
-    if(b2->getDropped()) {
+    if (b2->getDropped()) {
         b2->setDropped(false);
         turn = 1;
         endTurn(2);
         int rows = b2->getRowsCleared();
 
-        if(isSA2) {
+        if (isSA2) {
             b2 = b2->removeDecorator();
             isSA2 = false;
         }
@@ -257,16 +257,16 @@ void Game::resetBoard() {
     b1->reset();
     b2->reset();
 
-    if(isSA1) {
+    if (isSA1) {
         b1 = b1->removeDecorator();
         isSA1 = false;
     }
-    if(isSA2) {
+    if (isSA2) {
         b2 = b2->removeDecorator();
         isSA2 = false;
     }
 
-    if(stateGameOver) {
+    if (stateGameOver) {
         cout << "  ________                        ________                     " << endl;
         cout << " /  _____/_____    _____   ____   \\_____  \\___  __ ___________ " << endl;
         cout << "/   \\  ___\\__  \\  /     \\_/ __ \\   /   |   \\  \\/ // __ \\_  __ \\" << endl;
@@ -296,25 +296,24 @@ shared_ptr<Block> Game::generateBlock(int board) {
         level = b2->getLevel();
     }
 
-    if(!isRandom) {
+    if (!isRandom) {
         fRandom >> c;
-        if(fRandom.eof()) {
+        if (fRandom.eof()) {
             fRandom.clear();
             fRandom.seekg(0);
             fRandom >> c;
         }
-    }
-    else if (level == 0) {
+    } else if (level == 0) {
         if (board == 1) {
             f1 >> c;
-            if(f1.eof()) {
+            if (f1.eof()) {
                 f1.clear();
                 f1.seekg(0);
                 f1 >> c;
             }
         } else {
             f2 >> c;
-            if(f2.eof()) {
+            if (f2.eof()) {
                 f1.clear();
                 f1.seekg(0);
                 f2 >> c;
@@ -375,14 +374,14 @@ shared_ptr<Block> Game::generateBlock(int board) {
 void Game::changeLevel(int change, int board) {
     if (board == 1) {
         b1->changeLevel(change);
-        if(b1->getLevel() >= 3) {
+        if (b1->getLevel() >= 3) {
             b1->setHeavy(1);
         } else {
             b1->setHeavy(0);
         }
     } else if (board == 2) {
         b2->changeLevel(change);
-        if(b2->getLevel() >= 3) {
+        if (b2->getLevel() >= 3) {
             b2->setHeavy(1);
         } else {
             b2->setHeavy(0);
@@ -424,7 +423,7 @@ void Game::endTurn(int board) {
 void Game::setLevel(int level) {
     b1->setLevel(level);
     b2->setLevel(level);
-    if(level >= 3) {
+    if (level >= 3) {
         b1->setHeavy(1);
         b2->setHeavy(1);
     } else {
@@ -441,7 +440,7 @@ void Game::setRandom(bool b) {
     isRandom = b;
 }
 
-std::string Game::printGame() const{
+std::string Game::printGame() const {
     ostringstream oss;
 
     string space = "     ";
@@ -455,20 +454,20 @@ std::string Game::printGame() const{
     b1->updateGrid();
     b2->updateGrid();
 
-    oss << "     High Score:"<< setw(7) << hiscore <<endl;
+    oss << "     High Score:" << setw(7) << hiscore << endl;
 
-    for (int i = 0; i < 25; i+=1) {
-        for (int j = 0 ; j < 11; j++) {
-            oss << board1[(i*12) + j];
+    for (int i = 0; i < 25; i += 1) {
+        for (int j = 0; j < 11; j++) {
+            oss << board1[(i * 12) + j];
         }
         oss << space;
-        for (int j = 0 ; j < 11; j++) {
-            oss << board2[(i*12) + j];
+        for (int j = 0; j < 11; j++) {
+            oss << board2[(i * 12) + j];
         }
         oss << endl;
     }
 
-    if(graphics) {
+    if (graphics) {
         cout << "Drawing Game" << endl;
         drawGame();
     }
@@ -476,19 +475,16 @@ std::string Game::printGame() const{
     return oss.str();
 }
 
-void Game::drawGame() const{
+void Game::drawGame() const {
     xw->fillRectangle(0, 0, 230, 250, Xwindow::White);
-    if(turn == 1) {
-        b1->updateGrid();
-        b1->drawCurrentBlock();
-        b1->drawBoard(0, 0);
-        b1->updateGrid();
-    } else {
-        b2->updateGrid();
-        b2->drawCurrentBlock();
-        b2->drawBoard(240, 0);
-        b2->updateGrid();
-    }
+    b1->updateGrid();
+    b1->drawCurrentBlock();
+    b1->drawBoard(0, 0);
+    b1->updateGrid();
+    b2->updateGrid();
+    b2->drawCurrentBlock();
+    b2->drawBoard(240, 0);
+    b2->updateGrid();
 }
 
 
