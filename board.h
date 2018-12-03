@@ -14,7 +14,7 @@ class Board: public AbstractBoard {
 
 private:
 
-    char filler = '+';                          //Filler character for empty
+    char filler = ' ';                          //Filler character for empty
 
     int level = 0;                              //Level of the current board
 

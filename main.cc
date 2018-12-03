@@ -100,9 +100,7 @@ int main(int argc, char *argv[]) {
 
 
     int n;
-    int& refn = n;
     string s;
-    string& refs = s;
     vector<string>& com = commands;
 
 

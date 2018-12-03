@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include "block.h"
+#include <memory>
 
 class AbstractBoard {
 public:

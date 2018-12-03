@@ -5,6 +5,8 @@
 #include <iostream>
 #include <vector>
 #include "cell.h"
+#include <memory>
+
 
 class Board;
 

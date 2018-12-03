@@ -32,16 +32,13 @@ bool Heavy::moveLeft(int n) {                //Returns true if the block doesn't
 
 
 bool Heavy::moveRight(int n) {
-    cout << "ID: " << id << ", " << heavy << ", " << isSA << endl;
     if(heavy == 0) {
         return component->moveRight(n);
     }
     if (component->moveRight(n)) {    // if it is possible to move the block right
-        cout << "ID: " << id << "true" << endl;
 
         for (int i = 0; i < heavy; ++i) {    // does the heaviness feature first
             if (component->shiftDown()) {
-                cout << "ID: " << id << "Shifting DOwn" << endl;
                 continue;
             } else {
                 drop();    //ends the turn as it cannot move down further
