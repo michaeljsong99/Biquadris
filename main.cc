@@ -58,7 +58,6 @@ int main(int argc, char *argv[]) {
     for (int i = 1; i < argc; i++) {
         if (string(argv[i]) == "-text") {
             graphics = false;
-            g.setGraphics(false);
         } else if (string(argv[i]) == "-seed") {
             i++;
             int seed = stoi(string(argv[i]));
@@ -76,10 +75,13 @@ int main(int argc, char *argv[]) {
         }
     }
 
+    g.setGraphics(graphics);
+
     if (graphics) {
         Xwindow xw(500, 700);
         g.setXW(&xw);
     }
+
 
 
     //Store all commands
