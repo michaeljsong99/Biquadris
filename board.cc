@@ -460,7 +460,7 @@ std::string Board::printBoard() const {
 }
 
 void Board::drawBoard(int baseX, int baseY) const{
-    xw->fillRectangle(baseX, baseY, 220, 60, Xwindow::White);
+    xw->fillRectangle(baseX, baseY, 220, 60, Xwindow::DarkGreen);
     xw->drawString(baseX, baseY+20, "Level:");
     xw->drawString(baseX, baseY+40, "Score:");
     xw->drawString(baseX+50, baseY+20, to_string(level));
@@ -473,7 +473,6 @@ void Board::drawBoard(int baseX, int baseY) const{
     for (y = 0; y <= height ; y++) {
         for (x = 0; x <= width; x++) {
             char letter = Grid[y][x].getLetter();
-            //cout << "Drawing " << letter << " x " << x << " y " << y <<  endl;
             if(letter == 'I') {
                 xw->fillRectangle(baseX + (side*x), baseY + (side*y), side, side, Xwindow::Cyan);
             } else if(letter == 'J') {
@@ -494,7 +493,7 @@ void Board::drawBoard(int baseX, int baseY) const{
 
         }
     }
-    xw->fillRectangle(baseX, baseY+361, 220, 159, Xwindow::White);
+    xw->fillRectangle(baseX, baseY+361, 220, 159, Xwindow::DarkGreen);
 
     xw->drawString(baseX, 30+baseY + (side*y), "Next:");
     nBlock->drawBlock(baseX, baseY+(side*y)+50, side, xw);
