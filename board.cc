@@ -497,7 +497,6 @@ void Board::drawBoard(int baseX, int baseY) const{
 
     xw->drawString(baseX, 30+baseY + (side*y), "Next:");
     nBlock->drawBlock(baseX, baseY+(side*y)+50, side, xw);
-    cout << baseY+(side*y)+50 << endl;
 }
 
 ostream &operator<<(ostream &out, const Board &b) {

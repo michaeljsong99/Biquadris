@@ -36,7 +36,6 @@ void readCommand(int& n, string& s, vector<string>& commands) {
 
         }
         if(matches.size() == 1) {
-            cout << "Matched   " << matches.back() << endl;
             s = matches.back();
             break;
 

@@ -167,6 +167,18 @@ void Game::init() {
     b2->setCurrentBlock(cBlock2);
     b1->setNextBlock(nBlock1);
     b2->setNextBlock(e);
+
+    if(graphics) {
+        b1->updateGrid();
+        b1->drawCurrentBlock();
+        b1->drawBoard(20, 20);
+        b1->updateGrid();
+        //} else {
+        b2->updateGrid();
+        b2->drawCurrentBlock();
+        b2->drawBoard(260, 20);
+        b2->updateGrid();
+    }
 }
 
 bool Game::moveBlock(char dir, int board, int n) {
@@ -469,7 +481,6 @@ std::string Game::printGame() const {
     }
 
     if (graphics) {
-        cout << "Drawing Game" << endl;
         drawGame();
     }
 
@@ -491,17 +502,17 @@ void Game::drawGame() const {
     xw->fillRectangle(195, 20, 30, 20, Xwindow::White);
     xw->drawString(195, 20, "High Score:");
     xw->drawString(195 + 80, 20, to_string(hiscore));
-    //if(turn == 1) {
+    if(turn == 1) {
     b1->updateGrid();
     b1->drawCurrentBlock();
     b1->drawBoard(20, 20);
     b1->updateGrid();
-    //} else {
+    } else {
     b2->updateGrid();
     b2->drawCurrentBlock();
     b2->drawBoard(260, 20);
     b2->updateGrid();
-    //}
+    }
 }
 
 void Game::drawGameOver() {
