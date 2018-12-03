@@ -431,13 +431,13 @@ void Game::endTurn(int board) {
             b1->setNextBlock(nBlock1);
         }
     }
-//    if (graphics) {
-//        if (turn == 1) {
-//            drawSingleBoard(1);
-//        } else {
-//            drawSingleBoard(2);
-//        }
-//    }
+    if (graphics) {
+        if (turn == 1) {
+            drawSingleBoard(2);
+        } else {
+            drawSingleBoard(1);
+        }
+    }
 }
 
 void Game::setLevel(int level) {
