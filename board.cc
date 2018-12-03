@@ -467,8 +467,10 @@ void Board::drawBoard(int baseX, int baseY) const{
     xw->drawString(baseX+50, baseY+40, to_string(score));
 
     baseY += 50;
-    for (int y = 0; y <= height ; y++) {
-        for (int x = 0; x <= width; x++) {
+    int y;
+    int x;
+    for (y = 0; y <= height ; y++) {
+        for (x = 0; x <= width; x++) {
             char letter = Grid[y][x].getLetter();
             cout << "Drawing " << letter << " x " << x << " y " << y <<  endl;
             if(letter == 'I') {
@@ -493,6 +495,8 @@ void Board::drawBoard(int baseX, int baseY) const{
 
         }
     }
+    xw->drawString(baseX, 30+baseY + (side*y), "Next:");
+    xw->drawString(baseX, 50+baseY + (side*y), nBlock->printBlock());
 }
 
 ostream &operator<<(ostream &out, const Board &b) {
