@@ -68,7 +68,7 @@ private:
     void drawSingleBoard(int turn) const;
 
 public:
-    Game(bool graphics);
+    Game(Xwindow* xw);
 
     void init();                        //Initializes the game
 
