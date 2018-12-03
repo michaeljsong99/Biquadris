@@ -472,7 +472,8 @@ std::string Game::printGame() const{
 
 void Game::drawGame() {
     xw->fillRectangle(0, 0, 230, 250, Xwindow::White);
-
+    b1->drawBoard();
+    b2->drawBoard();
 }
 
 

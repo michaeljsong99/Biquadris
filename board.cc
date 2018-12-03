@@ -462,9 +462,26 @@ std::string Board::printBoard() const {
 void Board::drawBoard() const{
     for (int y = 0; y < height ; y++) {
         for (int x = 0; x < width; x++) {
+            char letter = Grid[y][x].getLetter();
+            if(letter == 'I') {
+                xw->fillRectangle(x, y, 10, 10, Xwindow::Blue);
+            } else if(letter == 'J') {
+                xw->fillRectangle(x, y, 10, 10, Xwindow::Blue);
+            } else if(letter == 'L') {
+                xw->fillRectangle(x, y, 10, 10, Xwindow::Blue);
+            } else if(letter == 'T') {
+                xw->fillRectangle(x, y, 10, 10, Xwindow::Blue);
+            } else if(letter == 'O') {
+                xw->fillRectangle(x, y, 10, 10, Xwindow::Blue);
+            } else if(letter == 'S') {
+                xw->fillRectangle(x, y, 10, 10, Xwindow::Blue);
+            } else if(letter == 'Z') {
+                xw->fillRectangle(x, y, 10, 10, Xwindow::Blue);
+            } else if(letter == '*') {
+                xw->fillRectangle(x, y, 10, 10, Xwindow::Black);
+            }
 
         }
-        oss << endl;
     }
 }
 

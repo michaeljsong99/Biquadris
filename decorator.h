@@ -62,6 +62,8 @@ public:
 
     std::string printBoard() const override;                  //Prints board as a string
 
+    void drawBoard() const override;
+
     std::shared_ptr<AbstractBoard> removeDecorator() override;
 
     void setHeavy(int n) override;

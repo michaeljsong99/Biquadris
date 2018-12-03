@@ -59,6 +59,8 @@ public:
 
     virtual std::string printBoard() const = 0;                  //Prints board as a string
 
+    virtual void drawBoard() const =0;
+
     virtual void setHeavy(int n) = 0;
 
     virtual bool getDropped() = 0;

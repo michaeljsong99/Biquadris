@@ -125,5 +125,9 @@ void Decorator::dropMiddle() {
    component->dropMiddle();
 }
 
+void Decorator::drawBoard() const {
+    component->drawBoard();
+}
+
 
 
