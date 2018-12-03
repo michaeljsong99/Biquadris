@@ -2,6 +2,8 @@
 #include <sstream>
 #include <string>
 #include "game.h"
+#include "window.h"
+
 
 using namespace std;
 
@@ -52,7 +54,8 @@ void readCommand(int& n, string& s, vector<string>& commands) {
 }
 
 int main(int argc, char *argv[]) {
-    Game g = Game(); // call the game constructor(implementation still absent from the game class)
+    Xwindow xw;
+    Game g = Game(&xw); // call the game constructor(implementation still absent from the game class)
 
     for (int i = 1; i < argc; i++) {
         if (string(argv[i]) == "-text") {
@@ -129,20 +132,20 @@ int main(int argc, char *argv[]) {
         }
         while(n > 0) {
             if (s == "left") {
-                g.moveBlock('l', turn, n);
-                n=0;
+                g.moveBlock('l', turn, 1);
+                n--;
             } else if (s == "right") {
-                g.moveBlock('r', turn, n);
-                n = 0;
+                g.moveBlock('r', turn, 1);
+                n--;
             } else if (s == "down") {
-                g.moveBlock('d', turn, n);
-                n = 0;
+                g.moveBlock('d', turn, 1);
+                n--;
             } else if (s == "clockwise") {
-                g.rotateBlock('c', turn, n);
-                n=0;
+                g.rotateBlock('c', turn, 1);
+                n--;
             } else if (s == "counterclockwise") {
-                g.rotateBlock('w', turn, n);
-                n=0;
+                g.rotateBlock('w', turn, 1);
+                n--;
             } else if (s == "drop") {
                 g.drop(turn);
 

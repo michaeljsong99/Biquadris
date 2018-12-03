@@ -147,7 +147,7 @@ int Game::checkTurn() {
     return turn;
 }
 
-Game::Game() {
+Game::Game(Xwindow *xw) : xw{xw} {
     b1 = make_shared<Board>();
     b1 = make_shared<Heavy>(b1, 0, false);
     b2 = make_shared<Board>();
@@ -469,6 +469,11 @@ std::string Game::printGame() const{
     }
     return oss.str();
 }
+
+void Game::drawBoard() {
+    xw->fillRectangle(0, 0, 500, 500, Xwindow::White);
+}
+
 
 std::ostream &operator<<(std::ostream &out, const Game &g) {
     return out << g.printGame();

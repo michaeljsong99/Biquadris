@@ -5,6 +5,7 @@
 #include "board.h"
 #include "block.h"
 #include "abstractBoard.h"
+#include "window.h"
 #include <memory>
 #include <string>
 #include <vector>
@@ -29,6 +30,8 @@ private:
     int ecf1 = 0;
 
     int ecf2 = 0;
+
+    Xwindow* xw;
 
     std::shared_ptr<AbstractBoard> b1;                   //Board 1
 
@@ -58,8 +61,10 @@ private:
 
     void updateHiscore();
 
+    void drawBoard();
+
 public:
-    Game();
+    Game(Xwindow *xw);
 
     void init();                        //Initializes the game
 
