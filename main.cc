@@ -58,9 +58,8 @@ int main(int argc, char *argv[]) {
 
     bool graphics;
     string file1;
-    cout << file1.empty()<< endl;
     string file2;
-    int level;
+    int level = -1;
 
 
     for (int i = 1; i < argc; i++) {
@@ -73,22 +72,23 @@ int main(int argc, char *argv[]) {
         } else if (string(argv[i]) == "-scriptfile1") {
             i++;
             file1 = string(argv[i]);
-            //g.setFile1(string(argv[i]));
         } else if (string(argv[i]) == "-scriptfile2") {
             i++;
-            g.setFile2(string(argv[i]));
+            file2 = string(argv[i]);
         } else if (string(argv[i]) == "-startLevel") {
             i++;
             level = stoi(argv[i]);
-            g.setLevel(level);
         }
     }
 
     if(!file1.empty()) {
-        cout << "setfile"<< endl;
-        cout << file1<< endl;
-
         g.setFile1(file1);
+    }
+    if(!file2.empty()) {
+        g.setFile2(file2);
+    }
+    if(level != -1) {
+        g.setLevel(level);
     }
 
 
