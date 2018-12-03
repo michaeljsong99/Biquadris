@@ -139,8 +139,10 @@ int main(int argc, char *argv[]) {
                 n = 0;
             } else if (s == "clockwise") {
                 g.rotateBlock('c', turn, n);
+                n=0;
             } else if (s == "counterclockwise") {
                 g.rotateBlock('w', turn, n);
+                n=0;
             } else if (s == "drop") {
                 g.drop(turn);
 
