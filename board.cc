@@ -384,7 +384,7 @@ int Board::getLevel() {
 }
 
 void Board::setLevel(int n) {
-    cout << level << endl;
+    cout << n << endl;
     level = n;
 }
 
