@@ -40,8 +40,8 @@ int main(int argc, char *argv[]) {
     string c; // to store the command
     ifstream readFile;
     bool isFile = false;
+    cout << g;
     while (true) {
-
         if (!isFile) {
             cin >> c;
         } else {
@@ -67,7 +67,14 @@ int main(int argc, char *argv[]) {
             g.rotateBlock('w', turn, 1);
             cout << g;
         } else if (c == "drop") {
-            g.drop(1);
+            g.drop(turn);
+
+            cout << g;
+            if (turn == 1) {
+                turn = 2;
+            } else {
+                turn = 1;
+            }
         } else if (c == "levelup") {
 
         } else if (c == "leveldown") {

@@ -65,10 +65,13 @@ bool Game::rotateBlock(char dir, int board, int n) {
 
 void Game::drop(int board) {
     if (board == 1) {
+        cout << "Dropping" << endl;
         b1->drop();
+        cout << "Dropped!" << endl;
     } else {
         b2->drop();
     }
+    endTurn(board);
 }
 
 void Game::replaceBlock(char blockType, int board) {
@@ -205,10 +208,16 @@ void Game::endTurn(int board) {
         cBlock1 = nBlock1;
         nBlock1 = e;
         nBlock2 = generateBlock(2);
+        b1->setCurrentBlock(cBlock1);
+        b1->setNextBlock(nBlock1);
+        b2->setNextBlock(nBlock2);
     } else {
         cBlock2 = nBlock2;
         nBlock2 = e;
         nBlock1 = generateBlock(1);
+        b2->setCurrentBlock(cBlock2);
+        b2->setNextBlock(nBlock2);
+        b1->setNextBlock(nBlock1);
     }
 }
 

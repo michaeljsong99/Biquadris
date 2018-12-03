@@ -13,7 +13,7 @@ using namespace std;
 void Board::endTurn() {
     updateGrid();
 
-    if(isGameOver()) {
+    if (isGameOver()) {
         cout << "Game Should Be Over!" << endl;
     }
 
@@ -28,12 +28,14 @@ void Board::endTurn() {
 }
 
 void Board::calculateScore(int rows) {
-    int clearScore = level + rows;
-    score += clearScore * clearScore;
+    if (rows > 0) {
+        int clearScore = level + rows;
+        score += clearScore * clearScore;
+    }
 
     int blockScore = 0;
-    for (auto b = Blocks.begin() ; b !=Blocks.end();) {
-        Block & block = **b;
+    for (auto b = Blocks.begin(); b != Blocks.end();) {
+        Block &block = **b;
         if (block.isEmpty()) {
             int base = 1 + block.levelCreated;
             cout << "Add to baseScore: " << base * base << endl;
@@ -54,10 +56,10 @@ int Board::clearRows() {
     int row = 2;
     bool flag = false;
     vector<int> rows;
-    for (auto i = Grid.begin()+3; i !=Grid.end(); i++) {
+    for (auto i = Grid.begin() + 3; i != Grid.end(); i++) {
         row++;
-        for (auto & j : (*i)) {
-            if(j.getLetter() == filler) {
+        for (auto &j : (*i)) {
+            if (j.getLetter() == filler) {
                 flag = true;
                 break;
             }
@@ -74,7 +76,7 @@ int Board::clearRows() {
 
     cout << "Found Filled Rows" << endl;
 
-    for (auto & i : rows) {
+    for (auto &i : rows) {
         cout << i << endl;
         clearRow(i);
         cout << "Updating Grid" << endl;
@@ -89,7 +91,7 @@ void Board::clearRow(int row) {
     //Grid.e rase(Grid.begin()+row);
 
 
-    for (auto & b : Blocks) {
+    for (auto &b : Blocks) {
         for (auto iter = b->Cells.begin(); iter != b->Cells.end();) {
             int y = b->getY() - iter->getY();
             cout << "y: " << y;
@@ -99,7 +101,7 @@ void Board::clearRow(int row) {
                 cout << "   Cell Deleted" << endl;
                 continue;
             } else if ((b->getY() >= row) && (y < row)) {
-                iter->setY(iter->getY()-1);
+                iter->setY(iter->getY() - 1);
                 iter++;
                 cout << "   Cell Shifted Down" << endl;
                 continue;
@@ -111,10 +113,10 @@ void Board::clearRow(int row) {
     cout << "Changed Cell Coordinates" << endl;
 
 
-    for (auto & b : Blocks) {
-        if(b->getY() < row) {
-            cout << "Block Y Set to " << b->getY()+1 << endl;
-            b->setY(b->getY()+1);
+    for (auto &b : Blocks) {
+        if (b->getY() < row) {
+            cout << "Block Y Set to " << b->getY() + 1 << endl;
+            b->setY(b->getY() + 1);
         }
     }
     cout << "Changed Block Coordinates" << endl;
@@ -122,7 +124,7 @@ void Board::clearRow(int row) {
 }
 
 bool Board::isGameOver() {
-    for (auto & c : cBlock->Cells) {
+    for (auto &c : cBlock->Cells) {
         int x = cBlock->getX() + c.getX();
         int y = cBlock->getY() - c.getY();
         if (Grid[y][x].getLetter() != filler) {
@@ -145,7 +147,7 @@ void Board::addBlock(shared_ptr<Block> b) {
 }
 
 void Board::drawCurrentBlock() {
-    for (auto & c : cBlock->Cells) {
+    for (auto &c : cBlock->Cells) {
         int x = cBlock->getX() + c.getX();
         int y = cBlock->getY() - c.getY();
         Grid[y][x] = c;
@@ -154,12 +156,12 @@ void Board::drawCurrentBlock() {
 }
 
 bool Board::canMoveLeft(int n) {
-    for (auto & c : cBlock->Cells) {
-        int x = cBlock->getX() + c.getX();
-        int y = cBlock->getY() - c.getY();
+    while (n > 0) {
+        n--;
+        for (auto &c : cBlock->Cells) {
+            int x = cBlock->getX() + c.getX();
+            int y = cBlock->getY() - c.getY();
 
-        while(n > 0) {
-            n--;
             if (x == 0) {
                 return false;
             }
@@ -176,12 +178,13 @@ bool Board::canMoveLeft(int n) {
 }
 
 bool Board::canMoveRight(int n) {
-    for (auto & c : cBlock->Cells) {
-        int x = cBlock->getX() + c.getX();
-        int y = cBlock->getY() - c.getY();
+    while (n > 0) {
+        n--;
+        for (auto &c : cBlock->Cells) {
+            int x = cBlock->getX() + c.getX();
+            int y = cBlock->getY() - c.getY();
 
-        while(n > 0) {
-            n--;
+            cout << x << endl;
             if (x == width) {
                 return false;
             }
@@ -198,12 +201,12 @@ bool Board::canMoveRight(int n) {
 }
 
 bool Board::canMoveDown(int n) {
-    for (auto & c : cBlock->Cells) {
-        int x = cBlock->getX() + c.getX();
-        int y = cBlock->getY() - c.getY();
+    while (n > 0) {
+        n--;
+        for (auto &c : cBlock->Cells) {
+            int x = cBlock->getX() + c.getX();
+            int y = cBlock->getY() - c.getY();
 
-        while(n < 0) {
-            n--;
             if (y == height) {
                 return false;
             }
@@ -220,7 +223,7 @@ bool Board::canMoveDown(int n) {
 }
 
 bool Board::canRotateCW(int n) {
-    if(n > 4) {
+    if (n > 4) {
         n = 4;
     }
     for (int i = 0; i < n; i++) {
@@ -248,7 +251,7 @@ bool Board::canRotateCW(int n) {
 };
 
 bool Board::canRotateCCW(int n) {
-    if(n > 4) {
+    if (n > 4) {
         n = 4;
     }
     for (int i = 0; i < n; i++) {
@@ -276,38 +279,43 @@ bool Board::canRotateCCW(int n) {
 };
 
 bool Board::moveRight(int n) {
-    if(canMoveRight(n)) {
+    bool b = canMoveRight(n);
+    if (b) {
         cBlock->moveRight(n);
     }
-    return canMoveRight(n);
+    return b;
 }
 
-bool Board::moveLeft(int n){
-    if(canMoveLeft(n)) {
+bool Board::moveLeft(int n) {
+    bool b = canMoveLeft(n);
+    if (b) {
         cBlock->moveLeft(n);
     }
-    return canMoveLeft(n);
+    return b;
 }
 
-bool Board::moveDown(int n){
-    if(canMoveDown(n)) {
+bool Board::moveDown(int n) {
+    bool b = canMoveDown(n);
+    if (b) {
         cBlock->moveDown(n);
     }
-    return canMoveDown(n);
+    return b;
 }
 
-bool Board::rotateCW(int n){
-    if(canRotateCW(n)) {
+bool Board::rotateCW(int n) {
+    bool b = canRotateCW(n);
+    if (b) {
         cBlock->rotateCW(n);
     }
-    return canRotateCW(n);
+    return b;
 }
 
-bool Board::rotateCCW(int n){
-    if(canRotateCCW(n)) {
+bool Board::rotateCCW(int n) {
+    bool b = canRotateCCW(n);
+    if (b) {
         cBlock->rotateCCW(n);
     }
-    return canRotateCCW(n);
+    return b;
 }
 
 bool Board::shiftDown() {
@@ -315,9 +323,10 @@ bool Board::shiftDown() {
 }
 
 void Board::drop() {
-    while(canMoveDown(1)) {
-        cBlock->moveDown(1);
+    cout << "Moving Down" << endl;
+    while (moveDown(1)) {
     }
+    cout << "Moved to the Bottom!" << endl;
     addBlock(cBlock);
     cBlock = nBlock;
     endTurn();
@@ -338,7 +347,7 @@ void Board::updateGrid() {
     Grid.clear();
 
 
-    vector <vector<Cell>> newGrid;
+    vector<vector<Cell>> newGrid;
     Grid = newGrid;
 
     //Initializes Rows
@@ -358,8 +367,8 @@ void Board::updateGrid() {
 
 
     //Add Blocks
-    for (auto & b : Blocks) {
-        for (auto & c : b->Cells) {
+    for (auto &b : Blocks) {
+        for (auto &c : b->Cells) {
             //cout << "Y: " << b->getY() << "  " << c.getY() << "  " << b->getY() - c.getY() << endl;
             //cout << "X: " << b->getX() << "  " << c.getX() << "  " << b->getX() + c.getX() << endl;
             Grid[b->getY() - c.getY()][b->getX() + c.getX()] = c;
@@ -391,8 +400,8 @@ std::string Board::printBoard() const {
 
     oss << "-----------" << endl;
 
-    for (auto & i : Grid) {
-        for (auto & j : i) {
+    for (auto &i : Grid) {
+        for (auto &j : i) {
             oss << j;
         }
         oss << endl;
@@ -406,7 +415,7 @@ std::string Board::printBoard() const {
 }
 
 
-ostream& operator<<(ostream &out, const Board &b) {
+ostream &operator<<(ostream &out, const Board &b) {
     return out << b.printBoard();
 }
 

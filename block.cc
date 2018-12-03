@@ -148,7 +148,7 @@ bool Block::isEmpty() {
 }
 
 void Block::moveLeft(int n) {
-    x += n;
+    x -= n;
 }
 
 void Block::moveRight(int n) {
