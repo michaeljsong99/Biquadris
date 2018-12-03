@@ -23,7 +23,6 @@ void readCommand(int& n, string& s, vector<string>& commands) {
             n = 1;
         }
         s = s.substr(counter);
-        cout << n << " " << s << endl;
 
         vector<string> matches;
         for (auto &in : commands) {
@@ -53,29 +52,48 @@ void readCommand(int& n, string& s, vector<string>& commands) {
 }
 
 int main(int argc, char *argv[]) {
-    Xwindow xw(500, 700);
-    Game g = Game(&xw); // call the game constructor(implementation still absent from the game class)
+
+    string file1;
+    string file2;
+    int level = -1;
+    bool graphics = true;
 
     for (int i = 1; i < argc; i++) {
         if (string(argv[i]) == "-text") {
-            g.setGraphics(false);
+            graphics = false;
         } else if (string(argv[i]) == "-seed") {
             i++;
             int seed = stoi(string(argv[i]));
             srand(seed);
         } else if (string(argv[i]) == "-scriptfile1") {
             i++;
-            g.setFile1(string(argv[i]));
+            file1 = string(argv[i]);
         } else if (string(argv[i]) == "-scriptfile2") {
             i++;
-            g.setFile2(string(argv[i]));
+            file2 = string(argv[i]);
         } else if (string(argv[i]) == "-startLevel") {
             i++;
-            int level = stoi(argv[i]);
-            g.setLevel(level);
+            level = stoi(argv[i]);
         }
     }
 
+    if(graphics) {
+        Xwindow xw(500, 700);
+        Game g = Game(&xw);
+    } else {
+        Game g = Game(nullptr);
+        g.setGraphics(false);
+    }
+
+    if(!file1.empty()) {
+        g.setFile1(file1);
+    }
+    if(!file2.empty()) {
+        g.setFile2(file2);
+    }
+    if(level != -1) {
+        g.setLevel(level);
+    }
 
     //Store all commands
     vector<string> commands;
@@ -162,7 +180,6 @@ int main(int argc, char *argv[]) {
                 n--;
             } else if (s == "norandom") {
                 g.setRandom(false);
-                cout << "Looking for file" << endl;
                 cin >> file;
                 g.setFileRandom(file);
                 n=0;
