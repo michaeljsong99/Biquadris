@@ -474,23 +474,21 @@ void Board::drawBoard(int baseX, int baseY) const{
             char letter = Grid[y][x].getLetter();
             //cout << "Drawing " << letter << " x " << x << " y " << y <<  endl;
             if(letter == 'I') {
-                xw->fillRectangle(baseX + (side*x), baseY + (side*y), side, side, Xwindow::Blue);
+                xw->fillRectangle(baseX + (side*x), baseY + (side*y), side, side, Xwindow::Cyan);
             } else if(letter == 'J') {
-                xw->fillRectangle(baseX + (side*x), baseY + (side*y), side, side, Xwindow::Blue);
+                xw->fillRectangle(baseX + (side*x), baseY + (side*y), side, side, Xwindow::Orange);
             } else if(letter == 'L') {
                 xw->fillRectangle(baseX + (side*x), baseY + (side*y), side, side, Xwindow::Blue);
             } else if(letter == 'T') {
-                xw->fillRectangle(baseX + (side*x), baseY + (side*y), side, side, Xwindow::Blue);
+                xw->fillRectangle(baseX + (side*x), baseY + (side*y), side, side, Xwindow::Magenta);
             } else if(letter == 'O') {
-                xw->fillRectangle(baseX + (side*x), baseY + (side*y), side, side, Xwindow::Blue);
+                xw->fillRectangle(baseX + (side*x), baseY + (side*y), side, side, Xwindow::Yellow);
             } else if(letter == 'S') {
-                xw->fillRectangle(baseX + (side*x), baseY + (side*y), side, side, Xwindow::Blue);
+                xw->fillRectangle(baseX + (side*x), baseY + (side*y), side, side, Xwindow::Green);
             } else if(letter == 'Z') {
-                xw->fillRectangle(baseX + (side*x), baseY + (side*y), side, side, Xwindow::Blue);
+                xw->fillRectangle(baseX + (side*x), baseY + (side*y), side, side, Xwindow::Red);
             } else if(letter == '*') {
-                xw->fillRectangle(baseX + (side*x), baseY + (side*y), side, side, Xwindow::Black);
-            } else {
-                xw->fillRectangle(baseX + (side*x), baseY + (side*y), side, side, Xwindow::Black);
+                xw->fillRectangle(baseX + (side*x), baseY + (side*y), side, side, Xwindow::Brown);
             }
 
         }

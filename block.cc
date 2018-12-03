@@ -209,7 +209,24 @@ void Block::drawBlock(int baseX, int baseY, int side ,Xwindow *xw) const{
     for(auto & c : Cells) {
         int x = c.getX();
         int y = 1 - c.getY();
-        xw->fillRectangle(baseX + (side*x), baseY + (side*y), side, side, Xwindow::Blue);
+        char letter = c.getLetter();
+        if(letter == 'I') {
+            xw->fillRectangle(baseX + (side*x), baseY + (side*y), side, side, Xwindow::Cyan);
+        } else if(letter == 'J') {
+            xw->fillRectangle(baseX + (side*x), baseY + (side*y), side, side, Xwindow::Orange);
+        } else if(letter == 'L') {
+            xw->fillRectangle(baseX + (side*x), baseY + (side*y), side, side, Xwindow::Blue);
+        } else if(letter == 'T') {
+            xw->fillRectangle(baseX + (side*x), baseY + (side*y), side, side, Xwindow::Magenta);
+        } else if(letter == 'O') {
+            xw->fillRectangle(baseX + (side*x), baseY + (side*y), side, side, Xwindow::Yellow);
+        } else if(letter == 'S') {
+            xw->fillRectangle(baseX + (side*x), baseY + (side*y), side, side, Xwindow::Green);
+        } else if(letter == 'Z') {
+            xw->fillRectangle(baseX + (side*x), baseY + (side*y), side, side, Xwindow::Red);
+        } else if(letter == '*') {
+            xw->fillRectangle(baseX + (side*x), baseY + (side*y), side, side, Xwindow::Brown);
+        }
     }
 }
 
