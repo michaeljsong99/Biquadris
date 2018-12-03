@@ -108,8 +108,6 @@ int main(int argc, char *argv[]) {
 
 
 
-
-    g.setLevel(1);
     g.init();
 
 
