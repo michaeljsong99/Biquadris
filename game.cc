@@ -477,6 +477,16 @@ std::string Game::printGame() const {
 }
 
 void Game::drawGame() const {
+    xw->drawLine(19, 19, 241, 19);
+    xw->drawLine(19, 19, 19, 381);
+    xw->drawLine(241, 19, 241, 381);
+    xw->drawLine(19, 381, 241, 381);
+
+//    xw->drawLine(19, 19, 241, 19);
+//    xw->drawLine(19, 19, 241, 19);
+//    xw->drawLine(19, 19, 241, 19);
+//    xw->drawLine(19, 19, 241, 19);
+
     //xw->fillRectangle(0, 0, 500, 700, Xwindow::White);
     xw->fillRectangle(195, 20, 30, 20, Xwindow::White);
     xw->drawString(195, 20, "High Score:");
