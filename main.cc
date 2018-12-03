@@ -53,11 +53,11 @@ void readCommand(int& n, string& s, vector<string>& commands) {
 
 int main(int argc, char *argv[]) {
     bool graphics = true;
-    Game g = Game(); // call the game constructor(implementation still absent from the game class)
+    Game g = Game(false); // call the game constructor(implementation still absent from the game class)
 
     for (int i = 1; i < argc; i++) {
         if (string(argv[i]) == "-text") {
-            graphics = false;
+            graphicsx = false;
         } else if (string(argv[i]) == "-seed") {
             i++;
             int seed = stoi(string(argv[i]));
