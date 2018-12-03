@@ -147,7 +147,7 @@ int Game::checkTurn() {
     return turn;
 }
 
-Game() {
+Game::Game() {
     xw = nullptr;
     b1 = make_shared<Board>(xw);
     b1 = make_shared<Heavy>(b1, 0, false);
