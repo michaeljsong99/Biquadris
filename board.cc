@@ -460,26 +460,26 @@ std::string Board::printBoard() const {
 }
 
 void Board::drawBoard(int baseX, int baseY) const{
-    for (int y = 0; y < height ; y++) {
-        for (int x = 0; x < width; x++) {
+    for (int y = 0; y <= height ; y++) {
+        for (int x = 0; x <= width; x++) {
             char letter = Grid[y][x].getLetter();
             cout << "Drawing " << letter << " x " << x << " y " << y <<  endl;
             if(letter == 'I') {
-                xw->fillRectangle(baseX + (10*x), baseY + (10*y), 10, 10, Xwindow::Blue);
+                xw->fillRectangle(baseX + (side*x), baseY + (side*y), side, side, Xwindow::Blue);
             } else if(letter == 'J') {
-                xw->fillRectangle(baseX + (10*x), baseY + (10*y), 10, 10, Xwindow::Blue);
+                xw->fillRectangle(baseX + (side*x), baseY + (side*y), side, side, Xwindow::Blue);
             } else if(letter == 'L') {
-                xw->fillRectangle(baseX + (10*x), baseY + (10*y), 10, 10, Xwindow::Blue);
+                xw->fillRectangle(baseX + (side*x), baseY + (side*y), side, side, Xwindow::Blue);
             } else if(letter == 'T') {
-                xw->fillRectangle(baseX + (10*x), baseY + (10*y), 10, 10, Xwindow::Blue);
+                xw->fillRectangle(baseX + (side*x), baseY + (side*y), side, side, Xwindow::Blue);
             } else if(letter == 'O') {
-                xw->fillRectangle(baseX + (10*x), baseY + (10*y), 10, 10, Xwindow::Blue);
+                xw->fillRectangle(baseX + (side*x), baseY + (side*y), side, side, Xwindow::Blue);
             } else if(letter == 'S') {
-                xw->fillRectangle(baseX + (10*x), baseY + (10*y), 10, 10, Xwindow::Blue);
+                xw->fillRectangle(baseX + (side*x), baseY + (side*y), side, side, Xwindow::Blue);
             } else if(letter == 'Z') {
-                xw->fillRectangle(baseX + (10*x), baseY + (10*y), 10, 10, Xwindow::Blue);
+                xw->fillRectangle(baseX + (side*x), baseY + (side*y), side, side, Xwindow::Blue);
             } else if(letter == '*') {
-                xw->fillRectangle(baseX + (10*x), baseY + (10*y), 10, 10, Xwindow::Black);
+                xw->fillRectangle(baseX + (side*x), baseY + (side*y), side, side, Xwindow::Black);
             }
 
         }

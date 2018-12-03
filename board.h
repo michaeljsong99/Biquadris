@@ -31,6 +31,8 @@ private:
 
     int rowsCleared = 0;
 
+    int side = 20;
+
     Xwindow* xw;
 
     std::shared_ptr<Block> cBlock;          //Current Block

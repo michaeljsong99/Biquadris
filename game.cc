@@ -484,7 +484,7 @@ void Game::drawGame() const{
     b1->updateGrid();
     cout << "Drawing Board2" << endl;
     b2->drawCurrentBlock();
-    b2->drawBoard(120, 0);
+    b2->drawBoard(240, 0);
     b2->updateGrid();
 }
 
