@@ -31,7 +31,7 @@ private:
 
     int ecf2 = 0;
 
-    Xwindow* xw;
+    Xwindow* xw = nullptr;
 
     std::shared_ptr<AbstractBoard> b1;                   //Board 1
 
