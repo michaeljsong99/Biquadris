@@ -469,6 +469,7 @@ void Board::drawBoard(int baseX, int baseY) const{
     baseY += 50;
     int y;
     int x;
+    xw->fillRectangle(baseX, baseY, 220, 700, Xwindow::White);
     for (y = 0; y <= height ; y++) {
         for (x = 0; x <= width; x++) {
             char letter = Grid[y][x].getLetter();
@@ -489,12 +490,15 @@ void Board::drawBoard(int baseX, int baseY) const{
                 xw->fillRectangle(baseX + (side*x), baseY + (side*y), side, side, Xwindow::Red);
             } else if(letter == '*') {
                 xw->fillRectangle(baseX + (side*x), baseY + (side*y), side, side, Xwindow::Brown);
+            } else {
+                xw->fillRectangle(baseX + (side*x), baseY + (side*y), side, side, Xwindow::Black);
             }
 
         }
     }
     xw->drawString(baseX, 30+baseY + (side*y), "Next:");
     nBlock->drawBlock(baseX, baseY+(side*y)+50, side, xw);
+    cout << baseY+(side*y)+50 << endl;
 }
 
 ostream &operator<<(ostream &out, const Board &b) {

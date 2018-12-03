@@ -501,13 +501,14 @@ void Game::drawGameOver() {
     string s5 = " \\______  (____  /__|_|  /\\___  > \\_______  /\\_/  \\___  >__|   ";
     string s6 = "        \\/     \\/      \\/     \\/          \\/          \\/       ";
     for (int i = 0; i < 50;i++) {
-        xw->drawString(100, 550, s1);
-        xw->drawString(100, 570, s2);
-        xw->drawString(100, 590, s3);
-        xw->drawString(100, 610, s4);
-        xw->drawString(100, 630, s5);
-        xw->drawString(100, 650, s6);
+        xw->drawString(50, 550, s1);
+        xw->drawString(50, 570, s2);
+        xw->drawString(50, 590, s3);
+        xw->drawString(50, 610, s4);
+        xw->drawString(50, 630, s5);
+        xw->drawString(50, 650, s6);
     }
+    xw->fillRectangle(0, 0, 500, 700, Xwindow::White);
 }
 
 
