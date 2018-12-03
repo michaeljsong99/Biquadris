@@ -167,6 +167,9 @@ void Game::init() {
     b2->setCurrentBlock(cBlock2);
     b1->setNextBlock(nBlock1);
     b2->setNextBlock(e);
+    if(xw == nullptr) {
+        graphics = false;
+    }
 
     if(graphics) {
         b1->updateGrid();
