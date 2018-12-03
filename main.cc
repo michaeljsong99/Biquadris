@@ -52,54 +52,7 @@ void readCommand(int& n, string& s, vector<string>& commands) {
     }
 }
 
-int main(int argc, char *argv[]) {
-    Xwindow xw(500, 700);
-    Game g = Game(&xw); // call the game constructor(implementation still absent from the game class)
-
-    bool graphics;
-    string file1;
-    string file2;
-    int level = -1;
-
-
-    for (int i = 1; i < argc; i++) {
-        if (string(argv[i]) == "-text") {
-            g.setGraphics(false);
-        } else if (string(argv[i]) == "-seed") {
-            i++;
-            int seed = stoi(string(argv[i]));
-            srand(seed);
-        } else if (string(argv[i]) == "-scriptfile1") {
-            i++;
-            file1 = string(argv[i]);
-        } else if (string(argv[i]) == "-scriptfile2") {
-            i++;
-            file2 = string(argv[i]);
-        } else if (string(argv[i]) == "-startlevel") {
-            i++;
-            level = stoi(argv[i]);
-        }
-    }
-
-    if(!file1.empty()) {
-        g.setFile1(file1);
-    }
-    if(!file2.empty()) {
-        g.setFile2(file2);
-    }
-    if(level != -1) {
-        g.setLevel(level);
-    }
-
-
-
-
-
-
-
-
-
-
+void commandLoop(Game &g) {
     //Store all commands
     vector<string> commands;
     commands.emplace_back("left");
@@ -122,8 +75,6 @@ int main(int argc, char *argv[]) {
     commands.emplace_back("O");
     commands.emplace_back("T");
 
-
-
     int n;
     string s;
     vector<string>& com = commands;
@@ -131,8 +82,6 @@ int main(int argc, char *argv[]) {
 
 
     g.init();
-
-
     int turn = 1;
     string file;
 
@@ -211,5 +160,69 @@ int main(int argc, char *argv[]) {
         }
 
 
+    }
+}
+
+void graphicsGame(string& file1, string& file2, int& level) {
+    Xwindow xw(500, 700);
+    Game g = Game(&xw); // call the game constructor(implementation still absent from the game class)
+    g.setGraphics(true);
+    if(!file1.empty()) {
+        g.setFile1(file1);
+    }
+    if(!file2.empty()) {
+        g.setFile2(file2);
+    }
+    if(level != -1) {
+        g.setLevel(level);
+    }
+    commandLoop(g);
+}
+
+void textGame(string& file1, string& file2, int& level) {
+    Game g = Game(nullptr);
+    g.setGraphics(false);
+    if(!file1.empty()) {
+        g.setFile1(file1);
+    }
+    if(!file2.empty()) {
+        g.setFile2(file2);
+    }
+    if(level != -1) {
+        g.setLevel(level);
+    }
+    commandLoop(g);
+}
+
+int main(int argc, char *argv[]) {
+    bool graphics;
+    string file1;
+    string file2;
+    int level = -1;
+
+
+    for (int i = 1; i < argc; i++) {
+        if (string(argv[i]) == "-text") {
+            graphics = false;
+        } else if (string(argv[i]) == "-seed") {
+            i++;
+            int seed = stoi(string(argv[i]));
+            srand(seed);
+        } else if (string(argv[i]) == "-scriptfile1") {
+            i++;
+            file1 = string(argv[i]);
+        } else if (string(argv[i]) == "-scriptfile2") {
+            i++;
+            file2 = string(argv[i]);
+        } else if (string(argv[i]) == "-startlevel") {
+            i++;
+            level = stoi(argv[i]);
+        }
+    }
+
+    if(graphics) {
+        graphicsGame(file1, file2, level);
+    } else {
+        textGame(file1, file2, level);
     }
 }
