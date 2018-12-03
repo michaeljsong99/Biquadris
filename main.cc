@@ -58,6 +58,7 @@ int main(int argc, char *argv[]) {
 
     bool graphics;
     string file1;
+    cout << file1.empty()<< endl;
     string file2;
     int level;
 
@@ -71,6 +72,7 @@ int main(int argc, char *argv[]) {
             srand(seed);
         } else if (string(argv[i]) == "-scriptfile1") {
             i++;
+            file1 = string(argv[i]);
             //g.setFile1(string(argv[i]));
         } else if (string(argv[i]) == "-scriptfile2") {
             i++;
@@ -83,6 +85,9 @@ int main(int argc, char *argv[]) {
     }
 
     if(!file1.empty()) {
+        cout << "setfile"<< endl;
+        cout << file1<< endl;
+
         g.setFile1(file1);
     }
 
