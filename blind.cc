@@ -1,4 +1,3 @@
-
 #include "blind.h"
 
 using namespace std;
