@@ -80,6 +80,7 @@ int main(int argc, char *argv[]) {
     if (graphics) {
         Xwindow xw(500, 700);
         g.setXW(&xw);
+        cout <<"SetXW" << endl;
     }
 
 
