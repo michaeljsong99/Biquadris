@@ -57,7 +57,7 @@ int main(int argc, char *argv[]) {
 
     for (int i = 1; i < argc; i++) {
         if (string(argv[i]) == "-text") {
-            graphicsx = false;
+            graphics = false;
         } else if (string(argv[i]) == "-seed") {
             i++;
             int seed = stoi(string(argv[i]));
