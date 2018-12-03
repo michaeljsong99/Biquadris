@@ -441,6 +441,8 @@ void Game::endTurn(int board) {
 }
 
 void Game::setLevel(int level) {
+    if(level > 4) level = 4;
+    if (level < 0) level = 0;
     b1->setLevel(level);
     b2->setLevel(level);
     if (level >= 3) {

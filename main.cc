@@ -72,6 +72,7 @@ int main(int argc, char *argv[]) {
         } else if (string(argv[i]) == "-startLevel") {
             i++;
             int level = stoi(argv[i]);
+            cout << level<< endl;
             g.setLevel(level);
         }
     }
