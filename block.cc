@@ -182,9 +182,10 @@ void Block::rotateCW(int n) {
 string Block::printBlock() const{
     ostringstream oss;
 
-    int maxX = -1;
-    int maxY = -1;
+    int maxX = 10;
+    int maxY = 1;
 
+/*
     for(auto & k : Cells) {
         if (maxX < k.getX()) {
             maxX = k.getX();
@@ -192,6 +193,7 @@ string Block::printBlock() const{
             maxY = k.getY();
         }
     }
+*/
 
     for (int y = maxY; y >= 0; y--) {
         for (int x = 0; x <= maxX; x++) {
