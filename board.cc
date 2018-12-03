@@ -10,6 +10,8 @@
 
 using namespace std;
 
+Board::Board(Xwindow *xw) : xw{xw} {}
+
 void Board::endTurn() {
     updateGrid();
 
@@ -395,27 +397,6 @@ void Board::changeLevel(int change) {
     }
 }
 
-std::string Board::printBoard() const {
-    ostringstream oss;
-    oss << "Level:" << setw(5) << level << endl;
-    oss << "Score:" << setw(5) << score << endl;
-
-    oss << "-----------" << endl;
-
-    for (auto &i : Grid) {
-        for (auto &j : i) {
-            oss << j;
-        }
-        oss << endl;
-    }
-
-    oss << "-----------" << endl;
-    oss << "Next:      " << endl;
-    oss << nBlock->printBlock() << endl;
-
-    return oss.str();
-}
-
 void Board::setHeavy(int n) {
 
 };
@@ -455,6 +436,36 @@ void Board::dropMiddle() {
     nb->setY(y);
     nb->setX(5);
     addBlock(nb);
+}
+
+std::string Board::printBoard() const {
+    ostringstream oss;
+    oss << "Level:" << setw(5) << level << endl;
+    oss << "Score:" << setw(5) << score << endl;
+
+    oss << "-----------" << endl;
+
+    for (auto &i : Grid) {
+        for (auto &j : i) {
+            oss << j;
+        }
+        oss << endl;
+    }
+
+    oss << "-----------" << endl;
+    oss << "Next:      " << endl;
+    oss << nBlock->printBlock() << endl;
+
+    return oss.str();
+}
+
+void Board::drawBoard() const{
+    for (int y = 0; y < height ; y++) {
+        for (int x = 0; x < width; x++) {
+
+        }
+        oss << endl;
+    }
 }
 
 ostream &operator<<(ostream &out, const Board &b) {

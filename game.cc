@@ -148,9 +148,9 @@ int Game::checkTurn() {
 }
 
 Game::Game(Xwindow *xw) : xw{xw} {
-    b1 = make_shared<Board>();
+    b1 = make_shared<Board>(xw);
     b1 = make_shared<Heavy>(b1, 0, false);
-    b2 = make_shared<Board>();
+    b2 = make_shared<Board>(xw);
     b2 = make_shared<Heavy>(b2, 0, false);
     setLevel(0);
     auto empty = make_shared<Block>('\0', 1, 0);
@@ -470,8 +470,9 @@ std::string Game::printGame() const{
     return oss.str();
 }
 
-void Game::drawBoard() {
-    xw->fillRectangle(0, 0, 500, 500, Xwindow::White);
+void Game::drawGame() {
+    xw->fillRectangle(0, 0, 230, 250, Xwindow::White);
+
 }
 
 

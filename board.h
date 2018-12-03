@@ -7,6 +7,7 @@
 #include <vector>
 #include <string>
 #include "block.h"
+#include "window.h"
 
 class Block;
 
@@ -30,6 +31,8 @@ private:
 
     int rowsCleared = 0;
 
+    Xwindow* xw;
+
     std::shared_ptr<Block> cBlock;          //Current Block
 
     std::shared_ptr<Block> nBlock;          //Current Block
@@ -47,6 +50,8 @@ private:
     void clearRow(int row);
 
 public:
+
+    Board(Xwindow *xw);
 
     void setCurrentBlock(std::shared_ptr<Block> b) override;
 
@@ -107,6 +112,8 @@ public:
     void dropMiddle() override;
 
     std::string printBoard() const override;
+
+    void drawBoard() const override;
 
 };
 

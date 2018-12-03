@@ -61,7 +61,7 @@ private:
 
     void updateHiscore();
 
-    void drawBoard();
+    void drawGame();
 
 public:
     Game(Xwindow *xw);
