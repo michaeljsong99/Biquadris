@@ -108,6 +108,10 @@ void Game::setFile2(string fn) {
     f2 = ifstream(fn);
 }
 
+void Game::setFileRandom(string fn) {
+    fRandom = ifstream(fn);
+}
+
 void Game::resetBoard(int board) { //!May need to do more?
     if (board == 1) {
         b1->reset();
@@ -127,7 +131,15 @@ shared_ptr<Block> Game::generateBlock(int board) {
         level = b2->getLevel();
     }
 
-    if (level == 0) {
+    if(!isRandom) {
+        fRandom >> c;
+        if(fRandom.eof()) {
+            fRandom.clear();
+            fRandom.seekg(0);
+            fRandom >> c;
+        }
+    }
+    else if (level == 0) {
         if (board == 1) {
             f1 >> c;
             if(f1.eof()) {
@@ -229,6 +241,10 @@ void Game::setLevel(int level) {
 
 void Game::setGraphics(bool b) {
     graphics = b;
+}
+
+void Game::setRandom(bool b) {
+    isRandom = b;
 }
 
 std::string Game::printGame() const{

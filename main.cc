@@ -37,64 +37,72 @@ int main(int argc, char *argv[]) {
 
 
     int turn = 1;
-    string c; // to store the command
-    ifstream readFile;
+    string s; // to store the command
+    string file;
+
     bool isFile = false;
-    cout << g;
+    ifstream sequence;
+
     while (true) {
+        cout << g;
+
         if (!isFile) {
-            cin >> c;
+            cin >> s;
         } else {
-            if (!(readFile >> c)) {
+            if (!(sequence >> s)) {
                 isFile = false;
-                cin >> c;
+                cin >> s;
             }
         }
 
-        if (c == "left") {
+        if (s == "left") {
             g.moveBlock('l', turn, 1);
-            cout << g;
-        } else if (c == "right") {
+        }
+        else if (s == "right") {
             g.moveBlock('r', turn, 1);
-            cout << g;
-        } else if (c == "down") {
+        }
+        else if (s == "down") {
             g.moveBlock('d', turn, 1);
-            cout << g;
-        } else if (c == "clockwise") {
+        }
+        else if (s == "clockwise") {
             g.rotateBlock('c', turn, 1);
-            cout << g;
-        } else if (c == "counterclockwise") {
+        }
+        else if (s == "counterclockwise") {
             g.rotateBlock('w', turn, 1);
-            cout << g;
-        } else if (c == "drop") {
+        }
+        else if (s == "drop") {
             g.drop(turn);
 
-            cout << g;
             if (turn == 1) {
                 turn = 2;
             } else {
                 turn = 1;
             }
-        } else if (c == "levelup") {
-
-        } else if (c == "leveldown") {
-
-        } else if (c == "norandom") {
-            string f;
-            cin >> f;
-            //norandom
-            //file name
-        } else if (c == "random") {
-
-        } else if (c == "sequence") {
-            string f;
-            cin >> f;
-            //sequence
-            //file
-            //name
-                    //readFile{f};
+        }
+        else if (s == "levelup") {
+            g.changeLevel(1, turn);
+        }
+        else if (s == "leveldown") {
+            g.changeLevel(-1, turn);
+        }
+        else if (s == "norandom") {
+            g.setRandom(false);
+            cin >> file;
+            g.setFileRandom(file);
+        }
+        else if (s == "random") {
+            g.setRandom(true);
+        }
+        else if (s == "sequence") {
+            cin >> file;
+            sequence =ifstream(file);
             isFile = true;
-        } else if (cin.eof()){
+        }
+        else if (s == "I" || s == "J" || s == "L" || s == "Z" || s == "S" || s == "O" || s == "T") {
+            char c = s[0];
+            g.replaceBlock(c, turn);
+        }
+        else if (cin.eof()){
             break;
         }
     }

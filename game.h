@@ -20,7 +20,7 @@ private:
 
     int board;                       //Stores which turn it is.
 
-    bool isRandom;                   //For level 3/4, there is an feature to enable/disable random block generation
+    bool isRandom = true;                   //For level 3/4, there is an feature to enable/disable random block generation
 
     bool graphics = true;
 
@@ -31,6 +31,8 @@ private:
     std::ifstream f1;           //Name of file for present sequences of blocks for the player1 with level 0
 
     std::ifstream f2;          // Name of file for present sequences of blocks for the player2 with level 0
+
+    std::ifstream fRandom;          // Name of file for present sequences of blocks for the player2 with level 0
 
     std::vector<char> blockNames1;      //Store the blockNames inside the file.
 
@@ -72,10 +74,14 @@ public:
     void setFile1(std::string fn); // set the filename for the player1
     
     void setFile2(std::string fn); // set the filename for the player2
-    
+
+    void setFileRandom(std::string fn); // set the filename for the player2
+
     void setLevel(int level); // set the level for two boards
 
     void setGraphics(bool b);
+
+    void setRandom(bool b);
 
     std::string printGame() const;
 

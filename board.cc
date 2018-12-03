@@ -391,6 +391,12 @@ void Board::setLevel(int n) {
 
 void Board::changeLevel(int change) {
     level += change;
+    if(level < 0) {
+        level = 0;
+    }
+    if (level > 4) {
+        level = 4;
+    }
 }
 
 std::string Board::printBoard() const {
