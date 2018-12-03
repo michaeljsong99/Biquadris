@@ -477,10 +477,10 @@ std::string Game::printGame() const {
 }
 
 void Game::drawGame() const {
-    xw->drawLine(19, 19, 241, 19);
-    xw->drawLine(19, 19, 19, 381);
-    xw->drawLine(241, 19, 241, 381);
-    xw->drawLine(19, 381, 241, 381);
+    xw->drawLine(19, 69, 241, 69);
+    xw->drawLine(19, 69, 19, 431);
+    xw->drawLine(241, 69, 241, 431);
+    xw->drawLine(19, 331, 241, 331);
 
 //    xw->drawLine(19, 19, 241, 19);
 //    xw->drawLine(19, 19, 241, 19);
