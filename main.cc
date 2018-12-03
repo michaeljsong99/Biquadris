@@ -76,12 +76,13 @@ int main(int argc, char *argv[]) {
             level = stoi(argv[i]);
         }
     }
-
+    Xwindow *xwp = nullptr;
     if(graphics) {
         Xwindow xw(500, 700);
-        Game g = Game(&xw);
-    } else {
-        Game g = Game(nullptr);
+        xwp = &xw;
+    }
+    Game g = Game(xwp);
+    if(xwp == nullptr) {
         g.setGraphics(false);
     }
 
