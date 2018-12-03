@@ -1,4 +1,5 @@
 #include "game.h"
+#include "heavy.h"
 #include <fstream>
 #include <cstdlib>
 #include <sstream>
@@ -7,7 +8,9 @@ using namespace std;
 
 Game::Game() {
     b1 = make_shared<Board>();
+    b1 = make_shared<Heavy>(b1, 0, false);
     b2 = make_shared<Board>();
+    b2 = make_shared<Heavy>(b2, 0, false);
     setLevel(0);
     auto empty = make_shared<Block>('\0', 1, 0);
     e = empty;
@@ -217,8 +220,18 @@ shared_ptr<Block> Game::generateBlock(int board) {
 void Game::changeLevel(int change, int board) {
     if (board == 1) {
         b1->changeLevel(change);
+        if(b1->getLevel() >= 3) {
+            b1->setHeavy(1);
+        } else {
+            b1->setHeavy(0);
+        }
     } else if (board == 2) {
         b2->changeLevel(change);
+        if(b2->getLevel() >= 3) {
+            b2->setHeavy(1);
+        } else {
+            b2->setHeavy(0);
+        }
     }
 }
 
@@ -251,10 +264,16 @@ void Game::endTurn(int board) {
     }
 }
 
-
 void Game::setLevel(int level) {
     b1->setLevel(level);
     b2->setLevel(level);
+    if(level >= 3) {
+        b1->setHeavy(1);
+        b2->setHeavy(1);
+    } else {
+        b1->setHeavy(0);
+        b2->setHeavy(0);
+    }
 }
 
 void Game::setGraphics(bool b) {

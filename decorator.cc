@@ -101,6 +101,10 @@ std::shared_ptr<AbstractBoard> Decorator::removeDecorator() {
     return component;
 }
 
+void Decorator::setHeavy(int n) {
+      component->setHeavy(n);
+}
+
 bool Decorator::isGameOver() {
     return component->isGameOver();
 }

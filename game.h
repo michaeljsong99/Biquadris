@@ -22,6 +22,8 @@ private:
 
     bool stateGameOver;
 
+    int heavy;
+
     std::shared_ptr<AbstractBoard> b1;                   //Board 1
 
     std::shared_ptr<AbstractBoard> b2;                   //Board 2

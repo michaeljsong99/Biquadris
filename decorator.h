@@ -8,6 +8,8 @@ protected:
 
     std::shared_ptr<AbstractBoard> component;           //nested ab
 
+    int id;
+
 public:
 
     Decorator(std::shared_ptr<AbstractBoard> ab);       //ctor
@@ -61,6 +63,8 @@ public:
     std::string printBoard() const override;                  //Prints board as a string
 
     std::shared_ptr<AbstractBoard> removeDecorator();
+
+    void setHeavy(int n) override;
 
 };
 

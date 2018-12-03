@@ -58,6 +58,7 @@ public:
 
     virtual std::string printBoard() const = 0;                  //Prints board as a string
 
+    virtual void setHeavy(int n) = 0;
 };
 
 std::ostream& operator<<(std::ostream &out, const AbstractBoard &b);

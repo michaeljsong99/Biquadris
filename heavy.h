@@ -25,6 +25,7 @@ public:
 
     bool rotateCCW(int n) override;    //Returns true if the block doesn't collide
 
+    void setHeavy(int n) override;
 };
 
 

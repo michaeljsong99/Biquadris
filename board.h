@@ -90,6 +90,8 @@ public:
 
     bool isGameOver() override;
 
+    void setHeavy(int n) override;
+
     std::string printBoard() const override;
 
 };

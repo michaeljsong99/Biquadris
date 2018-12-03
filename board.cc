@@ -179,7 +179,6 @@ bool Board::canMoveRight(int n) {
             int x = cBlock->getX() + c.getX();
             int y = cBlock->getY() - c.getY();
 
-            cout << x << endl;
             if (x == width) {
                 return false;
             }
@@ -413,6 +412,10 @@ std::string Board::printBoard() const {
 
     return oss.str();
 }
+
+void Board::setHeavy(int n) {
+
+};
 
 
 ostream &operator<<(ostream &out, const Board &b) {
