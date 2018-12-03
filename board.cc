@@ -376,6 +376,10 @@ int Board::getLevel() {
     return level;
 }
 
+int Board::setLevel(int n) {
+    level = n;
+}
+
 void Board::changeLevel(int change) {
     level += change;
 }

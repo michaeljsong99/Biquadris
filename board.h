@@ -86,6 +86,8 @@ public:
 
     int getLevel() override;
 
+    void setLevel(int n) override;
+
     void changeLevel(int change) override;
 
     std::string printBoard() const override;

@@ -85,6 +85,10 @@ int Decorator::getLevel() {
    return component->getLevel();
 }
 
+void Decorator::setLevel(int n) {
+   component->setLevel(n);
+}
+
 void Decorator::changeLevel(int change) {
    component->changeLevel(change);
 }
@@ -96,4 +100,6 @@ std::string Decorator::printBoard() const {
 std::shared_ptr<AbstractBoard> Decorator::removeDecorator() {
     return component;
 }
+
+
 

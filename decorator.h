@@ -52,6 +52,8 @@ public:
 
     int getLevel() override;                 //Returns current level
 
+    void setLevel(int n) override;
+
     void changeLevel(int change) override;              //Modify the level by change levels e.g change = -2 level 4->2
 
     std::string printBoard() const override;                  //Prints board as a string
