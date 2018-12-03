@@ -461,8 +461,10 @@ std::string Board::printBoard() const {
 
 void Board::drawBoard(int baseX, int baseY) const{
 
-    xw->drawString(baseX, baseY+0, "Level:");
-    xw->drawString(baseX, baseY+20, "Score:");
+    xw->drawString(baseX, baseY+20, "Level:");
+    xw->drawString(baseX, baseY+40, "Score:");
+    xw->drawString(baseX+50, baseY+20, to_string(level));
+    xw->drawString(baseX+50, baseY+40, to_string(score));
 
     baseY += 50;
     for (int y = 0; y <= height ; y++) {
