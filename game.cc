@@ -147,7 +147,7 @@ int Game::checkTurn() {
     return turn;
 }
 
-Game::Game(Xwindow *xw) : xw{xw} {
+Game::Game() {
     b1 = make_shared<Board>(xw);
     b1 = make_shared<Heavy>(b1, 0, false);
     b2 = make_shared<Board>(xw);
@@ -546,6 +546,10 @@ void Game::drawSingleBoard(int board) const {
         b2->drawBoard(260, 20);
         b2->updateGrid();
     }
+}
+
+void Game::setXW(Xwindow *xw) {
+    this->xw = xw;
 }
 
 std::ostream &operator<<(std::ostream &out, const Game &g) {

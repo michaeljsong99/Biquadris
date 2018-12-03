@@ -52,49 +52,35 @@ void readCommand(int& n, string& s, vector<string>& commands) {
 }
 
 int main(int argc, char *argv[]) {
-
-    string file1;
-    string file2;
-    int level = -1;
     bool graphics = true;
+    Game g = Game(); // call the game constructor(implementation still absent from the game class)
 
     for (int i = 1; i < argc; i++) {
         if (string(argv[i]) == "-text") {
             graphics = false;
+            g.setGraphics(false);
         } else if (string(argv[i]) == "-seed") {
             i++;
             int seed = stoi(string(argv[i]));
             srand(seed);
         } else if (string(argv[i]) == "-scriptfile1") {
             i++;
-            file1 = string(argv[i]);
+            g.setFile1(string(argv[i]));
         } else if (string(argv[i]) == "-scriptfile2") {
             i++;
-            file2 = string(argv[i]);
+            g.setFile2(string(argv[i]));
         } else if (string(argv[i]) == "-startLevel") {
             i++;
-            level = stoi(argv[i]);
+            int level = stoi(argv[i]);
+            g.setLevel(level);
         }
     }
-    Xwindow *xwp = nullptr;
-    if(graphics) {
+
+    if (graphics) {
         Xwindow xw(500, 700);
-        xwp = &xw;
-    }
-    Game g = Game(xwp);
-    if(xwp == nullptr) {
-        g.setGraphics(false);
+        g.setXW(&xw);
     }
 
-    if(!file1.empty()) {
-        g.setFile1(file1);
-    }
-    if(!file2.empty()) {
-        g.setFile2(file2);
-    }
-    if(level != -1) {
-        g.setLevel(level);
-    }
 
     //Store all commands
     vector<string> commands;

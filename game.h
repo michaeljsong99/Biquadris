@@ -68,7 +68,7 @@ private:
     void drawSingleBoard(int turn) const;
 
 public:
-    Game(Xwindow *xw);
+    Game();
 
     void init();                        //Initializes the game
 
@@ -103,6 +103,8 @@ public:
     void setRandom(bool b);
 
     int checkTurn();
+
+    void setXW(Xwindow* xw);
 
     std::string printGame() const;
 
