@@ -281,7 +281,7 @@ void Game::resetBoard() {
     changeLevel(1, 2);
     turn = 1;
     ecf1 = 0;
-    ecf2 = 0
+    ecf2 = 0;
     init();
 }
 
