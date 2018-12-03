@@ -22,7 +22,7 @@ void Board::endTurn() {
     }
     dropped = true;
     rowsCleared = rows;
-    cout << rowsCleared << endl;
+    //cout << rowsCleared << endl;
 }
 
 void Board::calculateScore(int rows) {

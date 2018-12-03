@@ -82,7 +82,7 @@ void Game::ecf(int rows) {
     if(ecf1 == 5) {
         b1->dropMiddle();
         ecf1 = 0;
-    } else {
+    } else if(ecf2 == 5) {
         b2->dropMiddle();
         ecf2 = 0;
     }
