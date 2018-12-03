@@ -63,6 +63,8 @@ private:
 
     void drawGame() const;
 
+    void drawGameOver();
+
 public:
     Game(Xwindow *xw);
 
