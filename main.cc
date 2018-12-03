@@ -56,6 +56,12 @@ int main(int argc, char *argv[]) {
     Xwindow xw(500, 700);
     Game g = Game(&xw); // call the game constructor(implementation still absent from the game class)
 
+    bool graphics;
+    string file1;
+    string file2;
+    int level;
+
+
     for (int i = 1; i < argc; i++) {
         if (string(argv[i]) == "-text") {
             g.setGraphics(false);
@@ -65,17 +71,28 @@ int main(int argc, char *argv[]) {
             srand(seed);
         } else if (string(argv[i]) == "-scriptfile1") {
             i++;
-            g.setFile1(string(argv[i]));
+            //g.setFile1(string(argv[i]));
         } else if (string(argv[i]) == "-scriptfile2") {
             i++;
             g.setFile2(string(argv[i]));
         } else if (string(argv[i]) == "-startLevel") {
             i++;
-            int level = stoi(argv[i]);
-            cout << level<< endl;
+            level = stoi(argv[i]);
             g.setLevel(level);
         }
     }
+
+    if(!file1.empty()) {
+        g.setFile1(file1);
+    }
+
+
+
+
+
+
+
+
 
 
     //Store all commands
