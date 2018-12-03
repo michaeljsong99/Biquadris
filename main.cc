@@ -23,6 +23,7 @@ void readCommand(int& n, string& s, vector<string>& commands) {
             n = 1;
         }
         s = s.substr(counter);
+        cout << n << " " << s << endl;
 
         vector<string> matches;
         for (auto &in : commands) {
@@ -52,12 +53,12 @@ void readCommand(int& n, string& s, vector<string>& commands) {
 }
 
 int main(int argc, char *argv[]) {
-    bool graphics = true;
-    Game g = Game(false); // call the game constructor(implementation still absent from the game class)
+    Xwindow xw(500, 700);
+    Game g = Game(&xw); // call the game constructor(implementation still absent from the game class)
 
     for (int i = 1; i < argc; i++) {
         if (string(argv[i]) == "-text") {
-            graphics = false;
+            g.setGraphics(false);
         } else if (string(argv[i]) == "-seed") {
             i++;
             int seed = stoi(string(argv[i]));
@@ -74,13 +75,6 @@ int main(int argc, char *argv[]) {
             g.setLevel(level);
         }
     }
-
-    g.setGraphics(graphics);
-
-    Xwindow xw(500, 700);
-    g.setXW(&xw);
-    cout <<"SetXW" << endl;
-
 
 
     //Store all commands
