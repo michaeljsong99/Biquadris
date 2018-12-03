@@ -1,6 +1,7 @@
 #include "game.h"
 #include "heavy.h"
 #include "blind.h"
+#include "force.h"
 #include <fstream>
 #include <cstdlib>
 #include <sstream>
@@ -36,8 +37,14 @@ void Game::specialAction(int rows) {
                     cout << "Choose a block:" << endl << endl <<
                          " I J L S Z O T " << endl;
                     cin >> c;
-                    if (c=='I'||c=='J'||c=='L'||c=='Z'||c=='c'||c =='O'||c =='T') {
-                        replaceBlock(c, turn);
+                    if (c=='I'||c=='J'||c=='L'||c=='Z'||c=='c'||c ==
+                    'O'||c =='T') {
+                        if(turn == 1) {
+                            b1 = make_shared<Force>(b1, c);
+                        } else {
+                            b2 = make_shared<Force>(b2, c);
+                        }
+                        //replaceBlock(c, turn);
                         isGameOver(turn);
                     } else {
                         cflag = true;

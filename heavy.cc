@@ -1,5 +1,6 @@
 #include "heavy.h"
 
+using namespace std;
 
 Heavy::Heavy(std::shared_ptr<AbstractBoard> ab, int heavy, bool isSA) : Decorator(ab), heavy{heavy}, isSA{isSA} {
     if(isSA) {
@@ -22,29 +23,33 @@ bool Heavy::moveLeft(int n) {                //Returns true if the block doesn't
                 continue;
             } else {
                 drop();                         //ends the turn as it cannot move down further
-                return true;                    //returns true as the left move is allowed.
+                return false;                    //returns true as the left move is allowed.
             }
         }
     }
-    return false;    // returns false if the left move is not legal.
+    return true;    // returns false if the left move is not legal.
 }
 
 
 bool Heavy::moveRight(int n) {
+    cout << "ID: " << id << ", " << heavy << ", " << isSA << endl;
     if(heavy == 0) {
         return component->moveRight(n);
     }
     if (component->moveRight(n)) {    // if it is possible to move the block right
+        cout << "ID: " << id << "true" << endl;
+
         for (int i = 0; i < heavy; ++i) {    // does the heaviness feature first
             if (component->shiftDown()) {
+                cout << "ID: " << id << "Shifting DOwn" << endl;
                 continue;
             } else {
                 drop();    //ends the turn as it cannot move down further
-                return true;    //returns true as the right move is allowed.
+                return false;    //returns true as the right move is allowed.
             }
         }
     }
-    return false;    // returns false if the right move is not legal.
+    return true;    // returns false if the right move is not legal.
 }
 
 bool Heavy::moveDown(int n) {
@@ -59,11 +64,11 @@ bool Heavy::moveDown(int n) {
                 continue;
             } else {
                 drop();    //ends the turn as it cannot move down further
-                return true;    //returns true as the down move is allowed.
+                return false;    //returns true as the down move is allowed.
             }
         }
     }
-    return false;    // returns false if the down move is not legal.
+    return true;    // returns false if the down move is not legal.
 }
 
 bool Heavy::rotateCW(int n) {      //Returns true if the block doesn't collide
@@ -77,11 +82,11 @@ bool Heavy::rotateCW(int n) {      //Returns true if the block doesn't collide
                 continue;
             } else {
                 drop();    //ends the turn as it cannot move down further
-                return true;    //returns true as the down move is allowed.
+                return false;    //returns true as the down move is allowed.
             }
         }
     }
-    return false;    // returns false if the rotate CW move is not legal.
+    return true;    // returns false if the rotate CW move is not legal.
 }
 
 bool Heavy::rotateCCW(int n) {        //Returns true if the block doesn't collide
@@ -95,11 +100,11 @@ bool Heavy::rotateCCW(int n) {        //Returns true if the block doesn't collid
                 continue;
             } else {
                 drop();    //ends the turn as it cannot move down further
-                return true;    //returns true as the down move is allowed.
+                return false;    //returns true as the down move is allowed.
             }
         }
     }
-    return false;    // returns false if the down move is not legal.
+    return true;    // returns false if the down move is not legal.
 }
 
 void Heavy::setHeavy(int n) {

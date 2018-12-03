@@ -411,9 +411,7 @@ std::string Board::printBoard() const {
 
     oss << "-----------" << endl;
     oss << "Next:      " << endl;
-    cout << "NExtBlock" << endl;
     oss << nBlock->printBlock() << endl;
-    cout << "nb printed" << endl;
 
     return oss.str();
 }
