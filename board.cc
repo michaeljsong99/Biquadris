@@ -465,21 +465,21 @@ void Board::drawBoard(int baseX, int baseY) const{
             char letter = Grid[y][x].getLetter();
             cout << "Drawing " << letter << " x " << x << " y " << y <<  endl;
             if(letter == 'I') {
-                xw->fillRectangle(baseX + x, baseY + y, 10, 10, Xwindow::Blue);
+                xw->fillRectangle(10*(baseX + x), 10*(baseY + y), 10, 10, Xwindow::Blue);
             } else if(letter == 'J') {
-                xw->fillRectangle(baseX + x, baseY + y, 10, 10, Xwindow::Blue);
+                xw->fillRectangle(10*(baseX + x), 10*(baseY + y), 10, 10, Xwindow::Blue);
             } else if(letter == 'L') {
-                xw->fillRectangle(baseX + x, baseY + y, 10, 10, Xwindow::Blue);
+                xw->fillRectangle(10*(baseX + x), 10*(baseY + y), 10, 10, Xwindow::Blue);
             } else if(letter == 'T') {
-                xw->fillRectangle(baseX + x, baseY + y, 10, 10, Xwindow::Blue);
+                xw->fillRectangle(10*(baseX + x), 10*(baseY + y), 10, 10, Xwindow::Blue);
             } else if(letter == 'O') {
-                xw->fillRectangle(baseX + x, baseY + y, 10, 10, Xwindow::Blue);
+                xw->fillRectangle(10*(baseX + x), 10*(baseY + y), 10, 10, Xwindow::Blue);
             } else if(letter == 'S') {
-                xw->fillRectangle(baseX + x, baseY + y, 10, 10, Xwindow::Blue);
+                xw->fillRectangle(10*(baseX + x), 10*(baseY + y), 10, 10, Xwindow::Blue);
             } else if(letter == 'Z') {
-                xw->fillRectangle(baseX + x, baseY + y, 10, 10, Xwindow::Blue);
+                xw->fillRectangle(10*(baseX + x), 10*(baseY + y), 10, 10, Xwindow::Blue);
             } else if(letter == '*') {
-                xw->fillRectangle(baseX + x, baseY + y, 10, 10, Xwindow::Black);
+                xw->fillRectangle(10*(baseX + x), 10*(baseY + y), 10, 10, Xwindow::Black);
             }
 
         }
