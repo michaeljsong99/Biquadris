@@ -469,7 +469,7 @@ std::string Game::printGame() const{
     }
 
     if(graphics) {
-        drawGame()
+        drawGame();
     }
 
     return oss.str();
