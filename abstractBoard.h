@@ -54,6 +54,8 @@ public:
 
     virtual void changeLevel(int change) = 0;              //Modify the level by change levels e.g change = -2 level 4->2
 
+    virtual bool isGameOver() = 0;
+
     virtual std::string printBoard() const = 0;                  //Prints board as a string
 
 };

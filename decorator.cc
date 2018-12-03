@@ -101,5 +101,9 @@ std::shared_ptr<AbstractBoard> Decorator::removeDecorator() {
     return component;
 }
 
+bool Decorator::isGameOver() {
+    return component->isGameOver();
+}
+
 
 

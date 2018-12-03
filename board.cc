@@ -13,11 +13,6 @@ using namespace std;
 void Board::endTurn() {
     updateGrid();
 
-    if (isGameOver()) {
-        cout << "Game Should Be Over!" << endl;
-    }
-
-
     int rows = clearRows();
     cout << "Row Cleared" << endl;
     calculateScore(rows);
@@ -323,10 +318,10 @@ bool Board::shiftDown() {
 }
 
 void Board::drop() {
-    cout << "Moving Down" << endl;
+    //cout << "Moving Down" << endl;
     while (moveDown(1)) {
     }
-    cout << "Moved to the Bottom!" << endl;
+    //cout << "Moved to the Bottom!" << endl;
     addBlock(cBlock);
     cBlock = nBlock;
     endTurn();
@@ -334,7 +329,6 @@ void Board::drop() {
 }
 
 void Board::reset() {
-    level = 0;
     score = 0;
     cBlock = nullptr;
     nBlock = nullptr;

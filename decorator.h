@@ -56,6 +56,8 @@ public:
 
     void changeLevel(int change) override;              //Modify the level by change levels e.g change = -2 level 4->2
 
+    bool isGameOver() override;
+
     std::string printBoard() const override;                  //Prints board as a string
 
     std::shared_ptr<AbstractBoard> removeDecorator();

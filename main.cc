@@ -102,6 +102,10 @@ int main(int argc, char *argv[]) {
             char c = s[0];
             g.replaceBlock(c, turn);
         }
+        else if (s == "restart") {
+            g.resetBoard();
+
+        }
         else if (cin.eof()){
             break;
         }

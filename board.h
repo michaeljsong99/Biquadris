@@ -42,8 +42,6 @@ private:
 
     void clearRow(int row);
 
-    bool isGameOver();
-
 public:
 
     void setCurrentBlock(std::shared_ptr<Block> b) override;
@@ -89,6 +87,8 @@ public:
     void setLevel(int n) override;
 
     void changeLevel(int change) override;
+
+    bool isGameOver() override;
 
     std::string printBoard() const override;
 

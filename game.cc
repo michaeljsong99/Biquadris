@@ -112,12 +112,19 @@ void Game::setFileRandom(string fn) {
     fRandom = ifstream(fn);
 }
 
-void Game::resetBoard(int board) { //!May need to do more?
-    if (board == 1) {
-        b1->reset();
-    } else if (board == 2) {
-        b2->reset();
+void Game::resetBoard() { //!May need to do more?
+    b1->reset();
+    b2->reset();
+    if(stateGameOver) {
+        cout << "  ________                        ________                     " << endl;
+        cout << " /  _____/_____    _____   ____   \\_____  \\___  __ ___________ " << endl;
+        cout << "/   \\  ___\\__  \\  /     \\_/ __ \\   /   |   \\  \\/ // __ \\_  __ \\" << endl;
+        cout << "\\    \\_\\  \\/ __ \\|  Y Y  \\  ___/  /    |    \\   /\\  ___/|  | \\/" << endl;
+        cout << " \\______  (____  /__|_|  /\\___  > \\_______  /\\_/  \\___  >__|   " << endl;
+        cout << "        \\/     \\/      \\/     \\/          \\/          \\/       " << endl;
     }
+    stateGameOver = false;
+    init();
 }
 
 
@@ -217,19 +224,30 @@ void Game::changeLevel(int change, int board) {
 
 void Game::endTurn(int board) {
     if (board == 1) {
-        cBlock1 = nBlock1;
-        nBlock1 = e;
-        nBlock2 = generateBlock(2);
-        b1->setCurrentBlock(cBlock1);
-        b1->setNextBlock(nBlock1);
-        b2->setNextBlock(nBlock2);
+        if (b1->isGameOver()) {
+            stateGameOver = true;
+            resetBoard();
+
+        } else {
+            cBlock1 = nBlock1;
+            nBlock1 = e;
+            nBlock2 = generateBlock(2);
+            b1->setCurrentBlock(cBlock1);
+            b1->setNextBlock(nBlock1);
+            b2->setNextBlock(nBlock2);
+        }
     } else {
-        cBlock2 = nBlock2;
-        nBlock2 = e;
-        nBlock1 = generateBlock(1);
-        b2->setCurrentBlock(cBlock2);
-        b2->setNextBlock(nBlock2);
-        b1->setNextBlock(nBlock1);
+        if (b2->isGameOver()) {
+            stateGameOver = true;
+            resetBoard();
+        } else {
+            cBlock2 = nBlock2;
+            nBlock2 = e;
+            nBlock1 = generateBlock(1);
+            b2->setCurrentBlock(cBlock2);
+            b2->setNextBlock(nBlock2);
+            b1->setNextBlock(nBlock1);
+        }
     }
 }
 
@@ -248,7 +266,8 @@ void Game::setRandom(bool b) {
 }
 
 std::string Game::printGame() const{
-    cout << "Printing Game" << endl;
+    ostringstream oss;
+
     string space = "     ";
 
     b1->updateGrid();
@@ -259,9 +278,6 @@ std::string Game::printGame() const{
     string board2 = b2->printBoard();
     b1->updateGrid();
     b2->updateGrid();
-
-    ostringstream oss;
-    cout << "Concatenating..." << endl;
 
     for (int i = 0; i < 25; i+=1) {
         for (int j = 0 ; j < 11; j++) {

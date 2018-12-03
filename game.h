@@ -16,13 +16,11 @@
 class Game {
 private:
 
-    int index = 0;                      // Store the index of the block name;
-
-    int board;                       //Stores which turn it is.
-
     bool isRandom = true;                   //For level 3/4, there is an feature to enable/disable random block generation
 
     bool graphics = true;
+
+    bool stateGameOver;
 
     std::shared_ptr<AbstractBoard> b1;                   //Board 1
 
@@ -33,10 +31,6 @@ private:
     std::ifstream f2;          // Name of file for present sequences of blocks for the player2 with level 0
 
     std::ifstream fRandom;          // Name of file for present sequences of blocks for the player2 with level 0
-
-    std::vector<char> blockNames1;      //Store the blockNames inside the file.
-
-    std::vector<char> blockNames2;
 
     std::shared_ptr<Block> cBlock1;            //Current block for Board 1
 
@@ -59,7 +53,7 @@ public:
                                     //Forcibly changes the current block.
                                     //Make sure to get the x and y of the current block and put it in the new one.
 
-    void resetBoard(int board);     //Resets the Board given the board #
+    void resetBoard();     //Resets the Board given the board #
 
     bool moveBlock(char dir, int board, int n);       //Move the current block on the current player's turn. Returns true if success.
 
