@@ -75,7 +75,7 @@ int main(int argc, char *argv[]) {
         } else if (string(argv[i]) == "-scriptfile2") {
             i++;
             file2 = string(argv[i]);
-        } else if (string(argv[i]) == "-startLevel") {
+        } else if (string(argv[i]) == "-startlevel") {
             i++;
             level = stoi(argv[i]);
         }
