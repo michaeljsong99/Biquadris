@@ -66,6 +66,12 @@ public:
 
     void setHeavy(int n) override;
 
+    bool getDropped() override;
+
+    void setDropped(bool b) override;
+
+    int getRowsCleared() override;
+
 };
 
 

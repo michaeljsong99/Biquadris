@@ -22,7 +22,7 @@ private:
 
     bool stateGameOver;
 
-    int heavy;
+    int turn = 1;
 
     std::shared_ptr<AbstractBoard> b1;                   //Board 1
 
@@ -43,6 +43,7 @@ private:
     std::shared_ptr<Block> nBlock2;               //Next block for Board 2
 
     std::shared_ptr<Block> e;
+
 
 public:
     Game();
@@ -78,6 +79,8 @@ public:
     void setGraphics(bool b);
 
     void setRandom(bool b);
+
+    int checkTurn();
 
     std::string printGame() const;
 

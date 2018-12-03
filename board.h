@@ -26,6 +26,10 @@ private:
 
     int height = 17;
 
+    bool dropped = false;
+
+    int rowsCleared = 0;
+
     std::shared_ptr<Block> cBlock;          //Current Block
 
     std::shared_ptr<Block> nBlock;          //Current Block
@@ -91,6 +95,12 @@ public:
     bool isGameOver() override;
 
     void setHeavy(int n) override;
+
+    bool getDropped() override;
+
+    void setDropped(bool b) override;
+
+    int getRowsCleared() override;
 
     std::string printBoard() const override;
 

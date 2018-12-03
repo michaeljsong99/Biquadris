@@ -20,6 +20,8 @@ void Board::endTurn() {
     if (hiscore < score) {
         hiscore = score;
     }
+    dropped = true;
+    rowsCleared = rows;
 }
 
 void Board::calculateScore(int rows) {
@@ -417,6 +419,17 @@ void Board::setHeavy(int n) {
 
 };
 
+bool Board::getDropped() {
+    return dropped;
+}
+
+void Board::setDropped(bool b) {
+    dropped = b;
+}
+
+int Board::getRowsCleared() {
+    return rowsCleared;
+}
 
 ostream &operator<<(ostream &out, const Board &b) {
     return out << b.printBoard();

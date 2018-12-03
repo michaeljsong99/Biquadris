@@ -66,7 +66,7 @@ bool Decorator::shiftDown() {
 }
 
 void Decorator::drop() {
-   component->drop();
+   return component->drop();
 }
 
 void Decorator::reset() {
@@ -107,6 +107,18 @@ void Decorator::setHeavy(int n) {
 
 bool Decorator::isGameOver() {
     return component->isGameOver();
+}
+
+bool Decorator::getDropped() {
+   return component->getDropped();
+}
+
+void Decorator::setDropped(bool b) {
+   component->setDropped(b);
+}
+
+int Decorator::getRowsCleared() {
+   return component->getRowsCleared();
 }
 
 

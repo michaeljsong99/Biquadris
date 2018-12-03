@@ -6,6 +6,25 @@
 
 using namespace std;
 
+int Game::checkTurn() {
+    if(b1->getDropped()) {
+        b1->setDropped(false);
+        turn = 2;
+        endTurn(1);
+
+        int rows = b1->getRowsCleared();
+        if (rows >= 2) {
+
+        }
+    }
+    if(b2->getDropped()) {
+        b2->setDropped(false);
+        turn = 1;
+        endTurn(2);
+    }
+    return turn;
+}
+
 Game::Game() {
     b1 = make_shared<Board>();
     b1 = make_shared<Heavy>(b1, 0, false);
@@ -74,7 +93,6 @@ void Game::drop(int board) {
     } else {
         b2->drop();
     }
-    endTurn(board);
 }
 
 void Game::replaceBlock(char blockType, int board) {
