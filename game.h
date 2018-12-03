@@ -24,6 +24,12 @@ private:
 
     int turn = 1;
 
+    int hiscore = 0;
+
+    bool isSA1;
+
+    bool isSA2;
+
     std::shared_ptr<AbstractBoard> b1;                   //Board 1
 
     std::shared_ptr<AbstractBoard> b2;                   //Board 2
@@ -44,6 +50,9 @@ private:
 
     std::shared_ptr<Block> e;
 
+    void specialAction(int rows);
+
+    void isGameOver(int board);
 
 public:
     Game();

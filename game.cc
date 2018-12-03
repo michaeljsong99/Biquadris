@@ -1,26 +1,104 @@
 #include "game.h"
 #include "heavy.h"
+#include "blind.h"
 #include <fstream>
 #include <cstdlib>
 #include <sstream>
 
 using namespace std;
 
+void Game::specialAction(int rows) {
+    if(rows >= 2) {
+        bool flag = true;
+        while(flag) {
+            flag = false;
+            cout << "Please choose your special action:" << endl << endl <<
+                 "   heavy      blind      force   " << endl;
+            string s;
+            cin >> s;
+            if (s == "heavy") {
+                if(turn == 1) {
+                    b1 = make_shared<Heavy>(b1, 2, true);
+                } else {
+                    b2 = make_shared<Heavy>(b2, 2, true);
+                }
+            } else if (s == "blind") {
+                if(turn == 1) {
+                    b1 = make_shared<Blind>(b1);
+                } else {
+                    b2 = make_shared<Blind>(b2);
+                }
+            } else if (s == "force") {
+                bool cflag = true;
+                while(cflag) {
+                    cflag = false;
+                    char c;
+                    cout << "Choose a block:" << endl << endl <<
+                         " I J L S Z O T " << endl;
+                    cin >> c;
+                    if (c=='I'||c=='J'||c=='L'||c=='Z'||c=='c'||c =='O'||c =='T') {
+                        replaceBlock(c, turn);
+                        isGameOver(turn);
+                    } else {
+                        cflag = true;
+                        cout << "Invalid input. Try Again." << endl;
+                    }
+                }
+            } else {
+                flag = true;
+                cout << "Invalid input. Try Again." << endl;
+            }
+        }
+        if (turn == 1) {
+            isSA1 = true;
+        } else {
+            isSA2 = true;
+        }
+        cout << "Changed Flag" << endl;
+
+    }
+}
+
+void Game::isGameOver(int board) {
+    if (board == 1) {
+        if (b1->isGameOver()) {
+            stateGameOver = true;
+            resetBoard();
+        }
+    } else {
+        if (b2->isGameOver()) {
+            stateGameOver = true;
+            resetBoard();
+        }
+    }
+}
+
 int Game::checkTurn() {
     if(b1->getDropped()) {
         b1->setDropped(false);
         turn = 2;
         endTurn(1);
-
         int rows = b1->getRowsCleared();
-        if (rows >= 2) {
 
+        if(isSA1) {
+            b1 = b1->removeDecorator();
+            isSA1 = false;
         }
+
+        specialAction(rows);
     }
     if(b2->getDropped()) {
         b2->setDropped(false);
         turn = 1;
         endTurn(2);
+        int rows = b2->getRowsCleared();
+
+        if(isSA2) {
+            b2 = b2->removeDecorator();
+            isSA2 = false;
+        }
+
+        specialAction(rows);
     }
     return turn;
 }
@@ -145,6 +223,7 @@ void Game::resetBoard() { //!May need to do more?
         cout << "        \\/     \\/      \\/     \\/          \\/          \\/       " << endl;
     }
     stateGameOver = false;
+    setLevel(1);
     init();
 }
 

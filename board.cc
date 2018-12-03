@@ -14,7 +14,7 @@ void Board::endTurn() {
     updateGrid();
 
     int rows = clearRows();
-    cout << "Row Cleared" << endl;
+    //cout << "Row Cleared" << endl;
     calculateScore(rows);
 
     if (hiscore < score) {
@@ -22,6 +22,7 @@ void Board::endTurn() {
     }
     dropped = true;
     rowsCleared = rows;
+    cout << rowsCleared << endl;
 }
 
 void Board::calculateScore(int rows) {
@@ -35,7 +36,7 @@ void Board::calculateScore(int rows) {
         Block &block = **b;
         if (block.isEmpty()) {
             int base = 1 + block.levelCreated;
-            cout << "Add to baseScore: " << base * base << endl;
+            //cout << "Add to baseScore: " << base * base << endl;
             blockScore += base * base;
             b = Blocks.erase(b);
         } else {
@@ -71,14 +72,14 @@ int Board::clearRows() {
         rowsCleared++;
     }
 
-    cout << "Found Filled Rows" << endl;
+    //cout << "Found Filled Rows" << endl;
 
     for (auto &i : rows) {
-        cout << i << endl;
+        //cout << i << endl;
         clearRow(i);
-        cout << "Updating Grid" << endl;
+        //cout << "Updating Grid" << endl;
         updateGrid();
-        cout << "Updated Grid" << endl;
+        //cout << "Updated Grid" << endl;
     }
 
     return rowsCleared;
@@ -91,32 +92,32 @@ void Board::clearRow(int row) {
     for (auto &b : Blocks) {
         for (auto iter = b->Cells.begin(); iter != b->Cells.end();) {
             int y = b->getY() - iter->getY();
-            cout << "y: " << y;
+            //cout << "y: " << y;
 
             if (y == row) {
                 iter = b->Cells.erase(iter);
-                cout << "   Cell Deleted" << endl;
+                //cout << "   Cell Deleted" << endl;
                 continue;
             } else if ((b->getY() >= row) && (y < row)) {
                 iter->setY(iter->getY() - 1);
                 iter++;
-                cout << "   Cell Shifted Down" << endl;
+                //cout << "   Cell Shifted Down" << endl;
                 continue;
             }
-            cout << "   Cell Untouched" << endl;
+            //cout << "   Cell Untouched" << endl;
             iter++;
         }
     }
-    cout << "Changed Cell Coordinates" << endl;
+    //cout << "Changed Cell Coordinates" << endl;
 
 
     for (auto &b : Blocks) {
         if (b->getY() < row) {
-            cout << "Block Y Set to " << b->getY() + 1 << endl;
+            //cout << "Block Y Set to " << b->getY() + 1 << endl;
             b->setY(b->getY() + 1);
         }
     }
-    cout << "Changed Block Coordinates" << endl;
+    //cout << "Changed Block Coordinates" << endl;
 
 }
 
@@ -410,7 +411,9 @@ std::string Board::printBoard() const {
 
     oss << "-----------" << endl;
     oss << "Next:      " << endl;
+    cout << "NExtBlock" << endl;
     oss << nBlock->printBlock() << endl;
+    cout << "nb printed" << endl;
 
     return oss.str();
 }
@@ -429,6 +432,10 @@ void Board::setDropped(bool b) {
 
 int Board::getRowsCleared() {
     return rowsCleared;
+}
+
+std::shared_ptr<AbstractBoard> Board::removeDecorator() {
+    return nullptr;
 }
 
 ostream &operator<<(ostream &out, const Board &b) {

@@ -66,6 +66,8 @@ public:
 
     virtual int getRowsCleared() = 0;
 
+    virtual std::shared_ptr<AbstractBoard> removeDecorator() = 0;
+
 };
 
 std::ostream& operator<<(std::ostream &out, const AbstractBoard &b);

@@ -102,6 +102,8 @@ public:
 
     int getRowsCleared() override;
 
+    std::shared_ptr<AbstractBoard> removeDecorator() override;
+
     std::string printBoard() const override;
 
 };

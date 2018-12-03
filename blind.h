@@ -5,8 +5,6 @@
 
 class Blind : public Decorator {
 
-    std::shared_ptr<AbstractBoard> component;           //nested ab
-
 public:
 
     Blind(std::shared_ptr<AbstractBoard> ab);

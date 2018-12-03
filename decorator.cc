@@ -94,10 +94,12 @@ void Decorator::changeLevel(int change) {
 }
 
 std::string Decorator::printBoard() const {
+   cout << "Passing through Heavy" << endl;
    return component->printBoard();
 }
 
 std::shared_ptr<AbstractBoard> Decorator::removeDecorator() {
+   cout << "Removing Decorator" << endl;
     return component;
 }
 
