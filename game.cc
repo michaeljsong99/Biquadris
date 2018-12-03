@@ -225,13 +225,6 @@ void Game::drop(int board) {
     } else {
         b2->drop();
     }
-    if(graphics) {
-        if(turn == 1) {
-            drawSingleBoard(1);
-        } else {
-            drawSingleBoard(2);
-        }
-    }
 }
 
 void Game::replaceBlock(char blockType, int board) {
@@ -436,6 +429,13 @@ void Game::endTurn(int board) {
             b2->setCurrentBlock(cBlock2);
             b2->setNextBlock(nBlock2);
             b1->setNextBlock(nBlock1);
+        }
+    }
+    if (graphics) {
+        if (turn == 1) {
+            drawSingleBoard(1);
+        } else {
+            drawSingleBoard(2);
         }
     }
 }
