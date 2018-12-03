@@ -480,12 +480,12 @@ void Game::drawGame() const {
     xw->drawLine(19, 69, 241, 69);
     xw->drawLine(19, 69, 19, 431);
     xw->drawLine(241, 69, 241, 431);
-    xw->drawLine(19, 331, 241, 331);
+    xw->drawLine(19, 431, 241, 431);
 
-//    xw->drawLine(19, 19, 241, 19);
-//    xw->drawLine(19, 19, 241, 19);
-//    xw->drawLine(19, 19, 241, 19);
-//    xw->drawLine(19, 19, 241, 19);
+    xw->drawLine(259, 69, 481, 69);
+    xw->drawLine(259, 69, 259, 431);
+    xw->drawLine(481, 69, 481, 431);
+    xw->drawLine(259, 431, 481, 431);
 
     //xw->fillRectangle(0, 0, 500, 700, Xwindow::White);
     xw->fillRectangle(195, 20, 30, 20, Xwindow::White);
