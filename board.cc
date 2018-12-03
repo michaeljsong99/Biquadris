@@ -463,6 +463,7 @@ void Board::drawBoard(int baseX, int baseY) const{
     for (int y = 0; y < height ; y++) {
         for (int x = 0; x < width; x++) {
             char letter = Grid[y][x].getLetter();
+            cout << "Drawing " << letter << " x " << x << " y " << y <<  endl;
             if(letter == 'I') {
                 xw->fillRectangle(baseX + x, baseY + y, 10, 10, Xwindow::Blue);
             } else if(letter == 'J') {
