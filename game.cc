@@ -477,16 +477,18 @@ std::string Game::printGame() const{
 }
 
 void Game::drawGame() const{
-    xw->fillRectangle(0, 0, 500, 500, Xwindow::White);
+    xw->fillRectangle(0, 0, 500, 700, Xwindow::White);
+    xw->drawString(160, 20, "High Score:");
+    xw->drawString(160+80, 20, to_string(hiscore));
     //if(turn == 1) {
         b1->updateGrid();
         b1->drawCurrentBlock();
-        b1->drawBoard(20, 0);
+        b1->drawBoard(20, 20);
         b1->updateGrid();
     //} else {
         b2->updateGrid();
         b2->drawCurrentBlock();
-        b2->drawBoard(260, 0);
+        b2->drawBoard(260, 20);
         b2->updateGrid();
     //}
 }

@@ -208,7 +208,7 @@ string Block::printBlock() const{
 void Block::drawBlock(int baseX, int baseY, int side ,Xwindow *xw) const{
     for(auto & c : Cells) {
         int x = c.getX();
-        int y = c.getY();
+        int y = 1 - c.getY();
         xw->fillRectangle(baseX + (side*x), baseY + (side*y), side, side, Xwindow::Blue);
     }
 }
