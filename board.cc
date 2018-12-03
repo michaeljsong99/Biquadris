@@ -460,6 +460,11 @@ std::string Board::printBoard() const {
 }
 
 void Board::drawBoard(int baseX, int baseY) const{
+
+    xw->drawString(baseX, baseY+0, "Level:");
+    xw->drawString(baseX, baseY+20, "Score:");
+
+    baseY += 50;
     for (int y = 0; y <= height ; y++) {
         for (int x = 0; x <= width; x++) {
             char letter = Grid[y][x].getLetter();

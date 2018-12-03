@@ -481,12 +481,12 @@ void Game::drawGame() const{
     //if(turn == 1) {
         b1->updateGrid();
         b1->drawCurrentBlock();
-        b1->drawBoard(0, 0);
+        b1->drawBoard(20, 0);
         b1->updateGrid();
     //} else {
         b2->updateGrid();
         b2->drawCurrentBlock();
-        b2->drawBoard(240, 0);
+        b2->drawBoard(260, 0);
         b2->updateGrid();
     //}
 }
