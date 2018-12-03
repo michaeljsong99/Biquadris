@@ -54,7 +54,7 @@ void readCommand(int& n, string& s, vector<string>& commands) {
 }
 
 int main(int argc, char *argv[]) {
-    Xwindow xw;
+    Xwindow xw(500, 700);
     Game g = Game(&xw); // call the game constructor(implementation still absent from the game class)
 
     for (int i = 1; i < argc; i++) {
