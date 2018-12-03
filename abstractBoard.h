@@ -66,6 +66,8 @@ public:
 
     virtual int getRowsCleared() = 0;
 
+    virtual void dropMiddle() = 0;
+
     virtual std::shared_ptr<AbstractBoard> removeDecorator() = 0;
 
 };

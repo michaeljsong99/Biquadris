@@ -94,12 +94,10 @@ void Decorator::changeLevel(int change) {
 }
 
 std::string Decorator::printBoard() const {
-   cout << "Passing through Heavy" << endl;
    return component->printBoard();
 }
 
 std::shared_ptr<AbstractBoard> Decorator::removeDecorator() {
-   cout << "Removing Decorator" << endl;
     return component;
 }
 
@@ -121,6 +119,10 @@ void Decorator::setDropped(bool b) {
 
 int Decorator::getRowsCleared() {
    return component->getRowsCleared();
+}
+
+void Decorator::dropMiddle() {
+   component->dropMiddle();
 }
 
 

@@ -436,6 +436,27 @@ std::shared_ptr<AbstractBoard> Board::removeDecorator() {
     return nullptr;
 }
 
+void Board::dropMiddle() {
+    auto nb = make_shared<Block>('*', 1, -1);
+
+    int y = 0;
+    while(true) {
+        if(y == height) {
+            break;
+        }
+
+        if (Grid[y+1][5].getLetter() == filler) {
+            y++;
+            continue;
+        } else {
+            break;
+        }
+    }
+    nb->setY(y);
+    nb->setX(5);
+    addBlock(nb);
+}
+
 ostream &operator<<(ostream &out, const Board &b) {
     return out << b.printBoard();
 }

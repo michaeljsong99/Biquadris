@@ -72,6 +72,9 @@ public:
 
     int getRowsCleared() override;
 
+    void dropMiddle() override;
+
+
 };
 
 

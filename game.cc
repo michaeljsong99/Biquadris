@@ -5,6 +5,7 @@
 #include <fstream>
 #include <cstdlib>
 #include <sstream>
+#include <iomanip>
 
 using namespace std;
 
@@ -61,8 +62,29 @@ void Game::specialAction(int rows) {
         } else {
             isSA2 = true;
         }
-        cout << "Changed Flag" << endl;
+    }
+}
 
+void Game::ecf(int rows) {
+    if (rows >= 1) {
+        if(turn == 2) {
+            ecf1 = 0;
+        } else {
+            ecf2 = 0;
+        }
+    } else {
+        if(turn == 2) {
+            ecf1++;
+        } else {
+            ecf2++;
+        }
+    }
+    if(ecf1 == 5) {
+        b1->dropMiddle();
+        ecf1 = 0;
+    } else {
+        b2->dropMiddle();
+        ecf2 = 0;
     }
 }
 
@@ -80,6 +102,15 @@ void Game::isGameOver(int board) {
     }
 }
 
+void Game::updateHiscore() {
+    if (hiscore < b1->getScore()) {
+        hiscore = b1->getScore();
+    }
+    if (hiscore < b2->getScore()) {
+        hiscore = b2->getScore();
+    }
+}
+
 int Game::checkTurn() {
     if(b1->getDropped()) {
         b1->setDropped(false);
@@ -93,6 +124,9 @@ int Game::checkTurn() {
         }
 
         specialAction(rows);
+        if (b1->getLevel() == 4) {
+            ecf(rows);
+        }
     }
     if(b2->getDropped()) {
         b2->setDropped(false);
@@ -106,6 +140,9 @@ int Game::checkTurn() {
         }
 
         specialAction(rows);
+        if (b2->getLevel() == 4) {
+            ecf(rows);
+        }
     }
     return turn;
 }
@@ -172,9 +209,7 @@ bool Game::rotateBlock(char dir, int board, int n) {
 
 void Game::drop(int board) {
     if (board == 1) {
-        cout << "Dropping" << endl;
         b1->drop();
-        cout << "Dropped!" << endl;
     } else {
         b2->drop();
     }
@@ -218,7 +253,7 @@ void Game::setFileRandom(string fn) {
     fRandom = ifstream(fn);
 }
 
-void Game::resetBoard() { //!May need to do more?
+void Game::resetBoard() {
     b1->reset();
     b2->reset();
     if(stateGameOver) {
@@ -340,6 +375,8 @@ void Game::changeLevel(int change, int board) {
 }
 
 void Game::endTurn(int board) {
+    updateHiscore();
+
     if (board == 1) {
         if (b1->isGameOver()) {
             stateGameOver = true;
@@ -401,6 +438,8 @@ std::string Game::printGame() const{
     string board2 = b2->printBoard();
     b1->updateGrid();
     b2->updateGrid();
+
+    oss << "     High Score:"<< setw(7) << hiscore <<endl;
 
     for (int i = 0; i < 25; i+=1) {
         for (int j = 0 ; j < 11; j++) {

@@ -104,6 +104,8 @@ public:
 
     std::shared_ptr<AbstractBoard> removeDecorator() override;
 
+    void dropMiddle() override;
+
     std::string printBoard() const override;
 
 };

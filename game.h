@@ -1,9 +1,5 @@
-//
-// Created by Oscar Ding on 2018-11-28.
-//
-
-#ifndef PROJECT_GAME_H
-#define PROJECT_GAME_H
+#ifndef GAME_H
+#define GAME_H
 
 
 #include "board.h"
@@ -30,6 +26,10 @@ private:
 
     bool isSA2;
 
+    int ecf1 = 0;
+
+    int ecf2 = 0;
+
     std::shared_ptr<AbstractBoard> b1;                   //Board 1
 
     std::shared_ptr<AbstractBoard> b2;                   //Board 2
@@ -52,7 +52,11 @@ private:
 
     void specialAction(int rows);
 
+    void ecf(int rows);
+
     void isGameOver(int board);
+
+    void updateHiscore();
 
 public:
     Game();
@@ -98,4 +102,4 @@ public:
 std::ostream& operator<<(std::ostream &out, const Game &g);
 
 
-#endif //PROJECT_GAME_H
+#endif //GAME_H
