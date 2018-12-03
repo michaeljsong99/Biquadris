@@ -460,7 +460,7 @@ std::string Board::printBoard() const {
 }
 
 void Board::drawBoard(int baseX, int baseY) const{
-    xw->fillRectangle(baseX, baseY, 220, 53, Xwindow::White);
+    xw->fillRectangle(baseX, baseY, 220, 49, Xwindow::White);
     xw->drawString(baseX, baseY+20, "Level:");
     xw->drawString(baseX, baseY+40, "Score:");
     xw->drawString(baseX+50, baseY+20, to_string(level));
