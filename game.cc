@@ -467,10 +467,15 @@ std::string Game::printGame() const{
         }
         oss << endl;
     }
+
+    if(graphics) {
+        drawGame()
+    }
+
     return oss.str();
 }
 
-void Game::drawGame() {
+void Game::drawGame() const{
     xw->fillRectangle(0, 0, 230, 250, Xwindow::White);
     b1->drawBoard(0, 0);
     b2->drawBoard(120, 0);
