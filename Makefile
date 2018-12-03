@@ -5,7 +5,7 @@ OBJECTS = main.o abstractBoard.o blind.o block.o board.o cell.o decorator.o forc
 DEPENDS = ${OBJECTS:.o=.d}
 
 ${EXEC}: ${OBJECTS}
-	${CXX} ${CXXFLAGS} ${OBJECTS} -o ${EXEC}
+	${CXX} ${CXXFLAGS} ${OBJECTS} -o ${EXEC} -L/usr/X11R6/lib -lX11
 
 -include ${DEPENDS}
 
