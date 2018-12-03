@@ -256,6 +256,16 @@ void Game::setFileRandom(string fn) {
 void Game::resetBoard() {
     b1->reset();
     b2->reset();
+
+    if(isSA1) {
+        b1 = b1->removeDecorator();
+        isSA1 = false;
+    }
+    if(isSA2) {
+        b2 = b2->removeDecorator();
+        isSA2 = false;
+    }
+
     if(stateGameOver) {
         cout << "  ________                        ________                     " << endl;
         cout << " /  _____/_____    _____   ____   \\_____  \\___  __ ___________ " << endl;
@@ -265,7 +275,13 @@ void Game::resetBoard() {
         cout << "        \\/     \\/      \\/     \\/          \\/          \\/       " << endl;
     }
     stateGameOver = false;
-    setLevel(1);
+    changeLevel(-4, 1);
+    changeLevel(-4, 2);
+    changeLevel(1, 1);
+    changeLevel(1, 2);
+    turn = 1;
+    ecf1 = 0;
+    ecf2 = 0
     init();
 }
 
