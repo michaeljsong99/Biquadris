@@ -479,10 +479,12 @@ std::string Game::printGame() const{
 void Game::drawGame() const{
     xw->fillRectangle(0, 0, 230, 250, Xwindow::White);
     cout << "Drawing Board1" << endl;
+    b1->updateGrid();
     b1->drawCurrentBlock();
     b1->drawBoard(0, 0);
     b1->updateGrid();
     cout << "Drawing Board2" << endl;
+    b2->updateGrid();
     b2->drawCurrentBlock();
     b2->drawBoard(240, 0);
     b2->updateGrid();
