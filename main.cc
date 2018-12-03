@@ -127,11 +127,7 @@ int main(int argc, char *argv[]) {
                 cin >> s;
             }
         }
-
-
         while(n > 0) {
-            cout << g;
-            turn = g.checkTurn();
             if (s == "left") {
                 g.moveBlock('l', turn, n);
                 n=0;
@@ -155,11 +151,14 @@ int main(int argc, char *argv[]) {
                 }
                 n--;
             } else if (s == "levelup") {
-                g.changeLevel(n, turn);
+                g.changeLevel(1, turn);
+                n--;
             } else if (s == "leveldown") {
-                g.changeLevel((-1*n), turn);
+                g.changeLevel(-1, turn);
+                n--;
             } else if (s == "norandom") {
                 g.setRandom(false);
+                cout << "Looking for file" << endl;
                 cin >> file;
                 g.setFileRandom(file);
                 n=0;
@@ -179,9 +178,14 @@ int main(int argc, char *argv[]) {
                 g.resetBoard();
                 n=0;
             }
+            turn = g.checkTurn();
+            cout << g;
         }
+
         if (cin.eof()) {
             break;
         }
+
+
     }
 }
