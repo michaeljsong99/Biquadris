@@ -77,11 +77,9 @@ int main(int argc, char *argv[]) {
 
     g.setGraphics(graphics);
 
-    if (graphics) {
-        Xwindow xw(500, 700);
-        g.setXW(&xw);
-        cout <<"SetXW" << endl;
-    }
+    Xwindow xw(500, 700);
+    g.setXW(&xw);
+    cout <<"SetXW" << endl;
 
 
 
