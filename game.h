@@ -22,7 +22,7 @@ private:
 
     bool isRandom;                   //For level 3/4, there is an feature to enable/disable random block generation
 
-    bool isGraphics;
+    bool graphics = true;
 
     std::shared_ptr<AbstractBoard> b1;                   //Board 1
 
@@ -49,7 +49,9 @@ private:
 public:
     Game();
 
-    void generateBlock(int board);           //Generates a block. Changes based on level and custom file
+    void init();                        //Initializes the game
+
+    std::shared_ptr<Block> generateBlock(int board);           //Generates a block. Changes based on level and custom file
 
     void replaceBlock(char blockType, int board);
                                     //Forcibly changes the current block.
@@ -72,7 +74,14 @@ public:
     void setFile2(std::string fn); // set the filename for the player2
     
     void setLevel(int level); // set the level for two boards
+
+    void setGraphics(bool b);
+
+    std::string printGame() const;
+
 };
+
+std::ostream& operator<<(std::ostream &out, const Game &g);
 
 
 #endif //PROJECT_GAME_H

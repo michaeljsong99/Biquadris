@@ -1,13 +1,28 @@
 #include "game.h"
 #include <fstream>
 #include <cstdlib>
+#include <sstream>
 
 using namespace std;
 
 Game::Game() {
-    auto empty = make_shared<Block>('/0', 1, 0);
-    e = empty;
     b1 = make_shared<Board>();
+    b2 = make_shared<Board>();
+    setLevel(0);
+    auto empty = make_shared<Block>('\0', 1, 0);
+    e = empty;
+
+}
+
+void Game::init() {
+    cBlock1 = generateBlock(1);
+    nBlock1 = generateBlock(1);
+    cBlock2 = generateBlock(2);
+    nBlock2 = e;//generateBlock(2);
+    b1->setCurrentBlock(cBlock1);
+    b2->setCurrentBlock(cBlock2);
+    b1->setNextBlock(nBlock1);
+    b2->setNextBlock(e);
 }
 
 bool Game::moveBlock(char dir, int board, int n) {
@@ -99,7 +114,7 @@ void Game::resetBoard(int board) { //!May need to do more?
 }
 
 
-void Game::generateBlock(int board) {
+shared_ptr<Block> Game::generateBlock(int board) {
     char c;
     int level;
 
@@ -173,11 +188,7 @@ void Game::generateBlock(int board) {
         else c = 'J';
     }
     auto nb = make_shared<Block>(c, 1, level);
-    if (board == 1) {
-        nBlock1 = nb;
-    } else {
-        nBlock2 = nb;
-    }
+    return nb;
 }
 
 
@@ -193,16 +204,53 @@ void Game::endTurn(int board) {
     if (board == 1) {
         cBlock1 = nBlock1;
         nBlock1 = e;
-        this->generateBlock(2);
+        nBlock2 = generateBlock(2);
     } else {
         cBlock2 = nBlock2;
         nBlock2 = e;
-        this->generateBlock(1);
+        nBlock1 = generateBlock(1);
     }
 }
 
 
 void Game::setLevel(int level) {
-    b1.setLevel(level);
-    b2.setLevel(level);
+    b1->setLevel(level);
+    b2->setLevel(level);
+}
+
+void Game::setGraphics(bool b) {
+    graphics = b;
+}
+
+std::string Game::printGame() const{
+    cout << "Printing Game" << endl;
+    string space = "     ";
+
+    b1->updateGrid();
+    b2->updateGrid();
+    b1->drawCurrentBlock();
+    b2->drawCurrentBlock();
+    string board1 = b1->printBoard();
+    string board2 = b2->printBoard();
+    b1->updateGrid();
+    b2->updateGrid();
+
+    ostringstream oss;
+    cout << "Concatenating..." << endl;
+
+    for (int i = 0; i < 25; i+=1) {
+        for (int j = 0 ; j < 11; j++) {
+            oss << board1[(i*12) + j];
+        }
+        oss << space;
+        for (int j = 0 ; j < 11; j++) {
+            oss << board2[(i*12) + j];
+        }
+        oss << endl;
+    }
+    return oss.str();
+}
+
+std::ostream &operator<<(std::ostream &out, const Game &g) {
+    return out << g.printGame();
 }
