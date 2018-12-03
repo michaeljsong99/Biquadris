@@ -226,6 +226,10 @@ int Block::getY() const{
     return y;
 }
 
+char Block::getLetter() const {
+    return type;
+}
+
 void Block::setX(int x) {
     this->x = x;
 }

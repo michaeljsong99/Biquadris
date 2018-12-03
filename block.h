@@ -53,6 +53,8 @@ public:
 
     int getY() const;
 
+    char getLetter() const;
+
     void setX(int x);
 
     void setY(int y);
