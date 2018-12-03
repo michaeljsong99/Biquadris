@@ -6,6 +6,7 @@
 #include <vector>
 #include "cell.h"
 #include <memory>
+#include "window.h"
 
 
 class Board;
@@ -47,6 +48,8 @@ public:
     void rotateCCW(int n);
 
     std::string printBlock() const;
+
+    void drawBlock(int baseX, int baseY, int side ,Xwindow *xw) const;
 
     void getPos() const;
 

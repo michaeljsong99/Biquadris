@@ -185,15 +185,6 @@ string Block::printBlock() const{
     int maxX = 10;
     int maxY = 1;
 
-/*
-    for(auto & k : Cells) {
-        if (maxX < k.getX()) {
-            maxX = k.getX();
-        } if (maxY < k.getY()) {
-            maxY = k.getY();
-        }
-    }
-*/
 
     for (int y = maxY; y >= 0; y--) {
         for (int x = 0; x <= maxX; x++) {
@@ -212,6 +203,14 @@ string Block::printBlock() const{
         oss << endl;
     }
     return oss.str();
+}
+
+void Block::drawBlock(int baseX, int baseY, int side ,Xwindow *xw) const{
+    for(auto & c : Cells) {
+        int x = c.getX();
+        int y = c.getY();
+        xw->fillRectangle(baseX + (side*x), baseY + (side*y), side, side, Xwindow::Blue);
+    }
 }
 
 void Block::getPos() const{
