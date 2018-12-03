@@ -293,7 +293,7 @@ bool Board::moveDown(int n){
     if(canMoveDown(n)) {
         cBlock->moveDown(n);
     }
-    return canMoveDown();
+    return canMoveDown(n);
 }
 
 bool Board::rotateCW(int n){

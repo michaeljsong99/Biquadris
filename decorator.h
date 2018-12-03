@@ -10,7 +10,7 @@ protected:
 
 public:
 
-    Decorator(std::shared_ptr<AbstractBoard> ab) override;       //ctor
+    Decorator(std::shared_ptr<AbstractBoard> ab);       //ctor
 
     void setCurrentBlock(std::shared_ptr<Block> b) override;
 

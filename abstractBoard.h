@@ -38,7 +38,7 @@ public:
 
     virtual bool rotateCCW(int n) = 0;
 
-    virtual bool shiftDown();
+    virtual bool shiftDown() = 0;
 
     virtual void drop() = 0;
 
