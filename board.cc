@@ -469,7 +469,7 @@ void Board::drawBoard(int baseX, int baseY) const{
     baseY += 50;
     int y;
     int x;
-    xw->fillRectangle(baseX, baseY, 220, 700, Xwindow::White);
+    xw->fillRectangle(baseX, baseY, 220, 520, Xwindow::White);
     for (y = 0; y <= height ; y++) {
         for (x = 0; x <= width; x++) {
             char letter = Grid[y][x].getLetter();

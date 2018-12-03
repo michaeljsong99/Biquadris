@@ -477,7 +477,8 @@ std::string Game::printGame() const {
 }
 
 void Game::drawGame() const {
-    xw->fillRectangle(0, 0, 500, 700, Xwindow::White);
+    //xw->fillRectangle(0, 0, 500, 700, Xwindow::White);
+    xw->fillRectangle(195, 20, 30, 20, Xwindow::White);
     xw->drawString(195, 20, "High Score:");
     xw->drawString(195 + 80, 20, to_string(hiscore));
     //if(turn == 1) {
