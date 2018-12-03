@@ -65,6 +65,8 @@ private:
 
     void drawGameOver();
 
+    void drawSingleBoard(int turn) const;
+
 public:
     Game(Xwindow *xw);
 

@@ -225,6 +225,13 @@ void Game::drop(int board) {
     } else {
         b2->drop();
     }
+    if(graphics) {
+        if(turn == 1) {
+            drawSingleBoard(1);
+        } else {
+            drawSingleBoard(2);
+        }
+    }
 }
 
 void Game::replaceBlock(char blockType, int board) {
@@ -503,15 +510,9 @@ void Game::drawGame() const {
     xw->drawString(195, 20, "High Score:");
     xw->drawString(195 + 80, 20, to_string(hiscore));
     if(turn == 1) {
-    b1->updateGrid();
-    b1->drawCurrentBlock();
-    b1->drawBoard(20, 20);
-    b1->updateGrid();
+        drawSingleBoard(1);
     } else {
-    b2->updateGrid();
-    b2->drawCurrentBlock();
-    b2->drawBoard(260, 20);
-    b2->updateGrid();
+        drawSingleBoard(2);
     }
 }
 
@@ -533,6 +534,19 @@ void Game::drawGameOver() {
     xw->fillRectangle(0, 0, 500, 700, Xwindow::White);
 }
 
+void Game::drawSingleBoard(int board) const {
+    if(board == 1) {
+        b1->updateGrid();
+        b1->drawCurrentBlock();
+        b1->drawBoard(20, 20);
+        b1->updateGrid();
+    } else {
+        b2->updateGrid();
+        b2->drawCurrentBlock();
+        b2->drawBoard(260, 20);
+        b2->updateGrid();
+    }
+}
 
 std::ostream &operator<<(std::ostream &out, const Game &g) {
     return out << g.printGame();
