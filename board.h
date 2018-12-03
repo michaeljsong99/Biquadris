@@ -113,7 +113,7 @@ public:
 
     std::string printBoard() const override;
 
-    void drawBoard() const override;
+    void drawBoard(int baseX, int baseY) const override;
 
 };
 

@@ -62,7 +62,7 @@ public:
 
     std::string printBoard() const override;                  //Prints board as a string
 
-    void drawBoard() const override;
+    void drawBoard(int baseX, int baseY) const override;
 
     std::shared_ptr<AbstractBoard> removeDecorator() override;
 
