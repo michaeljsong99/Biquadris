@@ -51,6 +51,44 @@ void readCommand(int& n, string& s, vector<string>& commands) {
     }
 }
 
+void readSequence(int& n, string& s, vector<string>& commands) {
+        int counter = 0;
+        while (s[counter] >= '0' && s[counter] <= '9') {
+            counter++;
+        }
+        if (counter != 0) {
+            n = stoi(s.substr(0, counter));
+        } else {
+            n = 1;
+        }
+        s = s.substr(counter);
+
+        vector<string> matches;
+        for (auto &in : commands) {
+            if (s.length() > in.length()) {
+                continue;
+            }
+            if (in.substr(0, s.length()) == s) {
+                matches.emplace_back(in);
+            }
+
+        }
+        if(matches.size() == 1) {
+            s = matches.back();
+            return;
+
+        }
+        else if(matches.size() > 1) {
+            cout << "Matches too many of the following commands. Please try again." << endl;
+            for(auto &in : matches) {
+                cout << in << endl;
+
+            }
+        }else {
+            cout << "No match found. Please try again" << endl;
+        }
+}
+
 void commandLoop(Game &g) {
     //Store all commands
     vector<string> commands;
@@ -94,10 +132,11 @@ void commandLoop(Game &g) {
             readCommand(n, s, com);
         } else {
             cout << "Printing from Sequence" << endl;
-            if (!(sequence >> s)) {
-                cout << s << endl;
+            sequence >> s;
+            readSequence(n, s, commands);
+            cout << n << s << endl;
+            if (sequence.eof()) {
                 isSequence = false;
-                cin >> s;
             }
         }
         while(n > 0) {
