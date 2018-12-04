@@ -477,6 +477,10 @@ void Board::drawBoard(int baseX, int baseY) const{
     nBlock->drawBlock(baseX, baseY+(side*y)+50, side, xw);
 }
 
+Xwindow *Board::getXW() const {
+    return xw;
+}
+
 ostream &operator<<(ostream &out, const Board &b) {
     return out << b.printBoard();
 }
