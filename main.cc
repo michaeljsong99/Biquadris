@@ -260,17 +260,11 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    cout << "graphics" << graphics << endl;
-    cout << "file1" << file1 << endl;
-    cout << "file2" << file2 << endl;
-    cout << "level" << level << endl;
 
 
     if(graphics) {
-        cout << "Graphics game" << endl;
         graphicsGame(file1, file2, level);
     } else {
-        cout << "Text Game" << endl;
 
         textGame(file1, file2, level);
     }
