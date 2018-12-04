@@ -117,6 +117,8 @@ public:
 
     void drawBoard(int baseX, int baseY) const override;
 
+    Xwindow* getXW() const override;
+
 };
 
 //std::ostream& operator<<(std::ostream &out, const Board &b);

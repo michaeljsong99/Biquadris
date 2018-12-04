@@ -11,6 +11,8 @@ public:
 
     std::string printBoard() const override;                  //Override with ??
 
+    void drawBoard(int baseX, int baseY) const override;
+
 };
 
 

@@ -64,6 +64,8 @@ public:
 
     void drawBoard(int baseX, int baseY) const override;
 
+    Xwindow* getXW() const override;
+
     std::shared_ptr<AbstractBoard> removeDecorator() override;
 
     void setHeavy(int n) override;
