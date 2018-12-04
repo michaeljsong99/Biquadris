@@ -23,7 +23,6 @@ void readCommand(int& n, string& s, vector<string>& commands) {
             n = 1;
         }
         s = s.substr(counter);
-        cout << n << " " << s << endl;
 
         vector<string> matches;
         for (auto &in : commands) {
@@ -94,7 +93,9 @@ void commandLoop(Game &g) {
         if (!isSequence) {
             readCommand(n, s, com);
         } else {
+            cout << "Printing from Sequence" << endl;
             if (!(sequence >> s)) {
+                cout << s << endl;
                 isSequence = false;
                 cin >> s;
             }
