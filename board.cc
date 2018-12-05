@@ -16,7 +16,6 @@ void Board::endTurn() {
     updateGrid();
 
     int rows = clearRows();
-    //cout << "Row Cleared" << endl;
     calculateScore(rows);
 
     if (hiscore < score) {
@@ -24,7 +23,6 @@ void Board::endTurn() {
     }
     dropped = true;
     rowsCleared = rows;
-    //cout << rowsCleared << endl;
 }
 
 void Board::calculateScore(int rows) {
@@ -38,15 +36,12 @@ void Board::calculateScore(int rows) {
         Block &block = **b;
         if (block.isEmpty()) {
             int base = 1 + block.levelCreated;
-            //cout << "Add to baseScore: " << base * base << endl;
             blockScore += base * base;
             b = Blocks.erase(b);
         } else {
             b++;
         }
     }
-    //cout << "clearScore: " << clearScore << endl;
-    //cout << "blockScore: " << blockScore << endl;
 
     score += blockScore;
 }
@@ -74,14 +69,10 @@ int Board::clearRows() {
         rowsCleared++;
     }
 
-    //cout << "Found Filled Rows" << endl;
 
     for (auto &i : rows) {
-        //cout << i << endl;
         clearRow(i);
-        //cout << "Updating Grid" << endl;
         updateGrid();
-        //cout << "Updated Grid" << endl;
     }
 
     return rowsCleared;
@@ -94,32 +85,25 @@ void Board::clearRow(int row) {
     for (auto &b : Blocks) {
         for (auto iter = b->Cells.begin(); iter != b->Cells.end();) {
             int y = b->getY() - iter->getY();
-            //cout << "y: " << y;
 
             if (y == row) {
                 iter = b->Cells.erase(iter);
-                //cout << "   Cell Deleted" << endl;
                 continue;
             } else if ((b->getY() >= row) && (y < row)) {
                 iter->setY(iter->getY() - 1);
                 iter++;
-                //cout << "   Cell Shifted Down" << endl;
                 continue;
             }
-            //cout << "   Cell Untouched" << endl;
             iter++;
         }
     }
-    //cout << "Changed Cell Coordinates" << endl;
 
 
     for (auto &b : Blocks) {
         if (b->getY() < row) {
-            //cout << "Block Y Set to " << b->getY() + 1 << endl;
             b->setY(b->getY() + 1);
         }
     }
-    //cout << "Changed Block Coordinates" << endl;
 
 }
 
@@ -322,14 +306,11 @@ bool Board::shiftDown() {
 }
 
 void Board::drop() {
-    //cout << "Moving Down" << endl;
     while (moveDown(1)) {
     }
-    //cout << "Moved to the Bottom!" << endl;
     addBlock(cBlock);
     cBlock = nBlock;
     endTurn();
-    //!!!call update
 }
 
 void Board::reset() {
@@ -361,14 +342,11 @@ void Board::updateGrid() {
         }
     }
 
-    //cout << "Adding New Blocks: " << endl;
 
 
     //Add Blocks
     for (auto &b : Blocks) {
         for (auto &c : b->Cells) {
-            //cout << "Y: " << b->getY() << "  " << c.getY() << "  " << b->getY() - c.getY() << endl;
-            //cout << "X: " << b->getX() << "  " << c.getX() << "  " << b->getX() + c.getX() << endl;
             Grid[b->getY() - c.getY()][b->getX() + c.getX()] = c;
         }
     }
@@ -497,6 +475,10 @@ void Board::drawBoard(int baseX, int baseY) const{
 
     xw->drawString(baseX, 30+baseY + (side*y), "Next:");
     nBlock->drawBlock(baseX, baseY+(side*y)+50, side, xw);
+}
+
+Xwindow *Board::getXW() const {
+    return xw;
 }
 
 ostream &operator<<(ostream &out, const Board &b) {

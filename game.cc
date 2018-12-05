@@ -147,6 +147,17 @@ int Game::checkTurn() {
     return turn;
 }
 
+Game::Game() {
+    xw = nullptr;
+    b1 = make_shared<Board>(xw);
+    b1 = make_shared<Heavy>(b1, 0, false);
+    b2 = make_shared<Board>(xw);
+    b2 = make_shared<Heavy>(b2, 0, false);
+    setLevel(0);
+    auto empty = make_shared<Block>('\0', 1, 0);
+    e = empty;
+}
+
 Game::Game(Xwindow* xw) : xw{xw} {
     b1 = make_shared<Board>(xw);
     b1 = make_shared<Heavy>(b1, 0, false);
@@ -441,6 +452,8 @@ void Game::endTurn(int board) {
 }
 
 void Game::setLevel(int level) {
+    if(level > 4) level = 4;
+    if (level < 0) level = 0;
     b1->setLevel(level);
     b2->setLevel(level);
     if (level >= 3) {

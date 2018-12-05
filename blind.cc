@@ -14,3 +14,8 @@ std::string Blind::printBoard() const{
     }
     return s;
 }
+
+void Blind::drawBoard(int baseX, int baseY) const {
+    component->drawBoard(baseX, baseY);
+    component->getXW()->fillRectangle(baseX +40, baseY + 150, 140, 180, Xwindow::Black);
+}

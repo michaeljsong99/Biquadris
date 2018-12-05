@@ -23,7 +23,6 @@ void readCommand(int& n, string& s, vector<string>& commands) {
             n = 1;
         }
         s = s.substr(counter);
-        cout << n << " " << s << endl;
 
         vector<string> matches;
         for (auto &in : commands) {
@@ -52,31 +51,45 @@ void readCommand(int& n, string& s, vector<string>& commands) {
     }
 }
 
-int main(int argc, char *argv[]) {
-    Xwindow xw(500, 700);
-    Game g = Game(&xw); // call the game constructor(implementation still absent from the game class)
-
-    for (int i = 1; i < argc; i++) {
-        if (string(argv[i]) == "-text") {
-            g.setGraphics(false);
-        } else if (string(argv[i]) == "-seed") {
-            i++;
-            int seed = stoi(string(argv[i]));
-            srand(seed);
-        } else if (string(argv[i]) == "-scriptfile1") {
-            i++;
-            g.setFile1(string(argv[i]));
-        } else if (string(argv[i]) == "-scriptfile2") {
-            i++;
-            g.setFile2(string(argv[i]));
-        } else if (string(argv[i]) == "-startLevel") {
-            i++;
-            int level = stoi(argv[i]);
-            g.setLevel(level);
+void readSequence(int& n, string& s, vector<string>& commands) {
+        int counter = 0;
+        while (s[counter] >= '0' && s[counter] <= '9') {
+            counter++;
         }
-    }
+        if (counter != 0) {
+            n = stoi(s.substr(0, counter));
+        } else {
+            n = 1;
+        }
+        s = s.substr(counter);
 
+        vector<string> matches;
+        for (auto &in : commands) {
+            if (s.length() > in.length()) {
+                continue;
+            }
+            if (in.substr(0, s.length()) == s) {
+                matches.emplace_back(in);
+            }
 
+        }
+        if(matches.size() == 1) {
+            s = matches.back();
+            return;
+
+        }
+        else if(matches.size() > 1) {
+            cout << "Matches too many of the following commands. Please try again." << endl;
+            for(auto &in : matches) {
+                cout << in << endl;
+
+            }
+        }else {
+            cout << "No match found. Please try again" << endl;
+        }
+}
+
+void commandLoop(Game &g) {
     //Store all commands
     vector<string> commands;
     commands.emplace_back("left");
@@ -99,19 +112,13 @@ int main(int argc, char *argv[]) {
     commands.emplace_back("O");
     commands.emplace_back("T");
 
-
-
     int n;
     string s;
     vector<string>& com = commands;
 
 
 
-
-    g.setLevel(1);
     g.init();
-
-
     int turn = 1;
     string file;
 
@@ -124,9 +131,12 @@ int main(int argc, char *argv[]) {
         if (!isSequence) {
             readCommand(n, s, com);
         } else {
-            if (!(sequence >> s)) {
+            cout << "Printing from Sequence" << endl;
+            sequence >> s;
+            readSequence(n, s, commands);
+            cout << n << s << endl;
+            if (sequence.eof()) {
                 isSequence = false;
-                cin >> s;
             }
         }
         while(n > 0) {
@@ -190,5 +200,72 @@ int main(int argc, char *argv[]) {
         }
 
 
+    }
+}
+
+void graphicsGame(string& file1, string& file2, int& level) {
+    Xwindow xw(500, 700);
+    Game g = Game(&xw); // call the game constructor(implementation still absent from the game class)
+    g.setGraphics(true);
+    if(!file1.empty()) {
+        g.setFile1(file1);
+    }
+    if(!file2.empty()) {
+        g.setFile2(file2);
+    }
+    if(level != -1) {
+        g.setLevel(level);
+    }
+    commandLoop(g);
+}
+
+void textGame(string& file1, string& file2, int& level) {
+    Game g = Game(nullptr);
+    g.setGraphics(false);
+    if(!file1.empty()) {
+        g.setFile1(file1);
+    }
+    if(!file2.empty()) {
+        g.setFile2(file2);
+    }
+    if(level != -1) {
+        g.setLevel(level);
+    }
+    commandLoop(g);
+}
+
+int main(int argc, char *argv[]) {
+    bool graphics = true;
+    string file1;
+    string file2;
+    int level = -1;
+
+
+    for (int i = 1; i < argc; i++) {
+        if (string(argv[i]) == "-text") {
+            graphics = false;
+        } else if (string(argv[i]) == "-seed") {
+            i++;
+            int seed = stoi(string(argv[i]));
+            srand(seed);
+        } else if (string(argv[i]) == "-scriptfile1") {
+            i++;
+            file1 = string(argv[i]);
+        } else if (string(argv[i]) == "-scriptfile2") {
+            i++;
+            file2 = string(argv[i]);
+        } else if (string(argv[i]) == "-startlevel") {
+            i++;
+            level = stoi(argv[i]);
+        }
+    }
+
+
+
+    if(graphics) {
+        graphicsGame(file1, file2, level);
+    } else {
+
+        textGame(file1, file2, level);
     }
 }

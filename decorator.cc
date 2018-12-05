@@ -129,5 +129,9 @@ void Decorator::drawBoard(int baseX, int baseY) const {
     component->drawBoard(baseX, baseY);
 }
 
+Xwindow *Decorator::getXW() const {
+    return component->getXW();
+}
+
 
 

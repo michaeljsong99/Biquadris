@@ -61,6 +61,8 @@ public:
 
     virtual void drawBoard(int baseX, int baseY) const =0;
 
+    virtual Xwindow* getXW() const = 0;
+
     virtual void setHeavy(int n) = 0;
 
     virtual bool getDropped() = 0;
